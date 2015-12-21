@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>右键自定义事件</title>
+</head>
+<body style="height: 1000px">
+	<ul id="myMenu" style="position: fixed; visibility: hidden; background-color: silver">
+		<li>Menu1</li>
+		<li>Menu2</li>
+		<li>Menu3</li>
+		<li>Menu4</li>
+	</ul>
+</body>
+<script>
+document.addEventListener('contextmenu', function(event) {
+	event.preventDefault();
+
+	var menu = document.getElementById('myMenu')
+	menu.style.left = event.clientX + 'px';
+	menu.style.top = event.clientY + 'px';
+	menu.style.visibility = 'visible';
+
+})
+
+document.documentElement.addEventListener('click', function() {
+	var menu = document.getElementById('myMenu')
+	menu.style.visibility = 'hidden';
+
+})
+</script>
+</html>

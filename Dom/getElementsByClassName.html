@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GetElementsByClassName()</title>
+</head>
+<body>
+	<div id="test">
+		<p class="txt">Hello World!</p>
+		<p class="txt">Welcome!</p>
+		<p class="txt2">txt2txt2txt2txt2txt2txt2txt2txt2!</p>
+		<p class="txt3">txt2txt2txt2txt2txt2txt2txt2txt2!</p>
+		<p class="txt txt2">lalalalalalla!</p>
+	</div>
+
+	<div id="test2">
+		<p class="txt">Hello World!</p>
+		<p class="txt">Welcome!</p>
+		<p class="txt2">txt2txt2txt2txt2txt2txt2txt2txt2!</p>
+		<p class="txt3">txt2txt2txt2txt2txt2txt2txt2txt2!</p>
+		<p class="txt txt2">lalalalalalla!</p>
+	</div>
+
+</body>
+<script>
+// 获取包括 txt 和 txt2 2个样式的元素
+var allTxtTxt2Class = document.getElementsByClassName('txt txt2')
+console.log(allTxtTxt2Class)
+
+// 获取具有 txt 的样式
+var allTxtClass = document.getElementsByClassName('txt')
+console.log(allTxtClass)
+
+// 获取在ID为test的元素中包括 txt 和 txt2 2个样式的元素
+var allIdTxtTxt2Class = document.getElementById('test').getElementsByClassName('txt txt2')
+console.log(allIdTxtTxt2Class)
+
+
+// 参考
+// 《Javascript高级程序设计（3） P289 PDF307
+</script>
+</html>

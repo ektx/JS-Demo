@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                window.onload=function(){
+                    var t=[];
+                    var btn1=$('#btn1'),btn2=$('#btn2'),btn3=$('btn3');
+                    btn1.click(function(){
+                       // if($('#ifm1'))return;
+                        var c=$('#content');
+                        var ifm = "<iframe id='ifm1' src='http://www.baidu.com'>aoaoaoa</iframe> ";
+                        c.append(ifm);
+                        t.push(ifm);
+                    })
+                    btn2.click(function(){
+                        var ifm=$('#ifm1');
+                        console.log("before:"+ifm.attr("src"));
+                        ifm.attr("src",null);
+                        console.log("after:"+ifm.attr("src"));
+                        document.getElementById('')
+                        // ifm.remove();
+                        if(CollectGarbage){
+                            CollectGarbage();
+                        }
+
+                    })
+                }
+
+                })
+        </script>
+    </head>
+    <body>
+        <input id="btn1" type="button" value="打开"/>
+        <input id="btn2" type="button" value="关闭"/>
+        <div id="content">
+
+        </div>
+
+    </body>
+</html>

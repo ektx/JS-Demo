@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>兼容模式判断</title>
+</head>
+<body>
+
+
+</body>
+<script>
+if (document.compatMode == 'CSS1Compat') {
+	document.write('Standards mode[标准模式]')
+} else if (document.compatMode == 'BackCompat') {
+	document.write('Quirks mode[混杂模式]')
+}
+
+
+// 参考
+// 《Javascript高级程序设计（3） P292 PDF310
+</script>
+</html>

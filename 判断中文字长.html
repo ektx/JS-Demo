@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中文字长判断</title>
+</head>
+<body>
+	<input	id="txt" type="text" value="" placeholder="请输入中文来判断长度"/>
+	<button id="btn">告诉我长度吧</button>
+	<p>*:中文占2个字节,一个中文长为2!</p>
+</body>
+<script type="text/javascript">
+	function getStrLen(str) {
+		return str.replace(/[^\x00-\xff]/g, '__').length;
+	}
+
+	document.getElementById('btn').onclick = function() {
+		var str = document.getElementById('txt').value;
+		alert(getStrLen(str));
+	}
+</script>
+</html>

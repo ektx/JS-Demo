@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Message of the Day</title>
+	<script>
+	function createDocument() {
+		var xmlDoc;
+
+		if (window.ActiveXObject) {
+			var versions = [
+				"Msxml2.DOMDocument.6.0",
+				"Msxml2.DOMDocument.3.0"
+			];
+
+			for (var i = 0; i < versions.length; i++) {
+				try {
+					xmlDoc = new ActiveXObject(versions[i]);
+					return xmlDoc;
+				} catch (error) {
+					// do nthing here
+				}
+			}
+		} else if (document.implementation && document.implementation.createDocument) {
+			xmlDoc = document.implementation.createDocument("", "", null);
+			return xmlDoc;
+		}
+		return null;
+	}
+
+	function getDailyMessage() {
+		// 用getElementsByTagName() 得到<daily>节点列表
+		var messages = xmlDoc.getElementsByTagName("daily");
+		var dateobj = new Date();
+		// 得到星期
+		var today = dateobj.getDay();
+
+		return messages[today].firstChild.nodeValue;
+	}
+	</script>
+</head>
+<body>
+	<div id="messageContainer"></div>
+</body>
+</html>
+<script>
+	var xmlDoc = createDocument();
+					alert(xmlDoc)
+	xmlDoc.async = false;
+	// Safari 和 Chrome 不支持 load()方法，因此请在火狐上测试
+	// 他们必需要使用XMLHttpRequest对象，从服务器上加载 XML 文档
+	xmlDoc.load('motd.xml');
+
+	document.getElementById('messageContainer').innerHTML = getDailyMessage();
+</script>

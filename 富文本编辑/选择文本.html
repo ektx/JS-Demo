@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<textarea id="txtbox" name="" id="" cols="30" rows="10">Hello World!</textarea>
+	<br/>
+	<input id="num" size="30" type="text" placeholder="电话">
+</body>
+<script>
+// 选择文本
+// http://www.jb51.net/article/32689.htm
+var txtBox = document.getElementById('txtbox');
+
+var range;
+if (txtBox.setSelectionRange) {
+
+	// 选择所有文本
+	txtBox.setSelectionRange(0, txtBox.value.length)
+	
+} else if (txtBox.createTextRange) {
+	range = txtBox.createTextRange();
+
+	// 选择所有文本
+	range.collapse(true);
+	range.moveStart('character', 0);
+	range.moveEnd('character', txtBox.value.length);
+	range.select()
+
+}
+
+// 禁止复制功能
+// document.getElementById('num').addEventListener('keydown', function(event) {
+// 	console.log(event)
+// 	// if (typeof event.charCode == 'number') {
+// 		console.log('CahrCode value: ' + String.fromCharCode(event.charCode));
+// 		if (event.ctrlKey) {
+// 			event.preventDefault()
+// 		}
+// 	// }
+// })
+
+// 输入时判断是否为数字
+document.getElementById('num').addEventListener('keypress', function(event) {
+	console.log(event.type)
+	// if (typeof event.charCode == 'number') {
+		console.log('CahrCode value: ' + String.fromCharCode(event.charCode));
+		if (!/\d/.test(String.fromCharCode(event.charCode)) && event.charCode > 9 && !event.ctrlKey) {
+			event.preventDefault()
+		}
+	// }
+})
+
+// 剪贴板事件
+document.getElementById('num').addEventListener('paste', function(event) {
+
+	var clipboardData = (event.clipboardData || window.clipboardData);
+	var txt = clipboardData.getData('text');
+
+	console.log(txt);
+
+	if (!/^\d*$/.test(txt)) {
+		event.preventDefault()
+	}
+})
+
+</script>
+</html>

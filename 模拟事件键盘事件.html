@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟事件</title>
+</head>
+<body>
+	<button id="myBtn">Click</button>
+</body>
+<script>
+	var btn = document.getElementById('myBtn');
+
+	// 创建事件对象
+	var event = document.createEvent('KeyboardEvent');
+
+	// 初始化事件对象
+	// 最后三个在 chrome上为 ctrl alt shift meta键
+	event.initKeyboardEvent('keydown', true, true, document.defaultView, "a", 0, 0, true, true, true);
+
+
+	btn.addEventListener('keydown', function(e) {
+		console.log(e)
+	})
+
+	// 触发事件
+	btn.dispatchEvent(event)
+</script>
+</html>

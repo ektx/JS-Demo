@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MatchesSelector</title>
+</head>
+<body>
+	<div id="test" class="css1 css2"></div>
+</body>
+<script>
+
+function matchesSelector(ele, selector) {
+	if (ele.matchesSelector) {
+		return ele.matchesSelector(selector)
+	} else if (ele.msMatchesSelector) {
+		return els.msMatchesSelector(selector)
+	} else if (ele.webkitMatchesSelector) {
+		return ele.webkitMatchesSelector(selector)
+	} else if (ele.mozMatchesSelector) {
+		return els.mozMatchesSelector(selector)
+	} else {
+		throw new Error('Not surpported.')
+	}
+}
+
+var div = document.getElementById('test')
+// var selects = div.webkitMatchesSelector('div')
+// var selectsID = div.webkitMatchesSelector('#test')
+// var selectsCss1 = div.webkitMatchesSelector('.css1')
+// var selectsCss2 = div.webkitMatchesSelector('.css2')
+// var selectsCss3 = div.webkitMatchesSelector('.css3')
+
+var selects = matchesSelector(div, 'div')
+var selectsID = matchesSelector(div, '#test')
+var selectsCss1 = matchesSelector(div, '.css1')
+var selectsCss2 = matchesSelector(div, '.css2')
+var selectsCss3 = matchesSelector(div, '.css3')
+var selectsCss4 = matchesSelector(div, 'div.css2')
+var selectsCss5 = matchesSelector(div, 'div.css3')
+var selectsCss6 = matchesSelector(div, 'div.css2.css2')
+var selectsCss7 = matchesSelector(div, 'div.css2.css3')
+
+
+
+console.log('当前元素是 Div:' + selects)
+console.log('当前元素id是test: ' + selectsID)
+console.log('当前元素有 .css1: ' + selectsCss1)
+console.log('当前元素有 .css2: ' + selectsCss2)
+console.log('当前元素有 .css3: ' + selectsCss3)
+console.log('当前元素是 div.css2: ' + selectsCss4)
+console.log('当前元素有 div.css3: ' + selectsCss5)
+console.log('当前元素是 div.css2.css2: ' + selectsCss6)
+console.log('当前元素是 div.css2.css3: ' + selectsCss7)
+
+
+// 参考
+// 《Javascript高级程序设计（3） P288 PDF306
+</script>
+</html>

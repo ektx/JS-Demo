@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AddEventListener</title>
+</head>
+<body>
+
+</body>
+<script>
+window.onload = function() {
+	alert('Welcome here!')
+    sessionStorage.setItem('hello','true');
+}
+
+// Used for confirmation , to closing the window 
+window.onbeforeunload = function () {
+
+    return  "Are you sure want to LOGOUT the session ?";
+};
+
+// Used to logout the session , when browser window was closed 
+window.onunload = function () {
+
+    sessionStorage.removeItem('hello');
+};
+</script>
+</html>

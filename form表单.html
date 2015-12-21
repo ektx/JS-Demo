@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form name="one" action="">
+		<input type="text" size="25" maxlength="50" autofocus>
+
+		<input type="image" src="p1.png">
+
+
+		<ul>
+			<li><input type="radio" name="color" value="red">Red</li>
+			<li><input type="radio" name="color" value="green">Green</li>
+			<li><input type="radio" name="color" value="blue">Blue</li>
+		</ul>
+
+		<textarea name="mytext" id="" cols="30" rows="10">
+Hello World!
+		</textarea>
+		<input name="getTxt" type="button" value="选择文本">
+		<input type="submit">
+	</form>
+	<form name="two" action=""></form>
+</body>
+<script>
+// 获得表单
+
+// 1.序号方式
+var form1 = document.forms[0]
+console.log(form1)
+console.log(form1.elements)
+
+// 获取焦点
+// form1.elements[0].focus()
+
+form1.addEventListener('submit', function(event) {
+	
+	// 禁用提交
+	form1.elements[form1.length - 1].disabled = true
+	// or
+	// document.querySelector('[type="submit"]').disabled = true
+
+	event.preventDefault();
+})
+
+// 选择输入框中所有内容
+form1.elements['getTxt'].addEventListener('click', function() {
+	form1.elements['mytext'].select()
+})
+
+var txtBox = form1.elements['mytext']
+form1.elements['mytext'].addEventListener('select', function() {
+	console.log(txtBox.selectionStart, txtBox.selectionEnd)
+})
+	
+	// 选择指定位置
+	// console.log(txtBox.setSelectionRange(txtBox.selectionStart, txtBox.selectionEnd))
+
+
+
+// 2.名称方式
+// console.log(document.forms['two'])
+</script>
+</html>

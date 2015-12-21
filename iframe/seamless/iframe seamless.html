@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>iframe seamless框架间的样式访问</title>
+		<style>
+			body {background: #f00;}
+			h2 {
+				font-size: 24px;
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 时时样式 
+		<style>
+		body {background: #f00;}
+		</style>-->
+		<h3>seamless允许父级样式对iframe影响</h3>
+		<iframe src="a.html" frameborder="2" width="300" height="300">
+		</iframe>
+
+		<iframe src="b.html" frameborder="2"  width="300" height="300" seamless="seamless">
+		</iframe>
+	</body>
+</html>

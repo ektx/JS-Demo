@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+</body>
+<script>
+(function() {
+	var showCount = 0;
+
+	window.onload = function() {
+		alert('load')
+	}
+
+	window.onpageshow =  function() {
+		showCount++;
+		alert('show has been fired '+ showCount + ' times.')
+	}
+	
+})()
+</script>
+</html>

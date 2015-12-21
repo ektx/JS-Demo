@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>页面定位 ScrollIntoView() example</title>
+	<style type="text/css">
+	.box {
+		height: 5em;
+		width: 30em;
+		overflow: scroll;
+		border: 1px solid blue;
+	}
+
+	</style>
+	<script type="text/javascript">
+	function showIt(elID) {
+		var el = document.getElementById(elID);
+		el.scrollIntoView(true);
+	}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div style="height: 100px;"></div>
+		<p id="pToShow">The para to show</p>
+		<div style="height: 100px;"></div>
+	</div>
+	<input type="button" value="Show para" onclick="showIt('pToShow');">
+</body>
+</html>
+<!-- 参考：
+页面定位 
+https://developer.mozilla.org/en-US/docs/Web/API/Element.scrollIntoView 
+
+到页面顶部
+document.body.scrollIntoView(true)
+
+
+到页面底部
+document.body.scrollIntoView(false)
+ -->

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<textarea id="txtbox" name="" id="" cols="30" rows="10" autofocus>Hello World!</textarea>
+
+</body>
+<script>
+// 选择文本
+var txtBox = document.getElementById('txtbox');
+
+// var range;
+// if (txtBox.setSelectionRange) {
+
+// 	// 选择所有文本
+// 	txtBox.setSelectionRange(0, txtBox.value.length)
+	
+// } else if (txtBox.createTextRange) {
+// 	range = txtBox.createTextRange();
+
+// 	// 选择所有文本
+// 	range.collapse(true);
+// 	range.moveStart('character', 0);
+// 	range.moveEnd('character', txtBox.value.length);
+// 	range.select()
+
+// }
+																																																																																																		
+txtBox.addEventListener('keydown', function(e) {
+
+	console.log(e)
+
+	if (e.keyCode == 9) {
+
+		if (txtBox.setSelectionRange) {
+
+			var txt = txtBox.value;
+			var txtStart = txtBox.selectionStart;
+			var txtEnd   = txtBox.selectionEnd;
+			var beforeTxt = txt.substr(0, txtStart);
+			var endTxt = txt.substr(txtEnd)
+
+			console.log(beforeTxt)
+			console.log(endTxt)
+
+			txtBox.value = beforeTxt + '  ' + endTxt;
+			// 定位光标
+			txtBox.setSelectionRange(txtStart + 2, txtStart + 2);
+
+			e.preventDefault()
+		}
+		
+	}
+})
+
+</script>
+</html>

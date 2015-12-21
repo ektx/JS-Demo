@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe 追加样式</title>
+</head>
+<body>
+	<h1>iframe 追加样式</h1>
+	<p>为页面添加新的iframe,然后让iframe引用新的样式表</p>
+	<div id="iframe"></div>
+</body>
+<script type="text/javascript">
+	// 生成iframe方法1:
+	var str = '<iframe id="myiframe" onload="hello()" src="" frameborder="0"></iframe>';
+	document.getElementById('iframe').innerHTML = str;
+
+	// 生成iframe方法2:
+	// var iframes = document.createElement('iframe');
+	// iframes.setAttribute('onload', 'hello()');
+	// iframes.src = 'c.html';
+	// iframes.id = 'myiframe';
+	// document.getElementById('iframe').appendChild(iframes);
+
+	function hello() {
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = 'c.css';
+		// var head = document.getElementById('myiframe').contentWindow.document.head;
+		var head = document.getElementById('myiframe').contentWindow.document.body;
+		head.appendChild(link);
+		console.log(head);
+	}
+</script>
+</html>

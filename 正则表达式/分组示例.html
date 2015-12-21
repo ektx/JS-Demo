@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>位置字符</title>
+	</head>
+	<body>
+		<script>
+		// 查找到javascript或vbscript,并替换
+		var myString = "Javascript, VBscript and zwl";
+		// var myRegExp = /\b/g;
+		var myRegExp = /\b(Java)?(VB)?script/gi;
+		myString = myString.replace(myRegExp, 'xxoo');
+		document.write(myString);
+		</script>
+	</body>
+</html>

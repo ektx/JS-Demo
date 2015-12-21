@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>全局替换文字</title>
+	</head>
+	<body>
+		<script>
+		var myString = "Paul, Paula, Pauline, paul, Paul";
+		// g 表示全局匹配， i 表示不区分大小写
+		var myRegExp = /Paul/gi;
+		myString = myString.replace(myRegExp, 'zwl');
+		document.write(myString);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Try Catch 基础</title>
+	</head>
+	<body>
+		<h3>JavaScript 测试和捕捉</h3>
+		<p>try 语句允许我们定义在执行时进行错误测试的代码块。</p>
+		<p>catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。</p>
+
+		<button onclick="message()">显示信息</button>
+	</body>
+	<script>
+	var txt = "";
+
+	function message() {
+		try {
+			// 没有定义sayhello函数
+			sayhello('Hello!')
+		} catch (err) {
+			txt = "这个页面有一个错误.\n";
+			txt += "当前页面是:" + err.fileName + "\n";
+			txt += "错误类型是:" + err.name + "\n";
+			// txt += "错误代码是:" + err.number + "\n"; // IE
+			txt += "错误信息是:" + err.message + "\n";
+			// txt += "错误信息是:" + err.description + "\n"; // IE 专用
+			txt += "错误行数是:" + err.lineNumber + "\n";
+			txt += "错误详细:" + err.stack + "\n";
+			alert(txt);
+		}
+	}
+	</script>
+</html>

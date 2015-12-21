@@ -1,0 +1,26 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array every()</title>
+</head>
+</html>
+<script>
+	document.write('<h1>Array every()</h1>');
+	document.write('<h2>测试每个元素</h2>');
+	document.write('<p>测试数组元素是否都满足指定条件</p>');
+
+	var numbers = new Array(1, 2, 3, 4, 5);
+
+	function isLessThan3(value, index, array) {
+		var returnValue = false;
+
+		if (value < 3) {
+			returnValue = true;
+		}
+
+		return returnValue;
+	}
+
+	document.write(numbers.every(isLessThan3));
+
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算样式</title>
+	<link rel="stylesheet" href="demo.css">
+	<style>
+	#myDiv {
+		background-color: blue;
+		width: 100px;
+		height: 200px;
+	}
+	</style>
+</head>
+<body>
+	<div id="myDiv" style="background-color: red; border: 1px solid black"></div>
+</body>
+<script>
+	var myDiv = document.getElementById('myDiv');
+	var computedStyle = document.defaultView.getComputedStyle(myDiv, null);
+
+	console.log(computedStyle.backgroundColor)
+	console.log(computedStyle.width)
+	console.log(computedStyle.height)
+	console.log(computedStyle.border)
+	console.log(computedStyle.borderColor)
+
+	console.log('Style - border-radius: ' + myDiv.style.borderRadius)
+	console.log('getComputedStyle - border-radius: ' + computedStyle.borderRadius)
+
+	var afterStyle = document.defaultView.getComputedStyle(myDiv, 'after');
+	console.log(computedStyle.backgroundColor)
+
+</script>
+</html>

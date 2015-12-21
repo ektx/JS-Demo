@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动切换焦点</title>
+</head>
+<body>
+<form action="">
+	
+	<input type="text" name="tel1" id="txtTel1" size="3" maxlength="3">
+	<input type="text" name="tel2" id="txtTel2" size="4" maxlength="4">
+	<input type="text" name="tel3" id="txtTel3" size="4" maxlength="4">
+</form>
+</body>
+
+<script>
+function tabForward(event) {
+
+	console.log(event)
+	console.log(event.target);
+	var target = event.target;
+
+	if (target.value.length == target.maxLength) {
+		var form = document.forms[0];
+
+		for (var i = 0, len = form.elements.length; i < len; i++) {
+			if (form.elements[i] == target) {
+				if (form.elements[i + 1]) {
+					form.elements[i+1].focus()
+				}
+				return;
+			}
+		}
+	}
+}
+
+var textbox1 = document.getElementById('txtTel1');
+var textbox2 = document.getElementById('txtTel2');
+var textbox3 = document.getElementById('txtTel3');
+
+textbox1.addEventListener('keyup', tabForward)
+textbox2.addEventListener('keyup', tabForward)
+textbox3.addEventListener('keyup', tabForward)
+</script>
+</html>

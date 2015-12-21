@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>计算日期差</title>
+	<script>
+	function writeOptions(startNumber, endNumber) {
+		var optionCounter;
+		for(optionCounter = startNumber; optionCounter <= endNumber; optionCounter ++) {
+			document.write("<option value="+ optionCounter +">" + optionCounter);
+		}
+	}
+
+	function writeMonthOptions() {
+		var theMonth;
+		var monthCounter;
+		var theDate = new Date(1);
+
+		for(monthCounter = 0; monthCounter< 12; monthCounter++) {
+			theDate.setMonth(monthCounter);
+			theMonth = theDate.toString();
+			theMonth = theMonth.substr(4,3);
+			document.write("<option value="+ theMonth +">"+ theMonth);
+		}
+	}
+
+	function recalDateDiff() {
+		var myForm = document.form1;
+		var firstDay = myForm.firstDay.options[myForm.firstDay.selectedIndex].value;
+		var secondDay = myForm.secondDay.options[myForm.secondDay.selectedIndex].value;
+		var firstMonth = myForm.firstMonth.options[myForm.firstMonth.selectedIndex].value;
+		var secondMonth = myForm.secondMonth.options[myForm.secondMonth.selectedIndex].value;
+		var firstYear = myForm.firstYear.options[myForm.firstYear.selectedIndex].value;
+		var secondYear = myForm.secondYear.options[myForm.secondYear.selectedIndex].value;
+		var firstDate = new Date(firstDay +" "+ firstMonth +" "+ firstYear);
+		var secondDate = new Date(secondDay +" "+ secondMonth +" "+ secondYear);
+		var daysdiff = (secondDate.valueOf() - firstDate.valueOf());
+		daysdiff = Math.floor(Math.abs((((daysdiff/1000)/60)/60)/24));
+		myForm.txtDays.value = daysdiff;
+	}
+
+	function window_onload() {
+		var theForm = document.form1;
+		var nowDate = new Date();
+		theForm.firstDay.options[nowDate.getDate()-1].selected = true;
+		theForm.secondDay.options[nowDate.getDate()-1].selected = true;
+		theForm.firstMonth.options[nowDate.getMonth()-1].selected = true;
+		theForm.secondMonth.options[nowDate.getMonth()-1].selected = true;
+		theForm.firstYear.options[nowDate.getFullYear()-1970].selected = true;
+		theForm.secondYear.options[nowDate.getFullYear()-1970].selected = true;
+	}
+	</script>
+</head>
+<body onload="window_onload()">
+	<form action="" name="form1">
+		<p>
+			first Date<br />
+			<select name="firstDay" onchange="recalDateDiff()" id="">
+				<script>
+				writeOptions(1,31);
+				</script>
+			</select>
+			<select name="firstMonth" onchange="recalDateDiff()" id="">
+				<script>
+				writeMonthOptions();
+				</script>
+			</select>
+			<select name="firstYear" onchange="recalDateDiff()" id="">
+				<script>
+				writeOptions(1970,2031);
+				</script>
+			</select>
+		</p>
+		<p>
+			Second Date<br />
+			<select name="secondDay" onchange="recalDateDiff()" id="">
+				<script>
+				writeOptions(1,31);
+				</script>
+			</select>
+			<select name="secondMonth" onchange="recalDateDiff()" id="">
+				<script>
+				writeMonthOptions();
+				</script>
+			</select>
+			<select name="secondYear" onchange="recalDateDiff()" id="">
+				<script>
+				writeOptions(1970,2031);
+				</script>
+			</select>
+		</p>
+		<p>
+			Total Difference in days;
+			<input type="text" name="txtDays" value="0" readonly="readonly">
+		</p>
+	</form>
+</body>
+</html>

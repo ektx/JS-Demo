@@ -1,0 +1,12 @@
+<script>
+	// 1
+	// window.onresize = function() {
+	// 	console.log(window.innerWidth);
+	// }
+
+	// 2
+	(onresize = function() {
+		console.info(window.innerWidth);
+		document.write('window Width: ' + window.innerWidth)
+	})()
+</script>

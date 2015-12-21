@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。</p>
+	<ol>
+		<li>index	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</li>
+		<li>howmany	必需。要删除的项目数量。如果设置为 0，则不会删除项目。</li>
+		<li>item1, ..., itemX	可选。向数组添加的新项目。</li>
+	</ol>
+</body>
+</html>
+<script>
+// http://www.w3school.com.cn/jsref/jsref_splice.asp
+
+var arr = new Array(6)
+arr[0] = "George"
+arr[1] = "John"
+arr[2] = "Thomas"
+arr[3] = "James"
+arr[4] = "Adrew"
+arr[5] = "Martin"
+
+document.write(arr + "<br />")
+arr.splice(2,1,"William")
+document.write(arr)
+
+</script>

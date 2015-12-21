@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe加载完成1</title>
+
+</head>
+<body>
+	<iframe id="iframes" name="myIFrame" src="http://myos.me/" frameborder="0"></iframe>
+</body>
+<script type="text/javascript">
+
+	// window.myIFrame.onload = function() {
+	// 	alert('loaded!!')
+	// }
+
+	document.getElementById('iframes').onload = function() {
+		alert('load');
+	}
+</script>
+</html>

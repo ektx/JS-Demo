@@ -1,0 +1,24 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array join()</title>
+</head>
+<body>
+	<h1>Array shift()</h1>
+	<h2>向数组头删除元素</h2>
+	<br/>
+	<p></p>
+	<button id="pushBtn">Shift()</button>
+</body>
+</html>
+<script>
+	var letter = [1,2,3,4,5,6,7,8,9];
+	document.querySelector('p').innerHTML = "letter : [" + letter.join() + ']<br/>';
+
+	document.getElementById('pushBtn').onclick = function() {
+		letter.shift();
+		document.querySelector('p').innerHTML = "letter : [" + letter.join() + ']<br/>';
+	}
+
+
+</script>

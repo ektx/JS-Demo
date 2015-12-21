@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe 内存优化</title>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<style type="text/css">
+	.pre-mod {
+		border: 1px solid #aaa;
+		background: #f5f5f5;
+		line-height: 22px;
+		font-size: 14px;
+		padding: 10px;
+		color: #333;
+		font-family: Arial;
+		overflow: auto;
+	}
+	figure {
+		width: 400px;
+		height: 260px;
+		border: 5px solid #f5f5f5;
+		margin: 0 0 32px 0;
+	}
+	figure p {
+		color: #aaa;
+		font-size: 12px;
+		text-align: center;
+	}
+	figure img {
+		width: 100%;
+		height: 100%;
+	}
+	figure:hover {
+		border-color: #f90;
+		-webkit-transition: border .4s ease;
+	}
+	</style>
+</head>
+<body>
+<h1>iframe 内存优化</h1>
+<p>在使用iframe做框架时，引用内容与嵌套iframe过多时，会导致内存过高，最终会让页面卡顿更有可能崩溃浏览器。</p>
+<figure>
+	<img src="demo/img/i001.png" alt="IE打开5个iframe时内存使用">
+	<p>IE打开5个iframe时内存使用</p>
+</figure>
+<p>从图上，内存已经超过了200Mb，网上的解决方法如下：</p>
+
+<div class="pre-mod">
+<pre>
+var iframeDOM = document.getElementById('iframe_'+iSize).contentWindow.document;
+// 清除 iframe 的页面链接
+$('#'+iframe).attr('src','');
+// 清空内容
+iframeDOM.write('');
+// 移除
+$('#'+iframe).remove();
+
+// 如果是ie浏览器，清除内存
+if(navigator.userAgent.indexOf('Trident') > 0){
+	CollectGarbage();
+}
+</pre>
+</div>
+
+<p>以下代码确实可以解决部分内存问题,但是内存的总体依然有所上升。</p>
+<figure>
+	<img src="demo/img/yhzh.png" alt="使用之后的内存情况">
+	<p>使用之后的内存情况</p>
+</figure>
+</body>
+</html>

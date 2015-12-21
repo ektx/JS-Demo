@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>位置字符</title>
+	</head>
+	<body>
+		<script>
+		// 指出重复出错内容
+		var myString = "007,007,002,001,004,004";
+		var myRegExp = /(\d+),\1/gi;
+		myString = myString.replace(myRegExp, 'xxoo $1');
+		document.write(myString);
+		</script>
+	</body>
+</html>

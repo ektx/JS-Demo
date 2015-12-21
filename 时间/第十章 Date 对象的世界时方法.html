@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>第十章 Date 对象的世界时方法</title>
+</head>
+<body>
+	<div id="DisplayResultDiv"></div>
+	<script type="text/javascript">
+	var localTime = new Date();
+	// results = 结果
+	var resultsHTML = '<p>UTC Time is ' + localTime.toUTCString() + '</p>';
+	resultsHTML += 'Local Time is ' + localTime.toLocaleString() + '</p>';
+	// getTimezoneOffset() 用于计算本地时间与UTC的时间差，如果在东方则为负值，西方为正值
+	resultsHTML += '<p>Time Zone Offset is ' + localTime.getTimezoneOffset() + '</p>';
+	// toLocaleTimeString() 用于显示本地时间，没有日期
+	resultsHTML += '<p>Using toLocaleTimeString() gives: ' + localTime.toLocaleTimeString() + '</p>';
+	// toTimeString() 用于显示时间与时区 
+	// EST表示美国东部标准时间;
+	// GMT（格林尼治标准时间）是指位于伦敦郊区的皇家格林尼治天文台的标准时间
+	// CST +0800 China Standard Time 中国北京时间
+	resultsHTML += '<p>Using toTimeString() gives: ' + localTime.toTimeString() + '</p>';
+	// toLocaleDateString() 显示计算机日期
+	resultsHTML += '<p>Using toLocaleDateString() gives: ' + localTime.toLocaleDateString() + '</p>';
+	// toDateString() 使用标准格式显示时间
+	resultsHTML += '<p>Using toDateString() gives: ' + localTime.toDateString() + '</p>';
+	document.getElementById('DisplayResultDiv').innerHTML = resultsHTML;
+	</script>
+</body>
+</html>

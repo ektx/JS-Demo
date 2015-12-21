@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AddEventListener</title>
+</head>
+<body onload="alert('loaded')" onunload="alert('unloaded!')">
+	<input type="button" value="Click me" onclick="alert(event.type)">
+	<input type="button" value="Click me" onclick="alert(this.value)">
+	<input id="btn1" type="button" value="Dom0" />
+	<input id="btn2" type="button" value="DOM2" />
+</body>
+<script>
+// Dom0 级事件处理程序
+var btn1 = document.getElementById('btn1');
+btn1.onclick = function() {
+	alert(this.id)
+}
+
+
+
+// Dom2 级事件处理程序
+// 第3个参数:
+// false 冒泡阶段处理程序
+// true  捕获阶段处理程序
+var btn2 = document.getElementById('btn2');
+btn2.addEventListener('click', function() {
+	alert(this.value)
+}, false)
+btn2.addEventListener('click', function(event) {
+	alert(this.id)
+
+	console.log(event)
+	console.log(event.eventPhase)
+	console.log(event.currentTarget === this)
+	console.log(event.target === this)
+}, false)
+
+// 除了 DOMActivate 之外，其他事件在 DOM2 级事件中都归为 HTML 事件（DOMActivate 在 DOM2
+// 级中仍然属于 UI 事件）。要确定浏览器是否支持 DOM2 级事件规定的 HTML 事件，可以使用如下代码：
+// *Chrome 测试时发现,2.0 还是不指定是几点0都是true,不可以用
+var isSupported = document.implementation.hasFeature('HTMLEvents', '2.0');
+console.log(isSupported)  // > true
+
+
+// 注意，只有根据“DOM2 级事件”实现这些事件的浏览器才会返回 true。而以非标准方式支持这
+// 些事件的浏览器则会返回 false。要确定浏览器是否支持“DOM3 级事件”定义的事件，可以使用如下
+// 代码：
+// * 测试结果与上面相同
+var isSupported = document.implementation.hasFeature("UIEvent", "3.0"); 
+
+
+// Used for confirmation , to closing the window 
+window.onbeforeunload = function () {
+
+    return  "Are you sure want to LOGOUT the session ?";
+};
+
+// Used to logout the session , when browser window was closed 
+window.onunload = function () {
+
+    sessionStorage.setItem('onload','true');
+};
+</script>
+</html>

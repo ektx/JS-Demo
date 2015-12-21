@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>导航DOM - Dom</title>
+	</head>
+	<body>
+		<h1 id="heading1">My Heading</h1>
+		<p id="paragraph1">This is some text in paragraph</p>
+	</body>
+<script>
+	var h1Element = document.getElementById('heading1');
+	h1Element.style.color = 'red';
+
+	var pElement, color;
+	if (h1Element.nextSibling.nodeType == 1) {
+		pElement = h1Element.nextSibling;
+		color = 'red';
+	} else {
+		pElement = h1Element.nextSibling.nextSibling;
+		color = 'blue';
+		console.log('Not IE')
+	}
+	pElement.style.color = color;
+</script>
+</html>

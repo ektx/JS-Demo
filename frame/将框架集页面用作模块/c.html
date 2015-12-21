@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chapter 8: Example2 - a</title>
+	<script>
+	function btnShowVisited_onclick() {
+		document.form1.txtaPagesVisited.value = window.parent.returnPagesVisited();
+	}
+	</script>
+</head>
+	<body onload="window.parent.addPage(window.location.href)">
+		<h2>This is Page C</h2>
+		<p>
+			<a href="a.html">Page A</a>
+			<a href="b.html">Page B</a>
+			<a href="c.html">Page C</a>
+			<a href="d.html">Page D</a>
+		</p>
+		<form action="" name="form1">
+			<textarea name="txtaPagesVisited" cols="30" rows="10"></textarea>
+			<br />
+			<input type="button" value="List Pages Visited" name="btnShowVisited" onclick="btnShowVisited_onclick()">
+		</form>
+	</body>
+</html>

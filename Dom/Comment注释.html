@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Comment</title>
+</head>
+<body>
+	<div id="test"><!-- 我是注释 ╮(╯▽╰)╭ --></div>
+	<div id="test2">╮(╯▽╰)╭</div>
+</body>
+<script>
+var div = document.getElementById('test');
+
+console.log('节点长度: '+div.childNodes.length)
+console.log('节点内容: '+div.firstChild.nodeValue)
+console.log('节点内容: '+div.firstChild.data)
+
+
+var div2 = document.getElementById('test2');
+console.log('2节点长度: '+div2.childNodes.length)
+console.log('2节点内容: '+div2.firstChild.nodeValue)
+console.log('2节点内容: '+div2.firstChild.data)
+
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>arguments 和 caller 属性</title>
+
+	</head>
+	<body>
+		<h1>Function Call information</h1>
+		<div id="placeHolder"></div>
+	</body>
+	<script>
+	// initialize when the page has loaded
+	// addEventListener(window, "load", showArgCaller);
+
+	var newElem;
+	var newText;
+
+	function showArgCaller() {
+		// Call the hansel function twice: once directly,
+		// second indirectly from the gretel function.
+		hansel(1, "two", 3);
+		gretel(4, "five", 6, "seven");
+	}
+
+	function hansel(x, y) {
+		var args = hansel.arguments;
+		var placeHolderElement = document.getElementById('placeHolder');
+
+		if (placeHolderElement) {
+			// a header line
+			newElem = document.createElement("h3");
+			newElem.className = "objProperty";
+			newText = document.createTextNode("The caller and the arguments");
+			// insert the 1st line (text node) into the new h3
+			placeHolderElement.appendChild(newElem);
+
+			// the next line is the caller
+			newElem = document.createElement("div");
+			newElem.className = "objProperty";
+			newText = document.createTextNode("hansel.caller is <code>" + hansel.caller + "</code>");
+			newElem.appendChild(newText);
+			placeHolderElement.appendChild(newElem);
+
+			// the next line is the number or arguments
+			newElem = document.createElement("div");
+			newElem.className = "objProperty";
+			newText = document.createTextNode("hansel.aguments.length is " + hansel.arguments.length);
+			newElem.appendChild(newText);
+			placeHolderElement.appendChild(newElem);
+
+			// the rest of the lines are the arguments
+			for (var i = 0; i < args.length; i++) {
+				newElem = document.createElement("div");
+				newElem.className = "objProperty";
+				newText = document.createTextNode("argument " + i + " is " + args[i]);
+				newElem.appendChild(newText);
+				placeHolderElement.appendChild(newElem);
+			}
+		}
+	}
+
+
+	function gretel(x, y, z) {
+		today = new Date();
+		thisYear = today.getFullYear();
+		hansel(x, y, z, thisYear);
+	}
+
+	showArgCaller();
+
+	</script>
+</html>

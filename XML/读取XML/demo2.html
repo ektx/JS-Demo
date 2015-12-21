@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Dogs</title>
+	<script>
+	function createDocument() {
+		var xmlDoc;
+
+		if ( window.ActiveXObject) {
+			var versions = [
+				"Msxml2.DOMDocument.6.0",
+				"Msxml2.DOMDocument.3.0"
+			];
+
+			for (var i = 0; i < versions.length; i++) {
+				try {
+					xmlDoc = new ActiveXObject(versions[i]);
+					return xmlDoc;
+				} catch (error) {
+					// do nothing here
+				}
+			}
+		} else if (document.implementation && document.implementation.createDocument) {
+			xmlDoc = document.implementation.createDocument("","", null);
+			return xmlDoc;
+		}
+		return null;
+	}
+
+	var xmlDocument = createDocument();
+	xmlDocument.load('mydogs.xml');
+
+	function dispalyDkogs() {
+		var dogNodes = xmlDocument.getElementByTagName("dog");
+
+		var table = document.createElement("table");
+		table.setAttribute("cellPadding", 5);
+		table.setAttribute("width", "100%");
+		table.setAttribute("border", "1");
+
+		
+	}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

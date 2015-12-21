@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe内容访问示例</title>
+	<script src="/~zwl/lib/jquery-1.9.1.min.js"></script>
+	<style>
+	body { background-color: #f5f5f5; border: 5px solid #fff;}
+	</style>
+</head>
+<body>
+	<iframe name="myIFrame" src="http://www.myos.me" frameborder="0"></iframe>
+
+	<div id="box"></div>
+	<button id="resize-300">300</button>
+	<button id="resize-600">600</button>
+</body>
+<script>
+document.getElementById('resize-600').addEventListener('click',resizeIframe);
+// document.body.addEventListener('click',resizeIframe(600));
+document.getElementById('resize-300').onclick = resizeIframe;
+
+function resizeIframe() {
+	console.log(this.id);
+	document.getElementById('box').style.height = this.id.split('-')[1] + 'px';
+}
+</script>
+
+<script src="../js/resizeIframe.js"></script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mozRequestAnimationFrame</title>
+</head>
+<body>
+<div style="width: 200px; border: 1px solid #ccc">
+	<div id="status" style="width: 0; height: 20px; background-color: blue"></div>
+</div>
+</body>
+<script>
+	function updateProgress(timestamp) {
+		var div = document.getElementById('status');
+		div.style.width = (parseInt(div.style.width, 10) + 1) + '%';
+
+		// console.log('动画运行时间: '+timestamp)
+
+		var diff = timestamp - startTime;
+		// console.log('重绘时间间隔: ' + diff + 'ms')
+		startTime = timestamp;
+
+		if (div.style.width != '100%') {
+			requestAnimationFrame(updateProgress)
+		}
+	}
+
+	var requestAnimationFrame = window.requestAnimationFrame ||
+								window.mozRequestAnimationFrame ||
+								window.webkitRequestAnimationFrame ||
+								window.msRequestAnimationFrame;
+
+	var startTime = window.mozAnimationStartTime || Date.now();
+	requestAnimationFrame(updateProgress)
+
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>判断js函数调用位置</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<button onclick="abc('i');">abc</button>
+	<button onclick="ab();">other</button>
+	
+</body>
+</html>
+<script>
+txt = 0;
+	function abc (str) {
+		if(str && str == 'i' ) {
+			txt = 0;
+		}
+		alert(txt);
+		alert($(this).text());
+
+		// reset
+		txt = 4;
+	}
+
+txt = 4;
+
+	function ab() {
+		abc();
+
+
+	}
+</script>

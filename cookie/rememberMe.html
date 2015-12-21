@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>记住我</title>
+</head>
+<body onload="go()">
+	<form id="login">
+		<input id="name" type="text" placeholder="user name" autocomplete="off">
+		<input id="password" type="password" placeholder="password">
+		<input id="rememberInt" type="checkbox">
+		<input id="sbtn" type="submit" value="Submit" />	
+	</form>
+
+<!-- 	<div id="welcomeMod">
+		<h3 id="welcome"></h3>
+		<button id="clear">Clear!</button>
+	</div> -->
+</body>
+<script type="text/javascript">
+	function go() {
+		console.log('OK!');
+
+		// 如果是记住用户的情况下
+		if (getCookie('rememberMe') == 'true') {
+			// document.getElementById('login').style.display = 'none';
+
+			// document.getElementById('welcome').innerHTML = 'Welcome Back! ' + usrName;
+
+			document.getElementById('name').value = getCookie('usr');
+			document.getElementById('rememberInt').checked = true;
+		}
+	}
+
+	// 设置cookie
+	function setCookie(name, val, days) {
+		var exdate = new Date();
+		// console.log('exdate: ' + exdate);
+		exdate.setDate(exdate.getDate() + days);
+		// console.log('exdate setDate: ' + exdate);
+
+		document.cookie =name + '=' + val + ';expires=' + exdate.toGMTString();
+
+	}
+
+	// 得到cookie
+	function getCookie(str) {
+		if (document.cookie.length > 0) {
+			s_start = document.cookie.indexOf(str + '=');
+			console.log('s_start:' + s_start);
+
+			if (s_start != -1) {
+				s_start += str.length + 1;
+				s_end = document.cookie.indexOf(';', s_start);
+				console.log('s_end:' + s_end);
+
+				if (s_end == -1) s_end = document.cookie.length;
+
+				return decodeURI(document.cookie.substring(s_start, s_end));
+			}
+		}
+		 return "";
+	}
+
+	// 登录时，记住用户
+	document.getElementById('sbtn').addEventListener('click',function() {
+
+		if (getCookie('rememberMe') == 'true') {
+			var name = document.getElementById('name').value;
+			setCookie('usr', name, 1);			
+		} else {
+			setCookie('usr', name, -1);
+		}
+
+	});
+
+	// 记住密码开关
+	document.getElementById('rememberInt').addEventListener('click', function() {
+		var checkVal = document.getElementById('rememberInt').checked;
+		console.log('checkVal' + checkVal);
+
+		setCookie('rememberMe', checkVal, 7);
+		// document.getElementById('name').value = '';
+	})
+
+	// document.getElementById('clear').addEventListener('click', function() {
+	// 	setCookie(usrName, -1);
+
+	// 	// f5 web page
+	// 	location.reload();
+	// })
+</script>
+</html>

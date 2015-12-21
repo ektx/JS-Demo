@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态引入Css</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// style 方式添加CSS
+	function loadStyle(css) {
+		var style = document.createElement('style');
+		style.type = 'text/css';
+		try {
+			style.appendChild(document.createTextNode(css))
+		} catch (err) {
+			// IE
+			style.styleSheet.cssText = css;
+		}
+
+		var head = document.getElementsByTagName('head')[0];
+		head.appendChild(style)
+	}
+
+	// link 方式添加Css
+	function loadLink(url) {
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = url;
+
+		var head = document.getElementsByTagName('head')[0];
+
+		head.appendChild(link)
+	}
+
+	loadStyle('body{background-color:#f0f}');
+	loadLink('demo.css')
+
+	// 参考
+	// 《Javascript高级程序设计（3） P281 PDF299
+</script>
+</html>

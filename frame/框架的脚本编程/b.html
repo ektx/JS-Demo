@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chapter 8: Example2 - a</title>
+	<script>
+	function btnShowVisited_onclick() {
+		document.form1.txtaPagesVisited.value = window.top.returnPagesVisited();
+	}
+
+	function setFrameAndPageControls(linkIndex) {
+		var formobject = window.parent.parent.frameMenu.document.form1;
+		formobject.choosePage.selectedIndex = linkIndex;
+
+		if (window.parent.frameTop == window.self) {
+			formobject.radFrame[0].checked = true;
+		} else {
+			formobject.radFrame[1].checked = true;
+		}
+
+		return true;
+	}
+	</script>
+</head>
+	<body onload="window.top.addPage(window.location.href)">
+		<h2>This is Page B</h2>
+		<p>
+			<a href="a.html" name="pageALink" onclick="return setFrameAndPageControls(0)">Page A</a>
+			<a href="b.html" name="pageBLink" onclick="return setFrameAndPageControls(1)">Page B</a>
+			<a href="c.html" name="pageCLink" onclick="return setFrameAndPageControls(2)">Page C</a>
+			<a href="d.html" name="pageDLink" onclick="return setFrameAndPageControls(3)">Page D</a>
+		</p>
+		<form action="" name="form1">
+			<textarea name="txtaPagesVisited" cols="30" rows="10"></textarea>
+			<br />
+			<input type="button" value="List Pages Visited" name="btnShowVisited" onclick="btnShowVisited_onclick()">
+		</form>
+	</body>
+</html>

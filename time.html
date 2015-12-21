@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+// Create two variable with the names of the months and days in an array
+var monthNames = [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "腊月" ]; 
+var dayNames= ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"]
+
+// Create a newDate() object
+var newDate = new Date();
+// Extract the current date from Date object
+newDate.setDate(newDate.getDate());
+// Output the day, date, month and year   
+$('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + '号 ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear() + '年');
+
+setInterval( function() {
+	// Create a newDate() object and extract the seconds of the current time on the visitor's
+	var seconds = new Date().getSeconds();
+	// Add a leading zero to seconds value
+	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+	},1000);
+	
+setInterval( function() {
+	// Create a newDate() object and extract the minutes of the current time on the visitor's
+	var minutes = new Date().getMinutes();
+	// Add a leading zero to the minutes value
+	$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+    },1000);
+	
+setInterval( function() {
+	// Create a newDate() object and extract the hours of the current time on the visitor's
+	var hours = new Date().getHours();
+	// Add a leading zero to the hours value
+	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+    }, 1000);	
+});
+</script>
+<style type="text/css">
+.container {width: 960px; margin: 0 auto; overflow: hidden;}
+
+.clock {width:500px; margin:0 auto; padding:30px; color:#fff; position:absolute; top:38%; right:10%; }
+
+#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:24px; text-align:center; text-shadow:0 0 30px rgba(0,0,0,0.5); opacity:0.9; text-align:left;}
+
+ul { width:400px; margin:0 auto; padding:0px; list-style:none; text-align:center; }
+ul li { display:inline; font-size:5em; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 100px rgba(0,0,0,0.5); }
+
+.point { position:relative; padding-left:10px; padding-right:10px; }
+
+/* Simple Animation */
+.img-bg { background:#42a85b; position:fixed; width:100%; height:100%; top:0; left:0px; z-index:-10;}
+</style>
+</head>
+
+<body>
+<div class="img-bg"></div>
+<div class="clock">
+      <ul>
+          <li id="hours"></li>
+          <li id="point">:</li>
+          <li id="min"></li>
+          <li id="point">:</li>
+          <li id="sec"></li>
+      </ul>
+   <div id="Date"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Page Visibility API</title>
+</head>
+<body>
+	
+</body>
+<script>
+function writeStatus() {
+
+	var html;
+
+	// 判断页面隐藏包括页面在后台标签中或浏览器最少化
+	html = '页面是否可见: ' + !document.hidden;
+
+	html += '页面状态: ' + document.visibilityState;
+	
+
+	document.write(html)
+}
+
+// writeStatus()
+
+document.addEventListener('webkitvisibilitychange', function() {
+	writeStatus()
+}, false)
+</script>
+</html>

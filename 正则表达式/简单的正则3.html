@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>位置字符</title>
+	</head>
+	<body>
+		<script>
+		var myString = "Hello world!, let's look at boundaries said 007 ·、.";
+		// var myRegExp = /\b/g;
+		var myRegExp = /\B/g;
+		myString = myString.replace(myRegExp, '|');
+		document.write(myString);
+		</script>
+	</body>
+</html>

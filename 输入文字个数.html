@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>输入文字个数</title>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+    	function inputValLeng (){
+
+    		var inputLenght	= $('textarea').val().length;
+			$('#showNu').text(inputLenght);
+    	};
+    	
+    	inputValLeng ();
+
+        $('textarea').bind('keyup mouseenter',function(){
+        	inputValLeng();
+		});
+    });
+	
+</script>
+</head>
+
+<body>
+	<p>判断输入文字个数，现无法判断中英文，<span style="text-decoration: line-through">也无法判断用鼠标拖动进去的文字</span>。</p>
+	<textarea placeholder="主输入文字进行"></textarea>
+	<div id="showNu"></div>
+</body>
+</html>

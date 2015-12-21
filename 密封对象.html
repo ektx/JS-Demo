@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>密封对象</title>
+</head>
+<body>
+	<p><b>Object.seal()</b></p>
+	<p>密封对象不可扩展,不能对已经有的对象进行删除,可以修改</p>
+</body>
+<script>
+	//使用了严格模块,密封对象后的添加和删除都会报错
+	'use strict';
+
+	var person = {name: 'ektx'};
+
+	// 检测是否密封
+	var isE = Object.isExtensible(person);
+	var isSealed = Object.isSealed(person);
+	console.log('是否可扩展: '+ isE);
+	console.log('是否密封: '+ isSealed);
+	
+	// 密封对象
+	Object.seal(person);
+
+	try {
+		person.age = 27;
+		console.log(person.age)
+		
+	} catch (err) {
+		console.log(err)
+	}
+
+	// 不可删除,因此返回还是原来的值
+	delete person.name;
+	console.log(person.name)
+	// 但是可以修改
+	person.name = 'zwl';
+	console.log(person.name);
+
+
+	// 检测是否密封
+	isE = Object.isExtensible(person);
+	isSealed = Object.isSealed(person);
+	console.log('是否可扩展: '+ isE);
+	console.log('是否密封: '+ isSealed);
+</script>
+</html>

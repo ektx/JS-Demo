@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chapter 8: demo3</title>
+	<script>
+	var pagesVisited = new Array();
+	function returnPagesVisited() {
+		var returnValue = "so far you have visited the following page\n";
+		var pageVisitedIndex;
+		var numberofPagesVisited = pagesVisited.length;
+		for (pageVisitedIndex = 0; pageVisitedIndex < numberofPagesVisited; pageVisitedIndex++) {
+			returnValue += pagesVisited[pageVisitedIndex] + "\n";
+		}
+		return returnValue;
+	}
+
+	function addPage(fileName) {
+		var fileNameStart = fileName.lastIndexOf("/") + 1;
+		fileName = fileName.substr(fileNameStart);
+		pagesVisited[pagesVisited.length] = fileName;
+
+		return true;
+	}
+	</script>
+</head>
+	<frameset cols="200, *" id="topWindow">
+		<frame name="frameMenu" src="menu.html" />
+		<frame name="frameMain" src="main.html" />
+	</frameset>
+</html>

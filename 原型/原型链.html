@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原型链</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	
+	function Superman() {};
+
+	Superman.prototype.sayHello = function() {
+		alert('I am Superman.');
+	}
+
+
+	function SupermanCan(skill) {
+		this.skill = skill;
+	}
+	SupermanCan.prototype = new Superman();
+
+	SupermanCan.prototype.sayMore = function() {
+		this.sayHello();
+
+		alert('I can '+ this.skill); 
+	}
+
+	var david = new SupermanCan('fly');
+
+	david.sayMore();
+</script>
+</html>

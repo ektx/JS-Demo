@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CreateTextNode()</title>
+</head>
+<body>
+	
+<script>
+var div = document.createElement('div');
+div.id = 'idName';
+div.className = 'helloClass';
+
+var txtNode = document.createTextNode('Hello! <b>World!</b>');
+div.appendChild(txtNode)
+
+var txtNode = document.createTextNode('Welcome!');
+div.appendChild(txtNode)
+
+
+document.body.appendChild(div)
+
+alert('节点数有：'+ div.childNodes.length)
+</script>
+</body>
+</html>

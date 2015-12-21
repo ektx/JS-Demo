@@ -1,0 +1,25 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array join()</title>
+</head>
+<body>
+	<h1>Array unshift()</h1>
+	<h2>向数组头添加元素</h2>
+	<br/>
+	<p></p>
+	<input id="txt" type="text">
+	<button id="pushBtn">Unshift()</button>
+</body>
+</html>
+<script>
+	var letter = [];
+
+	document.getElementById('pushBtn').onclick = function() {
+		var txt = document.getElementById('txt').value;
+		letter.unshift(txt);
+		document.querySelector('p').innerHTML = "letter : [" + letter.join() + ']<br/>';
+	}
+
+
+</script>

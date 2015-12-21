@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>外部动态引入Js</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function loadScript(code) {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		try {
+			script.appendChild(document.createTextNode(code))
+		} catch (err) {
+			// IE
+			script.text = code;
+		}
+		document.body.appendChild(script)
+	}
+
+	loadScript('alert(1)')
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查寻元素</title>
+</head>
+<body>
+	<img src="" name="img01" alt="" />
+	<img src="" name="img02" alt="" />
+
+	<ul name="ultest">
+		<li>1</li>
+	</ul>
+
+	<fieldset>
+		<legend>Which color do you prefer?</legend>
+		<ul>
+			<li>
+				<input type="radio" value="red" name="color" id="redColor">
+				<label for="redColor">Red</label>
+			</li>
+			<li>
+				<input type="radio" value="blue" name="color" id="blueColor">
+				<label for="blueColor">Blue</label>
+			</li>
+			<li>
+				<input type="radio" value="green" name="color" id="greenColor">
+				<label for="greenColor">Green</label>
+			</li>
+		</ul>
+	</fieldset>
+</body>
+<script>
+var images = document.getElementsByTagName('img');
+
+console.log('image size: ' + images.length)
+console.log('第一个图片SRC: ' + images[0].src)
+console.log('第一个图片SRC: ' + images.item(0).src )
+
+// 以名称来访问
+console.log('名称为img02的图片元素: ' + images['img02'])
+console.log('名称为img02的图片元素: ' + images.namedItem('img02'))
+
+// 攻取所有元素
+console.log('所有元素:' + document.getElementsByTagName('*'))
+
+// 取得当选按钮
+// var radios = document.getElementsByTagName('input');
+var radios = document.getElementsByName('color');
+console.log(radios)
+// 在 getElementsByName 中使用下面的方法时，Chrome报错  
+// console.log(radios.namedItem('color'))
+</script>
+</html>

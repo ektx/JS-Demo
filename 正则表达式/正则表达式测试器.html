@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达测试器</title>
+		<script>
+		function getRegExpFlags() {
+			var regExpFlags = '';
+			if (document.form1.chkGlobal.checked) {
+				regExpFlags = 'g';
+			}
+			if (document.form1.chkCaseInsensitive.checked) {
+				regExpFlags += 'i';
+			}
+			if (document.form1.chkMultiLine.checked) {
+				regExpFlags += 'm';
+			}
+			return regExpFlags;
+		}
+
+		function doTest() {
+			var testRegExp = new RegExp(document.form1.txtRegularExpression.value, getRegExpFlags());
+			if (testRegExp.test(document.form1.txtTestString.value)) {
+				document.form1.txtTestResult.value = "Match Found!";
+			} else {
+				document.form1.txtTestResult.value = "Match Not Found!";
+			}
+		}
+
+		function findMatches() {
+			var testRegExp = new RegExp(document.form1.txtRegularExpression.value, getRegExpFlags());
+			var myTestString = new String(document.form1.txtTestString.value);
+			var matchArray = myTestString.match(testRegExp);
+
+			document.form1.txtTestResult.value = matchArray.join('\n');
+		}
+		</script>
+	</head>
+	<body>
+		<form id="form1" name="form1" method="post" action="">
+			<p>
+				Regular Expression:<br />
+				<label for="">
+					<input name="txtRegularExpression" id="txtRegularExpression" size="100" value="" type="text" /><br />
+					Global
+					<input name="chkGlobal" type="checkbox" id="chkGlobal" value="true" />
+				</label>
+
+				Case Insensitive
+				<label for="">
+					<input type="checkbox" name="chkCaseInsensitive" id="chkCaseInsensitive" value="true" />
+				</label>
+
+				Multi Line
+				<label for="">
+					<input type="checkbox" name="chkMultiLine" id="chkMultiLine" value="true" />
+				</label>
+			</p>
+			<p>
+				<label for="">
+					Test Text:<br />
+					<textarea name=" txtTestString" id="txtTestString" cols="100" rows="8"></textarea>
+				</label>
+			</p>
+			<p>
+				Result:<br />
+				<textarea name="txtTestResult" id="txtTestResult" cols="100" rows="8"></textarea>
+			</p>
+			<p>
+				<label for="">
+					<input type="button" name="cmdTest" id="cmdTest" value="TEST" onclick="doTest();" />
+				</label>
+				<label>
+					<input type="button" name="cmdMatch" id="cmdMatch" value="MATCH" onclick="findMatches();" />
+				</label>
+				<label>
+					<input type="reset" name="cmdClearForm" id="cmdClearForm" value="Reset Form" />
+				</label>
+			</p>
+		</form>
+	</body>
+</html>

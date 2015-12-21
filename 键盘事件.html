@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标事件</title>
+</head>
+<body style="height: 1000px">
+	<input type="text" placeholder="键盘事件测试" />
+</body>
+<script>
+// 当用户按下键盘上的任意键时触发，而且如果按住不放的话，会重复触发此事件。
+document.addEventListener('keydown',function(event){
+	console.log(event.type)
+
+	// 键盘位置
+	var loc = event.location || event.keyLocation;
+	if (loc) {
+		console.log(loc)
+		switch (loc) {
+			case 1:
+				console.log('你按了左边的按键');
+				break;
+
+			case 2:
+				console.log('你按了右边的按键');
+				break;
+
+			case 3:
+				console.log('你按了小键盘区!');
+				break;
+
+			case 4:
+				alert('虚拟键盘')
+				break;
+
+			default:
+				console.log('手柄设备')
+				
+		}
+	}
+
+	var keys = new Array();
+
+	if (event.shiftKey) {
+		keys.push('shift')
+	}
+
+	if (event.ctrlKey) {
+		keys.push('ctrl')
+	}
+
+	if (event.altKey) {
+		keys.push('alt')
+	}
+
+	if(event.metaKey) {
+		keys.push('meta')
+	}
+
+	if (keys) console.log('修改键: '+keys.join(' '))
+
+}, false)
+
+// keypress：当用户按下键盘上的字符键时触发，而且如果按住不放的话，会重复触发此事件。
+// 按下 Esc 键也会触发这个事件。Safari 3.1 之前的版本也会在用户按下非字符键时触发 keypress 事件。
+document.addEventListener('keypress', function(event) {
+	console.log(event.type)
+
+	// charCode 这个属性只有在发生 keypress 事件时才包含值，
+	// 而且这个值是按下的那个键所代表字符的 ASCII 编码。
+	// 此时的 keyCode 通常等于0或者也可能等于所按键的键码。
+	// IE9+ firefox chrome safari 支持,chrome firefox 显示的为键码
+	if (typeof event.charCode == 'number') {
+		console.log('CharCode: ' + event.charCode)
+		console.log('CharCode Value: ' + String.fromCharCode(event.charCode))
+	}
+
+	// var identifier = event.key || event.keyIdentifier;
+	// console.log(identifier)
+
+}, false)
+
+
+document.addEventListener('keyup', function(event) {
+	console.log(event.type)
+	console.log('键码: ' + event.keyCode)
+
+})
+
+
+/* textInput 事件
+ie9+ safari chrome
+1.任何可以获得焦点的元素都可以触发 keypress 事件，但只有可编辑区域才能触发 textInput 事件。
+2. textInput 事件只会在户按下能够输入实际字符的键时才会被触发，而 keypress 事件则在按下那些能够影响文本显示的键时也会触发（例如退格键）。
+*/
+document.addEventListener('textInput', function(event) {
+	var txtI = event.data;
+
+	if (txtI) console.log('textInput: ' + event.data);
+
+	// inputMethod 只有ie支持
+	if (event.inputMethod)
+		console.log(event.inputMethod)
+})
+
+
+</script>
+</html>

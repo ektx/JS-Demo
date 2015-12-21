@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM insertBefore()</title>
+</head>
+<body>
+	<div>123456 <span>span</span></div>
+	<p>ppppppppppp</p>
+
+	<ul name="haha">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+<script>
+	var p = document.querySelector('p');
+	var div = document.querySelector('div');
+	var ul = document.querySelector('ul');
+	var li1 = document.querySelectorAll('li')[0];
+
+	console.log('ul节点长度为: '+ ul.childNodes.length)
+
+	// 插入头部
+	div.insertBefore(p, div.childNodes[0])
+
+	// 插入到末尾
+	div.insertBefore(p, null)
+
+	div.insertBefore(ul, null)
+
+	console.log('标题: ' + document.title)
+
+	console.log('URL: ' + document.URL)
+	console.log('域名: '+ document.domain)
+	console.log('来源页面的URL: '+document.referrer)
+</script>
+</html>

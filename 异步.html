@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>异步</title>
+</head>
+<body>
+	
+</body>
+<script>
+	
+	// function f1() {
+	// 	for(var i = 0; i< 10000; i++) {
+	// 		console.log(i)
+	// 	}
+	// 	// setTimeout(function() {
+	// 		alert(1)
+	// 	// }, 3000)
+	// }
+
+
+	function f3(callback) {
+		for(var i = 0; i< 10000; i++) {
+			console.log(i)
+		}
+		// setTimeout(function() {
+			callback(3)
+		// }, 3000)
+	}
+
+	function f2(str) {
+		alert(str)
+	}
+
+	// f1()
+	f2()
+	f3(f2)
+</script>
+</html>

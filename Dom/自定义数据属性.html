@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Head属性</title>
+</head>
+<body>
+
+	<div id="myDiv" data-appid="123456" data-myname="Kings">Hello world!</div>
+
+</body>
+<script>
+
+var div = document.getElementById('myDiv');
+
+var appid = div.dataset.appid;
+var myname = div.dataset.myname;
+
+console.log(appid + ' - ' + myname)
+
+
+// 设置值
+div.dataset.appId = 987456;
+div.dataset.myname = 'Boo';
+
+// 有没有 'myname' 值呢？
+if (div.dataset.myname) {
+	document.write('<p>'+div.dataset.myname+'</p>')
+}
+
+// 参考
+// chrome firefox ie11+
+// 《Javascript高级程序设计（3） P293 PDF311
+</script>
+</html>

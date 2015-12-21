@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>insertAdjacentHTML()</title>
+</head>
+<body>
+
+	<div id="myDiv">
+		<p>Hello</p>
+	</div>
+
+</body>
+<script>
+
+var div = document.getElementById('myDiv');
+
+// 作为前一个同辈元素插入
+div.insertAdjacentHTML('beforebegin', '<p>use beforebegin</p>');
+
+// 作为第一个子元素插入
+div.insertAdjacentHTML('afterbegin', '<p>use afterbegin</p>')
+
+// 作为最后一个子元素插入
+div.insertAdjacentHTML('beforeend', '<p>use beforeend</p>')
+
+// 作为最后一个同辈元素插入
+div.insertAdjacentHTML('afterend', '<p>use afterend</p>')
+
+
+// 参考
+// 《Javascript高级程序设计（3） P297 PDF315
+</script>
+</html>

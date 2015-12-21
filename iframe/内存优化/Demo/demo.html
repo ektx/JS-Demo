@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe 内存优化</title>
+	<script src="js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<p>
+		<input id="open" type="button" value="打开一个iframe">
+	</p>
+	<div id="content"></div>
+</body>
+<script type="text/javascript">
+// var openBtn = document.getElementById('open');
+var openBtn = $('#open');
+var nav = $('p');
+var cont = $('#content');
+openBtn.click(function() {
+	var navBtnS = nav.find('input').size();
+	var iframe = "<iframe id='iframe_"+navBtnS+"' src='http://www.baidu.com'><iframe>";
+	var closeBtn = "<input id='close_"+navBtnS+"' type='button' value='关闭第"+navBtnS+"iframe' onclick='closeI(this.id)'>"
+	cont.append(iframe);
+	nav.append(closeBtn);
+});
+
+function closeI(obj) {
+	$('#')
+
+	var iSize = obj.split('_')[1];
+	var iframe = 'iframe_' + iSize;
+	var iframeDOM = document.getElementById('iframe_'+iSize).contentWindow.document;
+	// 清除 iframe 的页面链接
+	$('#'+iframe).attr('src','');
+	// 清空内容
+	iframeDOM.write('');
+	// 清空
+	iframeDOM.clear();
+	// 移除
+	$('#'+iframe).remove();
+}
+</script>
+</html>

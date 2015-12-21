@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>不可扩展对象</title>
+</head>
+<body>
+	<p>请尝试在控制台中输入 person.age = '27'</p>
+</body>
+<script>
+	// 'use strict';
+
+	var person = {'name': 'King'};
+	// 阻止对person添加新属性和方法
+	// 但原先有的值可以重新赋值修改或删除
+	Object.preventExtensions(person);
+
+	person.age = 27;
+	// 在使用 'use strict' 模式下,以下输出会报错
+	// 在无此模式下会输出 undefined
+	console.log(person.age)
+
+	// 判断是否不可扩展
+	// false 不可扩展
+	// true  可扩展
+	var isE = Object.isExtensible(person);
+	console.log(isE)
+
+	document.write('<pre>'+document.querySelector('script').innerHTML+'</pre>')
+	
+</script>
+</html>

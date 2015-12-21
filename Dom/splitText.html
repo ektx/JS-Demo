@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>splitText()</title>
+</head>
+<body>
+	splitText() 分割节点
+<script>
+var div = document.createElement('div');
+div.id = 'idName';
+div.className = 'helloClass';
+
+var txtNode = document.createTextNode('Hello! <b>World!</b>');
+div.appendChild(txtNode)
+
+document.body.appendChild(div)
+
+// 分割节点
+// 从原有的一个整体中的第6个位置分割，形成2个新的节点内容
+var newNode = div.firstChild.splitText(6);
+console.log('分割得到的新节点内容:' + newNode.nodeValue)
+
+
+console.log('节点数有：'+ div.childNodes.length)
+for (var i = 0, len = div.childNodes.length; i < len; i++) {
+
+	console.log('节点 '+(i + 1)+' 内容是：'+div.childNodes[i].nodeValue)
+}
+
+</script>
+</body>
+</html>

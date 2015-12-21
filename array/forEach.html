@@ -1,0 +1,33 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array forEach()</title>
+</head>
+</html>
+<script>
+	document.write('<h1>Array forEach()</h1>');
+	document.write('<h2>操作元素</h2>');
+	document.write('<p>使用数组元素</p>');
+
+	var numbers = new Array(1, 2, 3, 4, 5);
+
+	function doubleAndAlert(value, index, array) {
+		var result = value * 2;
+		document.write(result);
+	}
+
+	// for 使用方法
+	// for(var i in numbers) {
+	// 	var result = numbers[i] * 2;
+	// 	document.write(result); 
+	// }
+
+	// 外部函数法
+	// numbers.forEach(doubleAndAlert);
+
+	// 内部函数法
+	numbers.forEach(function(value, index, array) {
+		console.log(index +':' +value)
+		document.write(value *2);
+	})
+</script>

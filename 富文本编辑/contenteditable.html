@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>富文本编辑</title>
+	<style>
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	#edit {
+		min-height: 30vh;
+		margin: 0;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+	</style>
+</head>
+<body>
+	<section id="edit" contenteditable></section>
+	<button id="web">添加超链接</button>
+
+</body>
+<script>
+	var editBox = document.getElementById('edit');
+
+	// 添加网页
+	document.getElementById('web').addEventListener('click', function() {
+
+		editBox.focus()
+
+		var setURL = function (isUrl) {
+			var web = prompt('输入网址:', '', '');
+
+			// 光标在 url 中,则是修改 url
+			if (isUrl) {
+				selection.anchorNode.parentNode.href = web
+			}
+			// 不是url,直接添加
+			else {
+				if (web != null && web != "") {
+					document.execCommand('createlink', false, web)
+				}
+			}
+		}
+
+		// 获取当前文本选择区信息
+		var selection = document.getSelection();
+		console.log(selection)
+		console.log(selection.anchorNode.parentNode.nodeName)
+
+		if (selection.anchorNode.parentNode.nodeName == 'A') {
+
+			var change = window.confirm('你是要修改当前的URL吗');
+
+			if (change) {
+				setURL(true);
+			}
+
+		} else {
+			setURL(false);
+		}
+
+	}, false)
+
+	frames['edit'].addEventListener('keyup', function() {
+		// 获取当前文本选择区信息
+		var selection = document.getSelection();
+		var nodeName = selection.anchorNode.parentNode.nodeName;
+		var txtCont  = selection.anchorNode.parentNode.textContent;
+		var range = selection.getRangeAt(0);
+
+		console.log(selection)
+		console.log(nodeName)		
+		console.log(txtCont)
+
+		if (txtCont == 'http'){
+			var span = document.createElement('span');
+			span.style.background = 'yellow';
+			range.surroundContents(span)
+			document.execCommand('createlink', false, txtCont)
+		}
+	}, false)
+
+</script>
+</html>

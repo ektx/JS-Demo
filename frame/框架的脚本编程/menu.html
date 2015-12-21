@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chapter 8: demo3 - menu</title>
+	<script>
+	function choosePage_onchange() {
+		var choosePage = document.form1.choosePage;
+		var windowobject;
+		if (document.form1.radFrame[0].checked == true) {
+			windowobject = window.parent.frameMain.frameTop;
+		} else {
+			windowobject = window.parent.frameMain.frameBottom;
+		}
+		windowobject.location.href = choosePage.options[choosePage.selectedIndex].value;
+		return true;
+	}
+	</script>
+</head>
+	<body>
+		<form action="" name="form1">
+			Select frame
+			<br />
+			Top
+			<input type="radio" name="radFrame" checked="checked" />
+			Bottom
+			<input type="radio" name="radFrame" />
+			<br />
+			<br />
+			<select name="choosePage" onchange="choosePage_onchange()" id="">
+				<option value="a.html">Page A</option>
+				<option value="b.html">Page B</option>
+				<option value="c.html">Page C</option>
+				<option value="d.html">Page D</option>
+			</select>
+		</form>
+	</body>
+</html>

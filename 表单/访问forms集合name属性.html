@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Forms集合</title>
+<script type="text/javascript">
+function window_onload()
+{
+	var numberForms = document.forms.length;
+	var formIndex;
+	
+	for (formIndex = 0; formIndex < numberForms; formIndex++)
+	{
+		alert(document.forms[formIndex].name);
+	}
+}
+</script>
+</head>
+
+<body onLoad="window_onload()">
+<form action="" name="form1">
+  <p>This is inside form1.</p>
+</form>
+<form action="" name="form2">
+  <p>This is inside form2.</p>
+</form>
+<form action="" name="form3">
+  <p>This is inside form3.</p>
+</form>
+</body>
+</html>

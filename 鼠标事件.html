@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标事件</title>
+</head>
+<body style="height: 1000px">
+	<div id="myD" style="width: 200px; height: 200px; background:#f90; position: relative">
+		<span id="myTxt"></span>
+		<div style="width: 100px; height:100px; border: 1px solid #fff; background:#ff0; margin: 150px">
+			<span id="inner"></span>
+		</div>
+	</div>
+</body>
+<script>
+// 鼠标事件触发顺序
+/*
+	mousedown
+	mouseup
+	click
+	mousedown
+	mouseup
+	click
+	dbclick
+*/
+
+// 以下为了测试事件顺序,我们故意将 mousedown mouseup click的顺序反过来
+// 看看它们要怎么输出
+document.addEventListener('click', function(event) {
+	console.log('click')
+})
+
+document.addEventListener('mouseup', function(event) {
+	console.log('mouseup')
+})
+
+document.addEventListener('mousedown', function(event) {
+
+	console.group('mousedown')
+	console.log('窗口位置 X: '+ event.clientX + ' Y: '+event.clientY)
+
+	console.log('页面位置 X: ' + event.pageX + ' Y: '+event.pageY)
+	
+	console.log('屏幕位置 X: ' + event.screenX + ' Y: '+event.screenY)
+
+	var keys = new Array();
+
+	if (event.shiftKey) {
+		keys.push('shift')
+	}
+
+	if (event.ctrlKey) {
+		keys.push('ctrl')
+	}
+
+	if (event.altKey) {
+		keys.push('alt')
+	}
+
+	if(event.metaKey) {
+		keys.push('meta')
+	}
+
+	console.log('Keys: '+keys.join(' '))
+	// 输出鼠标按键
+	console.log('Mouse Key: ' + event.button)
+	if (event.button == 2) event.preventDefault()
+
+	console.groupEnd()
+}, false)
+
+
+// mouseenter 进入时,进入子元素不会视为再进入
+// mouseout 离开时,进入内容子元素时也视为离开
+// mouseover 在上面,进入或进入子级时被视为再进入
+document.getElementById('myD').addEventListener('mouseover', function(event){
+	console.log(event.type)
+}, false)
+
+// 鼠标滚轮事件 - chrome/ie/safari
+document.addEventListener('mousewheel', function(event) {
+	console.log(event.wheelDelta)
+})
+// 鼠标滚轮事件 - firefox
+document.addEventListener('DOMMouseScroll', function(event) {
+	console.log(event.detail)
+})
+</script>
+</html>

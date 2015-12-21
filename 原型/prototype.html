@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prototype</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var Calculator = function (decimalDigits, tax) {
+		// this.decimalDigits = decimalDigits;
+		// this.tax = tax;
+	}
+
+	// 方法1:
+	// Calculator.prototype = {
+	// 	add: function (x, y) {
+	// 		return x + y;
+	// 	},
+
+	// 	subtract: function (x, y) {
+	// 		return x - y;
+	// 	}
+	// }
+
+
+
+	// 方法2:
+	Calculator.prototype = function() {
+
+		add = function (x, y) {
+			return x + y;
+		},
+
+		subtract = function (x, y) {
+			return x - y;
+		}
+
+		return {
+			add: add,
+			subtract: subtract
+		}
+	}();
+
+	document.write((new Calculator()).add(1,4));
+	document.write((new Calculator()).subtract(1,4));
+
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>function arguments</title>
+	<script type="text/javascript">
+	function argument() {
+		console.log('当前传参数: ' + arguments.length)
+	}
+
+	function parent(callback) {
+		console.log('...');
+
+		callback('a','d','f',0);
+	}
+
+
+	parent(argument);
+	</script>
+</head>
+<body>
+	<p>在控制台中调用argument(),传入任意参数!</p>
+</body>
+</html>

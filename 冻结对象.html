@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冻结对象</title>
+</head>
+<body>
+	<p><b>Object.freeze()</b></p>
+	<p>冻结对象不可扩展,不能对已经有的对象进行删除,也不可以修改原来的值</p>
+</body>
+<script>
+	//使用了严格模块,密封对象后的添加和删除都会报错
+	// 'use strict';
+
+	var person = {name: 'ektx'};
+
+	// 检测是否密封
+	var isE = Object.isExtensible(person);
+	var isF = Object.isFrozen(person);
+	console.log('是否可扩展: '+ isE);
+	console.log('是否冻结: '+ isF);
+	
+	// 冻结对象
+	Object.freeze(person);
+
+	try {
+		person.age = 27;
+		console.log(person.age)
+		
+	} catch (err) {
+		console.log(err)
+	}
+
+	// 不可删除,因此返回还是原来的值
+	delete person.name;
+	console.log(person.name)
+	// 但是可以修改
+	person.name = 'zwl';
+	console.log(person.name);
+
+
+	// 检测是否冻结
+	isE = Object.isExtensible(person);
+	isF = Object.isFrozen(person);
+	console.log('是否可扩展: '+ isE);
+	console.log('是否冻结: '+ isF);
+
+	document.write('<pre>'+document.querySelector('script').innerHTML+'</pre>')
+</script>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<title>Touch event</title>
+	<style type="text/css">
+	body {
+		background: #333;
+	}
+	canvas {
+		width: 100%;
+		background: #fff;
+	}
+	p,b {
+		display: block;
+		text-align: center;
+		color: #fff;
+		font-weight: normal;
+		font-size: 14px;
+	}
+	</style>
+</head>
+<body >
+	<canvas id="canvas" width="980" height="600"></canvas>
+	<p></p>
+	<b></b>
+</body>
+<script>
+function touchz(options) {
+
+	var ongoingTouches = new Array;
+
+	// 设置默认值
+	this.options = options || {};
+	this.touchD = this.options.touchDiv || {};
+	this.moveD = this.options.moveDiv || {};
+	// 水平移动方向，1表示只能左移，2表示只能右移，0表示都可以
+	var reverse = this.options.reverse || {};
+
+	// var el = document.getElementById('canvas');
+	var el = document.getElementById(this.touchD);
+
+	// 设置 touch 控制层
+	var transform = document.getElementById(this.moveD).style;
+
+
+	function ongoingTouchIndexById(idToFind) {
+		for (var i = 0; i < ongoingTouches.length; i++) {
+			var id = ongoingTouches[i].identifier;
+
+			if(id == idToFind) {
+				return i;
+			}
+		}
+		return -1; // not find
+	}
+
+	console.log('touchz working')
+
+	el.addEventListener("touchstart", handleStart, false);
+	el.addEventListener("touchend", handleEnd, false);
+	el.addEventListener("touchcancel", handleCancel, false);
+	el.addEventListener("touchleave", handleLeavel, false);
+	el.addEventListener("touchmove", handleMove, false);
+
+
+	// document.getElementById('canvas').style.listStyle = 'xxoo222';
+	// document.body.style.listStyle = 'xxoo222';
+
+
+	function handleStart(evt) {
+			// 为 move 的使用定位开始位置
+		this.start = {
+			pageX: evt.touches[0].pageX,
+			pageY: evt.touches[0].pageY,
+
+		};
+
+		// 阻止了浏览器继续处理触摸事件
+		evt.preventDefault();
+
+		// 监听事件元素
+		var el = document.getElementById("canvas");
+
+
+		var touches = evt.changedTouches;
+
+		if (transform.webkitTransform == '' || transform.MozTransform == '') {
+			transform.webkitTransform = 
+			transform.MozTransform = 'translate3d(0px, 0, 0)';
+
+		}
+
+		// 得到此层的原有位置坐标
+		this.oldTransform = transform.webkitTransform.substr(12).split('px,')[0] || transform.MozkitTransform.substr(12).split('px,')[0];
+		this.oldTransform = parseFloat(this.oldTransform);
+
+		transform.webkitTransition = transform.MozTransition = 'all 0ms linear';
+
+	}
+
+	function handleEnd(evt) {
+		// 得到文档的宽度
+		// 注意，不要使用screen.width因为这样在移动端面翻转时并无正确数据
+		document.querySelector('p').innerHTML = document.documentElement.clientWidth;
+		if (this.deltaX + this.oldTransform > 0) return;
+		// 移动量大于50%就可以自动运行
+		var SW = document.documentElement.clientWidth/3;
+		if (this.deltaX > SW || -this.deltaX > SW) {
+			transform.webkitTransition = transform.MozTransition =
+				'all 300ms linear';
+			transform.webkitTransform = transform.MozTransform = 'translate3d(-' + document.documentElement.clientWidth + 'px, 0, 0)';
+
+		} else {
+			transform.webkitTransition = transform.MozTransition = 'all 300ms linear';
+			transform.webkitTransform = transform.MozTransform = 'translate3d(0px, 0, 0)';
+		}
+	}
+
+
+	function handleCancel () {
+		alert("???");
+	}
+
+	function handleLeavel() {
+		// alert("不要走！")
+	}
+
+
+	function handleMove(evt) {
+		evt.preventDefault();
+
+		// console.log('move');
+		var touches = evt.changedTouches;
+
+		// 确保是一个触点的同时有移动
+		// if (evt.touches.length > 1 || evt.scale && evt.scale !== 1) {
+		// 	console.log('one touch')
+		// 	return	
+		// } ;
+
+		this.deltaX = evt.touches[0].pageX - this.start.pageX;
+		// console.log(this.deltaX);
+
+		// 不允许右移
+		if (reverse == 1) {
+			if (this.oldTransform + this.deltaX > 0) return;
+		
+			transform.webkitTransform = transform.MozTransform = 'translate3d(' + (this.oldTransform + this.deltaX) + 'px, 0, 0)';
+		} else if (reverse == 2) {
+			if (this.oldTransform + this.deltaX < 0) return;
+
+			transform.webkitTransform = transform.MozTransform = 'translate3d(' + (this.oldTransform + this.deltaX) + 'px, 0, 0)';
+
+		} else {
+			transform.webkitTransform = transform.MozTransform = 'translate3d(' + (this.oldTransform + this.deltaX) + 'px, 0, 0)';
+
+		}
+
+	}
+}
+
+touchz({touchDiv: 'canvas', moveDiv: 'canvas', reverse:'0'});
+
+
+
+</script>
+</html>

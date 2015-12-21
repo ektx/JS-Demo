@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>Cookie 基础使用</title>
+</head>
+<body>
+	<p>This page just created a cookie!</p>
+	<p>*：cookie 创建需要在服务器的环境下才能工作!</p>
+</body>
+	<script>
+	var expriceDate = new Date();
+	expriceDate.setMonth(expriceDate.getMonth() + 1);
+	document.cookie = "UserName=Zwl;expires=" + expriceDate.toGMTString() +";";
+	document.querySelector('p').innerHTML = '过期时间是:' + expriceDate.toGMTString();
+	</script>
+
+</html>

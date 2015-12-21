@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>IOS Siri</title>
+	<style type="text/css">
+	body,canvas {padding:0; margin:0; overflow: hidden;}
+	</style>
+</head>
+<body>
+	<canvas></canvas>
+</body>
+<script type="text/javascript">
+	
+	var c = document.querySelector('canvas');
+	c.width = innerWidth;
+	c.height= innerHeight;
+
+	var g = c.getContext('2d');
+	update();
+
+	function update() {
+		c.width = c.width;
+		g.lineWidth = 4;
+
+		var amp = Math.sin(new Date().getTime() * 0.005) * Math.sin(new Date().getTime() * 0.004) + 0.8;
+
+		for (var coef = -0.6; coef < 1.3; coef += 0.4) {
+			g.strokeStyle = 'rgba(0, 0, 0,' + (coef/3 + 0.3) + ')';
+			g.beginPath();
+			for (var i = 0; i < innerWidth; i++) {
+				var pi = i/innerWidth;
+				var ip = 1 - pi;
+				g.lineTo(i, innerHeight * (0.5 + amp*pi*ip*coef*Math.sin(i / innerWidth * Math.PI*2*1 - new Date().getTime()/120 * (coef + 0.3))))
+			}
+			g.stroke();
+		}
+
+		requestAnimationFrame(update);
+	}
+</script>
+</html>

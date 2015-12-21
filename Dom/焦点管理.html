@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GetElementsByClassName()</title>
+</head>
+<body>
+
+<button id="myBtn">Click</button>
+<input id="myInt" type="text" />
+</body>
+<script>
+var btn = document.getElementById('myBtn');
+var myInt = document.getElementById('myInt');
+
+btn.focus();
+
+// document.activeElement 取得当前焦点元素
+if (document.activeElement === btn) {
+	document.write('button#myBtn focus')
+} else if (document.activeElement === myInt) {
+	document.write('Input focus')
+
+}
+
+// 判断文档是否有焦点,来推测用户有没有在与页面交互
+document.write(document.hasFocus())
+
+// 参考
+// 《Javascript高级程序设计（3） P291 PDF309
+</script>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>富文本编辑 - iframe</title>
+</head>
+<body>
+	<iframe name="edit" src="" frameborder="0" style="width: 100%; height: 100%"></iframe>
+	
+	<button id="editOff">禁用编辑</button>
+	<button id="bold">加粗</button>
+	<button id="italic">斜体</button>
+	<button id="web">添加超链接</button>
+	<hr />
+	<button id="h1">H1</button>
+	<button id="txtP">p</button>
+</body>
+
+<script>
+	window.onload = function() {
+		frames['edit'].document.designMode = 'on'
+	}
+
+	// document.execCommand(命令, false, 值)
+
+	// 加粗
+	document.getElementById('editOff').addEventListener('click', function(event) {
+		if (this.innerHTML == '禁用编辑') {
+			frames['edit'].document.designMode = 'off'
+			this.innerHTML = '启用编辑'
+
+		} else {
+			frames['edit'].document.designMode = 'on';
+			this.innerHTML = '禁用编辑'
+		}
+	}, false)
+
+	// 加粗
+	document.getElementById('bold').addEventListener('click', function() {
+		frames['edit'].document.execCommand('bold', false, null);
+
+	}, false)
+
+	// 斜体
+	document.getElementById('italic').addEventListener('click', function() {
+		frames['edit'].document.execCommand('italic', false, null)
+	}, false)
+
+	// 添加网页
+	document.getElementById('web').addEventListener('click', function() {
+
+		frames['edit'].focus()
+
+		var setURL = function (isUrl) {
+			var web = prompt('输入网址:', '', '');
+
+			// 光标在 url 中,则是修改 url
+			if (isUrl) {
+				selection.anchorNode.parentNode.href = web
+			}
+			// 不是url,直接添加
+			else {
+				if (web != null && web != "") {
+					frames['edit'].document.execCommand('createlink', false, web)
+				}
+			}
+		}
+
+		// 获取当前文本选择区信息
+		var selection = frames['edit'].getSelection();
+		console.log(selection)
+		console.log(selection.anchorNode.parentNode.nodeName)
+
+		if (selection.anchorNode.parentNode.nodeName == 'A') {
+
+			var change = window.confirm('你是要修改当前的URL吗');
+
+			if (change) {
+				setURL(true);
+			}
+
+		} else {
+			setURL(false);
+		}
+
+	}, false)
+
+
+	// H1
+	document.getElementById('h1').addEventListener('click', function() {
+
+		// 检测是否可以执行 添加html代码包块
+		var result = frames['edit'].document.queryCommandEnabled('')
+
+		// 判断选择的文字是否在指定的代码块中
+		// 注意:h1这种是让选择的当前行一起变成 h1不只是选择的文字
+		var isH1 = frames['edit'].document.queryCommandState('formatblock')
+
+
+		// 把选中文字包在 h1 下
+		frames['edit'].document.execCommand('formatblock', false, '<h1>')
+
+		// 取得执行命令时传入的值（即前面例子中传给
+		// document.execCommand()的第三个参数）
+		var changeValue = frames['edit'].document.queryCommandValue('formatblock')
+		console.log(changeValue)
+	}, false)
+
+	document.getElementById('txtP').addEventListener('click', function() {
+		frames['edit'].document.execCommand('formatblock', false, '<p>')
+	}, false);
+
+
+	frames['edit'].addEventListener('keyup', function() {
+		// 获取当前文本选择区信息
+		var selection = frames['edit'].getSelection();
+		var nodeName = selection.anchorNode.parentNode.nodeName;
+		var txtCont  = selection.anchorNode.parentNode.textContent;
+		console.log(selection)
+		console.log(nodeName)		
+		console.log(txtCont)
+
+		if (txtCont == 'http'){
+			frames['edit'].document.execCommand('createlink', false, txtCont)
+		}
+	}, false)
+
+
+
+
+	// https://developer.mozilla.org/zh-CN/docs/Web/API/Range
+	frames['edit'].addEventListener('mouseup', function() {
+		var selection = frames['edit'].getSelection()
+		var selectedText = selection.toString();
+		var range = selection.getRangeAt(0);
+
+		console.log(range)
+
+		var span = frames['edit'].document.createElement('span');
+		span.style.backgroundColor = 'yellow';
+		range.surroundContents(span)
+		console.log(selectedText)
+	}, false)
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>判断密码合法性</title>
+	<script>
+	function regExpIs_valid(text) {
+		// 匹配除a-zA-z数字空格之外的字符
+		var myRegExp = /[^a-z\d ]/i;
+		return !(myRegExp.test(text));
+	}
+
+	function butCheckValid_onclick() {
+		if (regExpIs_valid(document.form1.txtPhrase.value) == true) {
+			alert('密码可用！');
+		} else {
+			alert('密码含非法字符！')
+		}
+	}
+	</script>
+</head>
+<body>
+	<form action="" name="form1">
+		输入你的密码：
+		<br />
+		<input type="text" name="txtPhrase">
+		<br />
+		<input type="button" value="验证我的密码" name="butCheckValid" onclick="butCheckValid_onclick()">
+	</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Let & var</title>
+</head>
+<body>
+Chrome 开启Es6功能：
+1、chrome://flags/
+2、启用实验性 JavaScript(Experimental JavaScript)
+</body>
+<script type="text/JavaScript">
+'use strict';
+
+	var a = 6;
+	if (true) {
+		a = 10;
+	};
+	console.log(a);
+
+	let b = 6;
+	if (true) {
+		b = 10;
+	}
+	console.log(b);
+
+</script>
+</html>

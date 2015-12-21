@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Select</title>
+</head>
+<body>
+	<select name="loc" id="selLoc" multiple="multiple" size="10">
+		<option value="Sunnyvale, CA">Sunnyvale</option>
+		<option value="Los Angeles, CA">Los Angeles</option>
+		<option value="">China</option>
+		<option>Australia</option>
+		<optgroup label="Others">
+			<option value="">Book</option>
+			<option value="">Banana</option>
+			<option value="">Apple</option>
+		</optgroup>
+	</select>
+</body>
+<script>
+var selbox = document.querySelector('#selLoc');
+var opts   = selbox.options;
+
+// 得到第一个元素的值
+console.log('第一个元素的值: '+opts[0].value);
+// 得到第一个元素的内容
+console.log('第一个元素的内容: '+opts[0].text)
+</script>
+</html>

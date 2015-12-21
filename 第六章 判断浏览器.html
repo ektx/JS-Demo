@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>判断浏览器</title>
+</head>
+
+<body>
+<script type="text/javascript">
+function getBrowserName()
+{
+	var lsBrower = navigator.userAgent;
+	if ( lsBrower.indexOf("MSIE") >= 0)
+	{
+		lsBrower = "MSIE";
+	}
+	else if (lsBrower.indexOf("Firefox") >= 0)
+	{
+		lsBrower = "Firefox";
+	}
+	else if (lsBrower.indexOf("OPR") >= 0)
+	{
+		lsBrower = "Opera";
+	}
+	else if (lsBrower.indexOf("Chrome") >= 0)
+	{
+		lsBrower = "Chrome";
+	}
+	else if (lsBrower.indexOf("Safari") >= 0)
+	{
+		lsBrower = "Safari";
+	}
+	else 
+	{
+		lsBrower = "UNKNOWN";
+	}
+	return lsBrower;
+}
+
+function getBrowerVersion()
+{
+	var findIndex;
+	var browserVersion = 0;
+	var brower = getBrowserName();
+	
+	browserVersion = navigator.userAgent;
+	findIndex = browserVersion.indexOf(brower) + brower.length + 1;
+	browserVersion = parseFloat(browserVersion.substring(findIndex,findIndex + 3));
+	return browerVersion;
+}
+</script>
+
+<script type="text/javascript">
+var browerName = getBrowserName();
+var browerVersion = getBrowerVersion();
+
+if (browerName == "MSIE")
+{
+	if (browerVersion < 7 )
+	{
+		document.write("You version of Internet Explorer is too old");
+	}
+	else
+	{
+		document.write("You version of Internet Explorer is fully supported");
+	}
+}
+else if (browerName == "Firefox")
+{
+	document.write("Firefox is fully supported");
+}
+else if (browerName == "Safari")
+{
+	document.write("Safari is fully supported");
+}
+else if (browerName == "Chrome")
+{
+	document.write("Chrome is fully supported");
+}
+else if (browerName == "Opera")
+{
+	document.write("Opera is fully supported");
+}
+else
+{
+	document.write("<h2>Sorry this brower supporting scripting</h2>");
+}
+</script>
+
+<noscript>
+<h2>This website requires a brower supporting scripting</h2>
+</noscript>
+
+</body>
+</html>

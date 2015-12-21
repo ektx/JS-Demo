@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定时器</title>
+	<style>
+	div {
+		width: 100px;
+		height: 100px;
+		background-color: #f90;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	</style>
+</head>
+<body>
+	<div style="left:0"></div>
+</body>
+<script>
+
+setTimeout(function() {
+	console.log(1)
+	var div = document.querySelector('div');
+	left = parseInt(div.style.left) + 1;
+	div.style.left = left + 'px';
+
+	if (left < 300) {
+		setTimeout(arguments.callee, 10)
+	}
+}, 10)
+</script>
+</html>

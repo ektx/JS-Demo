@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scrollIntoView()</title>
+	<style>
+	body, div, ul, li { margin: 0; padding: 0;}
+	div {
+		width: 100%;
+		height: 98vh;
+		text-align: center;
+		font-size: 2em;
+		line-height: 98vh;
+		margin-bottom: 2vh;
+		background: #f5f5f5;
+	}
+	ul {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		background-color: #FFF;
+	}
+	li {
+		-webkit-box-flex: 1;
+		-moz-box-flex: 1;
+		box-flex: 1;
+		color: #777;
+		line-height: 2;
+		list-style: none;
+		text-align: center;
+	}
+
+	</style>
+</head>
+<body>
+<div id="test1">test1</div>
+<div id="test2">test2</div>
+<div id="test3">test3</div>
+<div id="test4">test4</div>
+<div id="test5">test5</div>
+
+<ul></ul>
+</body>
+<script>
+
+var divs = document.getElementsByTagName('div');
+var len = divs.length;
+var ul = document.getElementsByTagName('ul')[0];
+
+// create li
+// console.time('one')
+// for (var i = 0; i < len; i++) {
+// 	(function(i) {
+
+// 		var li = document.createElement('li');
+// 		var nu = i + 1;
+
+// 		li.id = 'to' + nu;
+
+// 		var txtNode = document.createTextNode('Text' + nu);
+// 		li.appendChild(txtNode);
+
+// 		li.addEventListener('click', function() {
+// 			document.getElementById('test'+(i+1)).scrollIntoView()
+// 		}, false)
+
+// 		ul.appendChild(li)
+
+// 	})(i)
+// }
+// console.timeEnd('one')
+
+console.time('two')
+var html = '';
+for (var i = 0; i < len; i++) {
+	(function(i) {
+		var nu = i + 1;
+		html += '<li id="to'+nu+'">Text'+nu+'</li>'
+	})(i)
+}
+ul.innerHTML = html;
+
+// 处理事件
+// for (var i = 0; i < len; i++) {
+// 	(function(i) {
+// 		document.getElementById('to'+(i+1)).addEventListener('click', function() {
+// 			document.getElementById('test'+(i+1)).scrollIntoView()
+// 		}, false)
+// 	})(i)
+// }
+
+ul.addEventListener('click', function(evt) {
+	var tag = evt.target;
+	var tagname = tag.tagName.toLowerCase();
+
+	if (tagname == 'li') {
+		console.log('li');
+		var id = tag.id;
+		document.getElementById('test'+id.replace(/[^\d]/g, '')).scrollIntoView()
+	}
+}, false)
+
+console.timeEnd('two')
+
+
+
+
+// 参考
+// 《Javascript高级程序设计（3） P298 PDF316
+</script>
+</html>

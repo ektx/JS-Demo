@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES6 for of</title>
+</head>
+<body>
+	<h3>For In</h3>
+	<small>for (var index in Array) {}</small>
+	<ul>
+		<li>for in 中的定义的index是索引,不是值</li>
+	</ul>
+
+	<h3>For Of</h3>
+	<small>for (var value of Array) {}</small>
+	<ul>
+		<li>for of 中的定义的value是值</li>
+		<li>与forEach()不同的是，它可以正确响应break、continue和return语句</li>
+	</ul>
+
+	<a href="http://www.infoq.com/cn/articles/es6-in-depth-iterators-and-the-for-of-loop?utm_campaign=rightbar_v2&utm_source=infoq&utm_medium=articles_link&utm_content=link_text">For Of</a>
+</body>
+<script>
+var arr = [2,1,5];
+
+console.group('For Of:')
+for (var value of arr) {
+	console.log(value)
+}
+console.groupEnd()
+
+
+console.group('For in:')
+console.group('Array:')
+for (var index in arr) {
+	console.log(index)
+}
+console.groupEnd()
+
+console.group('String:')
+for (var index in 'abcdefg') {
+	console.log('abcdefg'[index])
+}
+console.groupEnd()
+console.groupEnd()
+
+
+</script>
+</html>

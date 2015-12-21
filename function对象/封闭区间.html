@@ -1,0 +1,16 @@
+<script>
+	
+	function countMe() {
+		var count = 1;
+		var showCount = function() {alert(count) };
+		count++;
+		return showCount;
+	}
+
+	// countamatic 等于 countMe 函数
+	var countamatic = countMe;
+
+	// countamatic 等于 countMe() 运行的结果
+	// var countamatic = countMe();
+	countamatic();
+</script>
