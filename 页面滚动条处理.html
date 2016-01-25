@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的滚动条</title>
+	<style>
+	body {
+		font-size: 16px;
+	}
+	section {
+		max-width: 700px;
+		margin: 80px auto;
+	}
+	p {
+		margin: 42px 0;
+		line-height: 32px;
+	}
+	.title {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		font-weight: 400;
+		font-size: 24px;
+		text-align: center;
+		line-height: 60px;
+		background: #fff;
+		border-bottom: 3px solid #eee;
+	}
+	.title i {
+		position: absolute;
+		left: 0;
+		bottom: -3px;
+		width: 0;
+		height: 3px;
+		background: #000;
+	}
+	</style>
+</head>
+<body>
+	<header class="title">
+		Welcome to the Test
+		<i></i>
+	</header>
+	<section>
+		<article>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+			<p>Emmet takes the snippets idea to a whole new level: you can type CSS-like expressions that can be dynamically parsed, and produce output depending on what you type in the abbreviation. Emmet is developed and optimised for web-developers whose workflow depends on HTML/XML and CSS, but can be used with programming languages too.</p>
+		</article>
+	</section>
+
+	<script>
+	window.addEventListener('scroll', indicator, false);
+	window.addEventListener('resize', indicator, false);
+
+	function indicator() {
+		var st = document.body.scrollTop;
+		var h  = window.innerHeight;
+		var dh = document.documentElement.scrollHeight;
+
+		var scroll = st / (dh - h) * 100;
+
+		var headerI = document.querySelector('header i')
+		headerI.style.width = scroll+'%';
+
+	}
+	</script>
+</body>
+</html>
