@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>window.getComputedStyle</title>
+	<style>
+	.demo {
+		width: 200px;
+		height: 200px;
+		background: #f90;
+		margin: 0 auto;
+	}
+	.demo:before {
+		content: '';
+		display: block;
+		width: 100px;
+		height: 100px;
+		margin-left: -50px;
+	    background: #8A2BE2;
+	}
+	</style>
+</head>
+<body>
+	<div class="demo"></div>
+	<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle">Window.getComputedStyle()</a>
+	<script>
+	var e = document.querySelector('.demo');
+
+	// 获取背景色
+	console.log(e.style.background)
+	console.log(window.getComputedStyle(e, null).background)
+	console.log(window.getComputedStyle(e, 'before').background)
+	</script>
+</body>
+</html>
