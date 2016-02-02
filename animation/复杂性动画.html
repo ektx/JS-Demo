@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复杂动画</title>
+	<style>
+	div, p  {
+		margin: 0;
+		padding: 0;
+	}
+	div {
+		width: 200px;
+		height: 30px;
+		border: 2px solid #000;
+		background: #000;
+	}
+	p {
+		width: 0;
+		height: 30px;
+		background: #4CAF50;
+	}
+	</style>
+</head>
+<body>
+	<h3>linear</h3>
+	<div onclick="move(this.children[0], linear)">
+		<p></p>
+	</div>
+
+	<h3>quad</h3>
+	<div onclick="move(this.children[0], quad)">
+		<p></p>
+	</div>
+
+	<h3>quadEaseOut</h3>
+	<div onclick="move(this.children[0], makeEaseOut(quad))">
+		<p></p>
+	</div>
+
+	<h3>quadEaseInOut</h3>
+	<div onclick="move(this.children[0], makeEaseInOut(quad))">
+		<p></p>
+	</div>
+
+	<h3>circ</h3>
+	<div onclick="move(this.children[0], circ)">
+		<p></p>
+	</div>
+
+	<h3>back</h3>
+	<div onclick="move(this.children[0], back)">
+		<p></p>
+	</div>
+
+	<h3>Bounce</h3>
+	<div onclick="move(this.children[0], Bounce)">
+		<p></p>
+	</div>
+
+	<h3>BounceEaseOut</h3>
+	<div onclick="move(this.children[0], makeEaseOut(Bounce))">
+		<p></p>
+	</div>
+
+	<h3>Elastic</h3>
+	<div onclick="move(this.children[0], Elastic)">
+		<p></p>
+	</div>
+
+	<a href="http://javascript.info/tutorial/animation">Js Animation Tutorial</a>
+	<script>
+	function animate(opts) {
+
+		var start = new Date
+		
+		var id = setInterval(function() {
+			var timePassed = new Date - start;
+			// 进程，已经完成了多少，从0到1
+			var progress = timePassed / opts.duration
+
+			if (progress > 1) progress = 1;
+
+			var delta = opts.delta(progress)
+			opts.step(delta)
+
+			if (progress == 1) clearInterval(id)
+		}, opts.delay || 10)
+	}
+
+	function Elastic(progress) {
+		var x = 1.5;
+		return Math.pow(2, 10 * (progress - 1)) * Math.cos(20 * Math.PI * x / 3 * progress)
+	}
+
+	function Bounce(progress) {
+		for (var a = 0, b = 1, result; 1; a+=b, b /=2) {
+			if (progress >= (7 - 4 * a) / 11) {
+				return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2)
+			}
+		}
+	}
+
+	function back(progress) {
+		x = 1.5;
+		return Math.pow(progress, 2) * ((x+1) * progress - x);
+	}
+
+	function linear(progress) {
+		return progress;
+	}
+
+	function quad(progress) {
+		return Math.pow(progress, 5)
+	}
+
+	function circ(progress) {
+		return 1 - Math.sin(Math.acos(progress))
+	}
+
+	function makeEaseOut(delta) {
+		return function(progress) {
+			return 1 - delta(1 - progress)
+		}
+	}
+
+	function makeEaseInOut(delta) {
+
+		return function(progress) {
+
+			if (progress < .5)
+				return delta(2 * progress) / 2
+			else 
+				return (2 - delta(2 * (1 - progress))) / 2
+		}
+	}
+
+	function move(ele, delta, duration) {
+
+		// 总长度，这里我们设置为 100%
+		var to = 100;
+
+		// @delay: 动画帧数
+		// @duration: 动画运行时间
+		// @delta: 对进度操作
+		// @step: 每一帧操作
+		animate({
+			delay: 10,
+			duration: duration || 1000,
+			delta: delta,
+			step: function(delta) {
+				var newVal = (to * delta).toFixed(0) + '%'
+				ele.style.width = newVal
+				ele.innerText = newVal
+			}
+		})
+	}
+	</script>
+</body>
+</html>

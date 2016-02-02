@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Basics</title>
+	<style>
+	div, p  {
+		margin: 0;
+		padding: 0;
+	}
+	div {
+		width: 200px;
+		height: 30px;
+		border: 2px solid #000;
+		background: #000;
+	}
+	p {
+		width: 0;
+		height: 30px;
+		background: #fff;
+	}
+	</style>
+</head>
+<body>
+	<div onclick="move(this.children[0])">
+		<p></p>
+	</div>
+
+	<a href="http://javascript.info/tutorial/animation">Js Animation Tutorial</a>
+	<script>
+	function move(ele) {
+
+		var width = 0;
+
+		function frame() {
+			width++
+
+			ele.style.width = width + '%'
+
+			if (width == 100) clearInterval(id);
+
+		}
+		
+		// 更新时间为 10ms
+		var id = setInterval(frame, 10)
+	}
+	</script>
+</body>
+</html>

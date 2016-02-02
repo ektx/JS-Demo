@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内存状态效果</title>
+	<style>
+	div, p  {
+		margin: 0;
+		padding: 0;
+	}
+	div {
+		width: 200px;
+		height: 30px;
+		border: 2px solid #000;
+		background: #000;
+	}
+	p {
+		width: 0;
+		height: 30px;
+		background: #4CAF50;
+	}
+	</style>
+</head>
+<body>
+	<h3>linear</h3>
+	<div onclick="move(this.children[0], linear)">
+		<p></p>
+	</div>
+
+	<h3>quad</h3>
+	<div onclick="move(this.children[0], quad)">
+		<p></p>
+	</div>
+
+	<h3>quadEaseOut</h3>
+	<div onclick="move(this.children[0], makeEaseOut(quad))">
+		<p></p>
+	</div>
+
+
+
+	<a href="http://javascript.info/tutorial/animation">Js Animation Tutorial</a>
+	<script>
+	function animate(opts) {
+
+		var start = new Date
+		
+		var id = setInterval(function() {
+			var timePassed = new Date - start;
+			// 进程，已经完成了多少，从0到1
+			var progress = timePassed / opts.duration
+
+			if (progress > 1) progress = 1;
+
+			var delta = opts.delta(progress)
+			opts.step(delta)
+
+			if (progress == 1) clearInterval(id)
+		}, opts.delay || 10)
+	}
+
+
+	function linear(progress) {
+		return progress;
+	}
+
+	function quad(progress) {
+		return Math.pow(progress, 5)
+	}
+
+	function makeEaseOut(delta) {
+		return function(progress) {
+			return 1 - delta(1 - progress)
+		}
+	}
+
+	function makeEaseInOut(delta) {
+
+		return function(progress) {
+
+			if (progress < .5)
+				return delta(2 * progress) / 2
+			else 
+				return (2 - delta(2 * (1 - progress))) / 2
+		}
+	}
+
+	function move(ele, delta, duration) {
+
+		// 总长度，这里我们设置为 100%
+		var to = 100;
+
+		// @delay: 动画帧数
+		// @duration: 动画运行时间
+		// @delta: 对进度操作
+		// @step: 每一帧操作
+		animate({
+			delay: 10,
+			duration: duration || 2000,
+			delta: delta,
+			step: function(delta) {
+				var newVal = (to * delta).toFixed(0)
+
+				if (newVal > 90) {
+					ele.style.background = 'red'
+				} else if(newVal > 30) {
+					ele.style.background = 'yellow'
+				} else {
+					ele.style.background = '#4CAF50'
+				}
+
+				newVal += '%'
+
+				ele.style.width = newVal
+				ele.innerText = newVal
+			}
+		})
+	}
+	</script>
+</body>
+</html>
