@@ -24,5 +24,22 @@ Chrome 开启Es6功能：
 	}
 	console.log(b);
 
+
+	var arr = [];
+
+	for (var i = 0; i < 10; i++) {
+		arr[i] = function() {
+			console.log(i)
+		}
+	}
+	console.log(arr[7]())
+
+	var arr2 = [];
+	for (let i = 0; i < 10; i++) {
+		arr2[i] = function() {
+			console.log(i)
+		}
+	}
+	console.log(arr2[7]())
 </script>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	var name = window.prompt("What's yours name?")
+
+	if (name.length == 0) {
+		name = 'Man'
+	}
+
+	var mods = `<h1>hello ${name}</h1>
+	<h2>WELCOME</h2>`;
+
+	document.querySelector('body').innerHTML= mods
+</script>
