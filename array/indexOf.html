@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array indexOf() ES5</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr = [0,-1,8,3,'我','你','Q','今天','阿', '淇', 'q'];
+
+	console.log(arr.indexOf(0)) // => 0
+	console.log(arr.indexOf(3)) // => 3
+	console.log(arr.indexOf('淇')) // => 9
+	console.log(arr.indexOf('q'))  // => 10
+
+	// 从数组中第10位开始查询,出现 Q 的位置
+	console.log(arr.indexOf('Q', 9))  // => -1
+	console.log(arr.indexOf('M'))  // => -1
+</script>
+</html>
