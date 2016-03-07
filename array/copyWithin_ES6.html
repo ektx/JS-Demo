@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array indexOf() ES5</title>
+</head>
+<body>
+	array.copyWithin(target, start, end)
+
+	<ul>
+		<li>
+			target : 必填,数组复制起点位置
+		</li>
+		<li>start: 开始位置</li>
+		<li>end: 结束位置</li>
+	</ul>
+
+	<a href="http://www.w3schools.com/jsref/jsref_copywithin.asp">参考</a>
+</body>
+<script>
+	var arr = ['Apple', 'Banana', 'Orange', 'Mango'];
+
+	// arr.copyWithin(2,0,1) // => ["Apple", "Banana", "Apple", "Mango"]
+
+	// 在第3个位置那开始复制从 0 到 2 之间的元素
+	arr.copyWithin(2,0,2) // => ["Apple", "Banana", "Apple", "Banana"]
+
+	console.log(arr)
+</script>
+</html>
