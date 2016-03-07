@@ -12,5 +12,13 @@
 	var obj = "{a:1,b:2}";
 	console.log(obj);
 	console.log(eval('('+obj+')'));
+
+	function hello(name) {
+		alert('hello, '+name)
+	}
+
+	// 字符串调用函数
+	eval('hello')('zwl')
+	eval('hello("zwl")')
 </script>
 </html>
