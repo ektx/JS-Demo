@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array lastIndexOf() ES5</title>
+</head>
+<body>
+	<h2>array.lastIndexOf(item, start)</h2>
+
+	<table>
+		<tr>
+			<th>Chrome</th>
+			<th>IE</th>
+			<th>FireFox</th>
+			<th>Safari</th>
+			<th>Opera</th>
+		</tr>
+		<tr>
+			<td>Yes</td>
+			<td>9.0</td>
+			<td>Yes</td>
+			<td>Yes</td>
+			<td>Yes</td>
+		</tr>
+	</table>
+</body>
+<script>
+	var arr = [0,-1,8,3,'我','你','Q','今天','阿',3, '0', 'q'];
+
+	console.log(arr.lastIndexOf(0)) // => 0
+	console.log(arr.lastIndexOf(3)) // => 9
+	console.log(arr.lastIndexOf('淇')) // => -1
+	console.log(arr.lastIndexOf('q'))  // => 11
+
+	// 从数组中第10位开始查询,出现 Q 的位置
+	console.log(arr.lastIndexOf('Q', 4))  // => -1
+	console.log(arr.lastIndexOf('M'))  // => -1
+</script>
+</html>

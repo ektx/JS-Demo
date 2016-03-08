@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>find() Array ES5</title>
+</head>
+<body>
+	array.findIndex(function(currentValue, index, arr), thisValue)
+
+	<p id="num"></p>
+
+	<a href="http://www.w3schools.com/jsref/jsref_findindex.asp">参考</a>
+</body>
+<script>
+	var arr = [2, 4, 5, 8, 10];
+
+	function checkAdult(age) {
+		return age >= 7
+	}
+
+	document.getElementById('num').innerHTML = arr.findIndex(checkAdult)
+
+</script>
+</html>

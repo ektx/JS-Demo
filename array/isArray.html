@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>isArray()</title>
+</head>
+<body>
+	Array.isArray(arr)
+
+	<table>
+		<tr>
+			<th>Chrome</th>
+			<th>IE</th>
+			<th>FireFox</th>
+			<th>Safari</th>
+			<th>Opera</th>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>9.0</td>
+			<td>4</td>
+			<td>5</td>
+			<td>10.5</td>
+		</tr>
+	</table>
+
+	<p id="echo"></p>
+
+	<a href="http://www.w3schools.com/jsref/jsref_isarray.asp">参考</a>
+</body>
+<script>
+	var arr = [2, 4, 5, 8, 10];
+
+	// IE 9+ chrome5 firefox4 safari5 Opear10.5
+	document.getElementById('echo').innerHTML = Array.isArray(arr)
+
+</script>
+</html>

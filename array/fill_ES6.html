@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fill() Array ES5</title>
+</head>
+<body>
+	array.fill(value, start, end)
+
+	<ul>
+		<li>
+			value : 必填,数组复制起点位置
+		</li>
+		<li>start: 开始位置,默认为0</li>
+		<li>end: 结束位置,默认为数组长度</li>
+	</ul>
+
+	<a href="http://www.w3schools.com/jsref/jsref_fill.asp">参考</a>
+</body>
+<script>
+	var arr = ['Apple', 'Banana', 'Orange', 'Mango'];
+
+	arr.fill('Kiwi', 2, 4)
+
+	console.log(arr)
+	arr.fill('Kiwi')
+
+	console.log(arr)
+</script>
+</html>

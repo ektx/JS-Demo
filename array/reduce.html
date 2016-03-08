@@ -1,0 +1,28 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>reduce()</title>
+</head>
+<body>
+	<h1>Array reduce(function(){})</h1>
+	<h2>操作元素</h2>
+	<p>使用数组元素并保存在map中可以调用</p>
+</body>
+</html>
+<script>
+
+	var numbers = [1, 2, 3, 4, 5];
+
+	function getSum(total, num) {
+		return total + num;
+	}
+
+	function get(total, num) {
+		return total * num
+	}
+
+	document.write(numbers.reduce(getSum));
+	document.write(numbers.reduce(get));
+
+
+</script>
