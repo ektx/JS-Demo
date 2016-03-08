@@ -16,9 +16,15 @@
 	var letter = [];
 
 	document.getElementById('pushBtn').onclick = function() {
-		var txt = document.getElementById('txt').value;
+		var inputDOM = document.getElementById('txt');
+		var txt = inputDOM.value;
+		
 		letter.unshift(txt);
+
 		document.querySelector('p').innerHTML = "letter : [" + letter.join() + ']<br/>';
+		
+		inputDOM.value = '';
+		inputDOM.focus()
 	}
 
 
