@@ -1,0 +1,26 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>localeCompare</title>
+</head>
+<body>
+	<h1>string.localeCompare(compareString)</h1>
+
+	<ul>
+		<li>-1: string 字符串应该在 compareString 前面</li>
+		<li>0: 2个字符串相同</li>
+		<li>1: string 字符串应该在 compareString 后面</li>
+	</ul>
+</body>
+</html>
+<script>
+
+	var str = "hello";
+
+	var n = str.localeCompare('Hello')
+	var x = str.localeCompare('hello')
+	var y = '啊'.localeCompare('哈')
+
+	console.log(n, x, y)
+
+</script>
