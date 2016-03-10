@@ -1,0 +1,23 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>indexOf</title>
+</head>
+<body>
+	<h1>string.indexOf(searchValue, start)</h1>
+	<p>@start: 默认为总的字符串长度,指定在字符串中第几位开始</p>
+</body>
+</html>
+<script>
+
+	var str = "Hello world! Hello man!";
+
+	var n = str.lastIndexOf('Hello')
+	var x = str.lastIndexOf('hello')
+
+	console.log(n, x)
+
+	// 查询 Hello 在前10位中最后出现的位置
+	console.log('Hello 在前10位中最后出现的位置:',str.lastIndexOf('Hello', 10))
+
+</script>

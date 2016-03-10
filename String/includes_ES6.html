@@ -1,0 +1,24 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>includes</title>
+</head>
+<body>
+	<h1>string.includes(searchValue, start)</h1>
+	<p>@start: 指定在字符串中第几位开始</p>
+</body>
+</html>
+<script>
+
+	var str = "Hello man!";
+	var str2 = "你好,朋友!";
+
+	var n = str.includes('!')
+	var x = str2.includes('友') 
+
+	console.log(n, x)
+
+	// 指定第5位为结束位置,判断它是不是 o
+	console.log('第5位是否为 o 结束:',str.includes('o', 5))
+
+</script>
