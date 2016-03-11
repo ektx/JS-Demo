@@ -18,6 +18,14 @@
 [slice](slice.html)  
 [split](split.html)  
 [startsWith](startsWith_ES6.html)  
+[substr](substr.html)  
+[substring](substring.html)  
+[toLocaleLowerCase](toLocaleLowerCase.html)  
+[toLowerCase](toLowerCase.html)  
+[toLocaleUpperCase](toLocaleUpperCase.html)  
+[toUpperCase](toUpperCase.html)  
+[toString](toString.html)  
+[trim](trim.html)  
 
 ### 参考
 [w3schools](http://www.w3schools.com/jsref/jsref_obj_string.asp)
