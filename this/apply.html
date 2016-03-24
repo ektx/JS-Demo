@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Apply && call</title>
+</head>
+<body>
+	<p>当使用 function.prototype 上的call和apply时, 函数的 this 将会被设置为调用的第一个参数.</p>
+</body>
+<script>
+	function foo(a, b, c) {
+		console.log(this, a, b, c, this.test)
+	}
+
+	var bar = {
+		test: "hello"
+	};
+
+	// this 指向了 whindow全局对象
+	foo();
+	// this 指向了 bar
+	foo.apply(bar, [1,2,3]);
+	foo.call(bar, 1,2,3);
+</script>
+</html>

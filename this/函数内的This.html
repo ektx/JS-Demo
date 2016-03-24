@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数内的this处理</title>
+</head>
+<body>
+	<p>在函数内直接调用函数时,this 是指向全局对象的.</p>
+</body>
+<script>
+	var str = 'Mac';
+	foo = {};
+	foo.method = function() {
+		var self = this;
+		this.str = 'apple';
+
+		function test() {
+			var testThis = this;
+			this.str = 'iphone6s';
+			// 这里的this是指全局的
+			console.log(this, this.str)
+			// 通过创建局部变量 self,我们获取了函数父级的this
+			console.log(self, self.str)
+			// 通过创建局部变量 testThis, 我们获取了自己的this
+			console.log(testThis, testThis.str)
+		}
+		test();
+	}
+
+	foo.method();
+</script>
+</html>
