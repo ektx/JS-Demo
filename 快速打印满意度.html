@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<input type="number" max="5" min="0" placeholder="输入等级,最多5个" style="width:180px">
+	<button id="ok">OK</button>
+	<script>
+		function getRating(rating) {
+			var mes = '';
+			if (rating > 5 || rating <0) {
+				mes = "你输入的值不在1-5之间!"
+			} else {
+				mes = '★★★★★☆☆☆☆☆'.substring(5 - rating, 10 - rating);
+			}
+
+			return mes;
+		}
+
+		document.getElementById('ok').onclick = function() {
+			var val = document.querySelector('input').value;
+			alert(getRating(val))
+		}
+	</script>
+</body>
+</html>

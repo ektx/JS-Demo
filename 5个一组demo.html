@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5个一组demo</title>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+	var box = document.getElementById('box');
+
+	var html = '<ul>';
+	var len = 24;
+
+	for (var x = 1; x <= len; x++) {
+
+		if (!(x%6)) html += '</ul><ul>'
+
+		html += '<li>'+x+'</li>';
+
+	}
+	
+	console.log(html)
+
+	box.innerHTML = html+= '</ul>'
+</script>
+</html>
