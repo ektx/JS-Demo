@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时效果</title>
+</head>
+<body>
+	<p id="time"></p>
+	<button>开始</button>
+	<script>
+		function waitTimeToDo(time, timeDoing, callback) {
+			timeDoing(time);
+
+			setTimeout(function() {
+				time--;
+				if (time === 0) {
+					callback()
+				} else {
+					waitTimeToDo(time, timeDoing, callback);
+				}
+			}, 1000)
+		};
+
+		var ele = document.getElementById('time');
+		waitTimeToDo(3, function(time) {
+			ele.innerHTML = time +'s !'
+		}, function(e) {
+			ele.innerHTML = 'OK! time over!'
+		})
+	</script>
+</body>
+</html>
