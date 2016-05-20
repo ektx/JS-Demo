@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>var</title>
+</head>
+<body>
+<h1>const</h1>
+<p>const定义一个变量，此变量只在当前作用域中可以访问,<b style="color: red">不可重新定义</b></p>
+</body>
+<script>
+	const abc = 1;
+	console.log(abc);
+
+	(function() {
+		console.log(abc, 'const 可访问');
+
+		const d = 4;
+		// abc = 3;
+		console.log(abc);
+	})()
+
+	console.log(d)
+
+	console.log(abc)
+</script>
+</html>
