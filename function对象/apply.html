@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>apply</title>
+</head>
+<body>
+<p>apply(this, [arguments, arguments2, .., argumentsN])	</p>			
+</body>
+<script>
+var Q = function (str) {
+	this.status = str;
+};
+
+Q.prototype.getStatus = function() {
+	console.log(this)
+	return this.status;
+}
+
+// 构造一个实例
+// var myQ = new Q('OK');
+
+// document.writeln(myQ.getStatus());
+
+var statusObj = {
+	status: 'OK!'
+};
+
+document.write(Q.prototype.getStatus.apply(statusObj))
+</script>
+</html>
