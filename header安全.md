@@ -1,4 +1,4 @@
-# header 安全
+# headers 安全
 
 ## x-xss-protection
 
