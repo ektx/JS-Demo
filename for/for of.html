@@ -22,6 +22,10 @@
 </body>
 <script>
 var arr = [2,1,5];
+var obj = {
+	"name": "zwl",
+	"age": 27
+}
 
 console.group('For Of:')
 for (var value of arr) {
@@ -29,6 +33,11 @@ for (var value of arr) {
 }
 console.groupEnd()
 
+// console.group('For Of:')
+// for (var [key, value] of obj) {
+// 	console.log(key,value)
+// }
+// console.groupEnd()
 
 console.group('For in:')
 console.group('Array:')

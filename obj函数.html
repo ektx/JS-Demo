@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Obj 函数</title>
+</head>
+<body>
+	
+</body>
+<script>
+fn = {
+	str : 'hello!',
+
+	say: function(s) {
+		console.log(s || this.str);
+		return this;
+	},
+
+	bye: function(s) {
+		console.log(s || 'Bye!');
+		return this
+	}
+}
+</script>
+</html>
