@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr = [
+		[ "content ", "列表内容，数组形式"  ],
+		[ "title ", "标题" ],
+		[ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ],
+		[ "width ", "总列表宽度, number || array" ],
+		[ "colspan ", "分列数量" ]
+	];
+
+	var width = [5, 10];
+
+	var b = [];
+
+	for (let i of arr) {
+		for (let x = 0; x < width.length; x++) {
+			console.log(i[x]);
+
+			if (x.length > width[x]) {
+
+			}
+		}
+	}
+</script>
+</html>
