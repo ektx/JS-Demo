@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<section>
+		<textarea name="" id="content" cols="30" rows="10">
+			<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>welcome!</title><link rel="stylesheet"href="contents/css/demo.min.css"><style>body{background:#f5f5f5;font-size:16px}</style></head><body><h1>Welcome Use Ejs</h1><nav><ul><li><a href="demo.html">Demo</a></li><li><a href="home.html">home</a></li><li><a href="index.html">index Jade</a></li><li><a href="首页.html">about x</a></li></ul></nav><h3>Demo Page</h3><a href="http://ejs.co/">Ejs</a><script src="contents/js/hello.min.js"></script></body></html>
+		</textarea>	
+		<textarea name="" id="result" cols="30" rows="10"></textarea>
+	</section>
+	<button id="format-btn">去吧，皮卡丘~~</button>
+</body>
+<script src="htmlformat.js"></script>
+<script src="jsformat.js"></script>
+<script>
+
+	document.getElementById('format-btn').addEventListener('click', format)
+
+	function format() {
+		console.time('x')
+		var html = document.getElementById('content').value;
+		var htmlArr = html.match(/<.+?>/g);
+
+		for (let val of htmlArr) {
+			console.log(val)
+		}
+
+		console.timeEnd('x')
+	}
+</script>
+</html>

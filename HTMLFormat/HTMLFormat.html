@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+	<section>
+		<textarea name="" id="content" cols="30" rows="10">
+			<script src="htmlformat.js"></script>
+<script src="jsformat.js"></script>
+<script>var a = 0;</script>
+		</textarea>	
+		<textarea name="" id="result" cols="30" rows="10"></textarea>
+	</section>
+	<button id="format-btn">去吧，皮卡丘~~</button>
+</body>
+<script src="htmlformat.js"></script>
+<script src="jsformat.js"></script>
+<script>
+
+	document.getElementById('format-btn').addEventListener('click', format)
+
+	function format() {
+		console.time('z');
+		var html = document.getElementById('content').value;
+		// console.log(html)
+		html = html.replace(/^\s+/g, '');
+		// console.log(html)
+
+		var tabchar = '\t';
+		var regEmptyTag = /(<([^\/][^>|^\/>].*)>)(\s*)?(<\/([^>]*)>)/g;
+		var result = "";
+		if (html && html.charAt(0) === '<') {
+			result = style_html(html, 1, '\t', 30)
+			// console.log(result)
+		} else {
+			result = js_beautify(html, 1, tabchar)
+			console.log(result)
+		};
+
+		document.getElementById('result').value = result
+	// document.getElementById('result').value = result.replace(regEmptyTag, '$1$4')
+	console.timeEnd('z')
+}
+</script>
+</html>
