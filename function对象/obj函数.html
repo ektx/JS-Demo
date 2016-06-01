@@ -13,12 +13,18 @@ fn = {
 
 	say: function(s) {
 		console.log(s || this.str);
+		this.str += 'xx';
 		return this;
 	},
 
 	bye: function(s) {
 		console.log(s || 'Bye!');
+		this.str += '--'
 		return this
+	}, 
+	show : function() {
+		console.log(this.str)
+		this.str = 'hello!'
 	}
 }
 </script>
