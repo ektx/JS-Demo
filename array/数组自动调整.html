@@ -8,6 +8,8 @@
 	
 </body>
 <script>
+	var willMake = [];
+
 	var arr = [
 		[ "content ", "列表内容，数组形式"  ],
 		[ "title ", "标题" ],
@@ -16,18 +18,84 @@
 		[ "colspan ", "分列数量" ]
 	];
 
-	var width = [5, 10];
+	var width = [10, 15];
 
 	var b = [];
 
-	for (let i of arr) {
-		for (let x = 0; x < width.length; x++) {
-			console.log(i[x]);
+	for (let i = 0; i < arr.length; i++) {
 
-			if (x.length > width[x]) {
+		for (let x = 0; x < width.length; x++) {
+			
+			if (arr[i][x].length > width[x]) {
+				console.error(arr[i][x], x, i);
+				b.push(i)
+				break;
 
 			}
+
 		}
+	}
+	console.log(b)
+
+	for ( let i of b) {
+		let str =  arr[i];
+		let maxLine = [];
+
+		// str 是具体的单个数组
+		// 如 i 是 0 时, [ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ]
+		str.forEach(function(val, index) {
+			console.log(val, index, Math.ceil(val.length / width[index]) );
+			// 对数组内数据与宽度一一对比,计算它们的倍数
+			maxLine.push( Math.ceil(val.length / width[index]) )
+
+			// 最后.我们找到最大的倍数,也就是我们要生成多少个新的数组
+			if (index == str.length -1) {
+				// 获取最大的数组
+				let toMakeArr = Math.max.apply(null, maxLine);
+				console.log('Need to Make line:', toMakeArr );
+
+				let cArr = [];
+				
+				for (let arr = 0; arr < toMakeArr; arr++) {
+					cArr[arr] = [];
+
+					width.forEach(function(val2, index2) {
+						// ['align', '对齐方式,可选 left,ce'] 
+						// => arr = 0,第一行,放入对应的宽度字符
+
+						// ['', 'nter,right,just']
+						// ['','ify; 或使用数组']
+						cArr[arr][index2] = str[index2].substr(arr*val2, val2)
+					})
+				}
+
+				console.log(cArr, i);
+				willMake.push({
+					arr: cArr,
+					index: i
+				})
+			}
+			
+		});
+
+
+	}
+
+
+	for (let wVal = 0; wVal < willMake.length; wVal++) {
+		offset = 0;
+
+		if (wVal != 0) offset = willMake[wVal - 1].length;
+
+		willMake[wVal].arr.forEach(function(val, i) {
+			let newIndex = willMake[wVal].index + i + offset;
+			if (newIndex < arr.length) {
+				arr.splice(newIndex, 1, val)
+			} else {
+				console.log('Too long')
+				arr.push(val)
+			}
+		})
 	}
 </script>
 </html>
