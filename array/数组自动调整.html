@@ -90,6 +90,7 @@
 						// ['', 'nter,right,just']
 						// ['','ify; 或使用数组']
 						cArr[arr][index2] = str[index2].substr(arr*val2, val2)
+						// cArr[arr][index2] = substrs(str[index2], arr*val2, val2)
 					})
 				}
 
@@ -155,24 +156,43 @@ function textOverflow(str, len) {
 function substrs(str, start, len) {
 	let result = '';
 	let _len = 0;
-	len = len || getStrLen(str);
+	let strLen = getStrLen(str);
+
+	len = len || strLen;
 	start = start || 0;
 
-	for (let val of str) {
-		// 中文或 , ? * & $ - +
-		if (/[^x00-\xff,?*&$\-+]/.test(val)) {
-			_len += 2;
+
+	for (let i = 0; i < strLen; i++) {
+
+		if ( /[^x00-\xff,?*&$\-+]/.test(str[i]) ) {
+			i++;
+			start = start+2;
 		} else {
-			_len += 1;
+			_len ++;
 		}
 
-		if (_len <= len) {
+		if (i < start + len) {
+			if (i >= start) {
+				console.log('COME!', str[_len]);
+			}
+		}
+		// if (i >= start + len ) {
+		// 	// 中文或 , ? * & $ - +
+		// 	if (/[^x00-\xff,?*&$\-+]/.test(str[i])) {
+		// 		_len += 2;
+		// 	} else {
+		// 		_len += 1;
+		// 	}
 
-			if (_len > start) result += val;
-		}
-		else {
-			break
-		}
+		// 	if (_len <= len) {
+
+		// 		if (_len > start) result += str[i];
+		// 	}
+		// 	else {
+		// 		break
+		// 	}
+			
+		// }
 
 	}
 
