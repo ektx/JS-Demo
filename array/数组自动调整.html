@@ -8,26 +8,33 @@
 	
 </body>
 <script>
+	// 临时存储数组
 	var willMake = [];
 
+	// 要变化的数组
 	var arr = [
 		[ "content ", "列表内容，数组形式"  ],
 		[ "title ", "标题" ],
+		[ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ],
+		[ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ],
 		[ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ],
 		[ "width ", "总列表宽度, number || array" ],
 		[ "colspan ", "分列数量" ]
 	];
 
+	// 分隔大小
 	var width = [10, 15];
 
+	// 所有超出数组集
 	var b = [];
 
+	// 找到数组之中超出的内容
 	for (let i = 0; i < arr.length; i++) {
 
 		for (let x = 0; x < width.length; x++) {
 			
 			if (arr[i][x].length > width[x]) {
-				console.error(arr[i][x], x, i);
+				// console.error(arr[i][x], x, i);
 				b.push(i)
 				break;
 
@@ -35,18 +42,24 @@
 
 		}
 	}
-	console.log(b)
+	// 打印一下看看 @_@
+	// console.log(b)
 
+	// 对所有超出的内容处理
 	for ( let i of b) {
 		let str =  arr[i];
+		// 内容每个倍数数组
 		let maxLine = [];
 
-		// str 是具体的单个数组
-		// 如 i 是 0 时, [ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ]
+		// str 是具体的单个数组内容
+		// 如 i 是 0 时, 内容是：
+		// [ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ]
 		str.forEach(function(val, index) {
-			console.log(val, index, Math.ceil(val.length / width[index]) );
+			// 我们再看看信息 @_@
+			// console.log(val, index, Math.ceil(val.length / width[index]) );
+
 			// 对数组内数据与宽度一一对比,计算它们的倍数
-			maxLine.push( Math.ceil(val.length / width[index]) )
+			maxLine.push( Math.ceil(getStrLen(val) / width[index]) )
 
 			// 最后.我们找到最大的倍数,也就是我们要生成多少个新的数组
 			if (index == str.length -1) {
@@ -54,8 +67,19 @@
 				let toMakeArr = Math.max.apply(null, maxLine);
 				console.log('Need to Make line:', toMakeArr );
 
+				// 拆分之后的数组
 				let cArr = [];
 				
+				/* 根据最大倍数，我们将预先生成最大个数的数组
+				 * 例如：
+				 * [ "algin ", "对齐方式,可选 left,center,right,justify; 或使用数组" ]
+				 * Math.ceil("algin".length/width[0]) = Math.ceil(5/10) = 1
+				 * Math.ceil("对齐方式,可选 left,center,right,justify; 或使用数组".length/width[0]) = Math.ceil(40/15) = 3
+				 * 因此我们要满足这条数据拆分而不被省略，最少要加3个width的数据，最终成为：
+				 * ['align', '对齐方式,可选 left,ce']
+				 * ['', 'nter,right,just']
+				 * ['','ify; 或使用数组']
+				 */
 				for (let arr = 0; arr < toMakeArr; arr++) {
 					cArr[arr] = [];
 
@@ -69,10 +93,10 @@
 					})
 				}
 
-				console.log(cArr, i);
+				// 最后；我们把他们保存到最后处理的数据之中
 				willMake.push({
-					arr: cArr,
-					index: i
+					arr: cArr, // 新数组
+					index: i // 这是当前数据在原数组中的 index
 				})
 			}
 			
@@ -82,20 +106,78 @@
 	}
 
 
-	for (let wVal = 0; wVal < willMake.length; wVal++) {
-		offset = 0;
+	// 偏移量，这是因为当有数组被追加到之前的数组之后，新加了个数，导致了偏移
+	let offset = 0;
 
-		if (wVal != 0) offset = willMake[wVal - 1].length;
+	// 对所有生成好的数组进行添加工作
+	for (let wVal = 0; wVal < willMake.length; wVal++) {
+
+		// 偏移量
+		if (wVal != 0) offset += willMake[wVal - 1].arr.length - 1;
 
 		willMake[wVal].arr.forEach(function(val, i) {
 			let newIndex = willMake[wVal].index + i + offset;
+
 			if (newIndex < arr.length) {
-				arr.splice(newIndex, 1, val)
+				// 定义要删除的老数据
+				let delIndex = 0;
+				
+				// 只有在0的时候，我们替换之前的数组，其它情况只加
+				if (i == 0) delIndex = 1;
+
+				arr.splice(newIndex, delIndex, val);
+
 			} else {
 				console.log('Too long')
 				arr.push(val)
 			}
 		})
 	}
+
+	console.table(arr);
+
+// 可以过滤出中文字符长度
+function getStrLen(str) {
+	return str.replace(/[^\x00-\xff]/g, '__').length;
+}
+
+
+// 文字溢出
+function textOverflow(str, len) {
+	// 文字过长隐藏
+	if (getStrLen(str) > len) {
+		str = substrs(str, len - 4) + '...';
+	}
+	return str;
+}
+
+
+function substrs(str, start, len) {
+	let result = '';
+	let _len = 0;
+	len = len || getStrLen(str);
+	start = start || 0;
+
+	for (let val of str) {
+		// 中文或 , ? * & $ - +
+		if (/[^x00-\xff,?*&$\-+]/.test(val)) {
+			_len += 2;
+		} else {
+			_len += 1;
+		}
+
+		if (_len <= len) {
+
+			if (_len > start) result += val;
+		}
+		else {
+			break
+		}
+
+	}
+
+	return result;
+}
+
 </script>
 </html>
