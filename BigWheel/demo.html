@@ -40,7 +40,7 @@ var winner = 'iPhone';
 $(function() {
 
 	// 奖品数组，来至后台
-	var arr = ['Mac', '谢谢参与',  '谢谢参与', 'iPhone', '谢谢参与'];
+	var arr = ['Mac', '谢谢参与',  '谢谢参与', 'iPhone','谢谢参与', 'iPhone', '谢谢参与'];
 
 	// 自动生成转盘数据
 	// 如果用图片的，请忽略此
@@ -63,7 +63,7 @@ $(function() {
 	})
 
 	$('.wheel-info-box').css({
-		'transform': 'skewX(-'+skewX+'deg) rotateZ(-'+rotateZ+'deg)'
+		'transform': 'skewX(-'+skewX+'deg) rotateZ(-'+((90 - rotateZ) + rotateZ/2)+'deg)'
 	});
 
 
