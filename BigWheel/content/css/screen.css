@@ -1,0 +1,222 @@
+@charset "UTF-8";
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+body {
+  font-family: "Lucida Sans Unicode", "Microsoft YaHei", Tahoma, Sans-Serif;
+}
+
+.big-wheel-mod {
+  width: 400px;
+  height: 400px;
+  margin: 100px auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+/*
+	大转盘
+*/
+.big-wheel-box {
+  width: 400px;
+  height: 400px;
+  background: #d21010;
+  margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  transition: transform 5s ease-in-out;
+  transition: transform 5s cubic-bezier(0.1, 0.71, 0, 1);
+}
+.big-wheel-box li {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transform-origin: bottom right;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+}
+.big-wheel-box li:nth-child(even) div {
+  background: #fff;
+  color: #c30;
+}
+.big-wheel-box li:nth-child(odd) div {
+  background: #f33;
+  color: #fc6;
+}
+
+.wheel-info-box {
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.wheel-info-box p {
+  width: 1rem;
+  margin: 0 auto;
+  word-wrap: break-word;
+  font-size: 1.01rem;
+  transform: translateY(-135px);
+}
+
+/* 转盘轴 */
+.wheel-axis-box {
+  width: 140px;
+  height: 140px;
+  border-radius: 100%;
+  background: #FBE2AF;
+  border: 2px solid #FE8C2C;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -70px;
+  z-index: 100;
+}
+
+.wheel-axis-point {
+  width: 100%;
+  height: 100%;
+  border: 10px solid #FFA800;
+  box-sizing: border-box;
+  border-radius: 100%;
+  position: relative;
+  z-index: 101;
+}
+.wheel-axis-point li {
+  width: 3px;
+  height: 3px;
+  border-radius: 100%;
+  background: #FFF;
+  border: 1px solid #FFEA75;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-top: -7px;
+  transform-origin: 0 65px;
+}
+.wheel-axis-point li:nth-child(1) {
+  transform: rotate(24deg);
+}
+.wheel-axis-point li:nth-child(2) {
+  transform: rotate(48deg);
+}
+.wheel-axis-point li:nth-child(3) {
+  transform: rotate(72deg);
+}
+.wheel-axis-point li:nth-child(4) {
+  transform: rotate(96deg);
+}
+.wheel-axis-point li:nth-child(5) {
+  transform: rotate(120deg);
+}
+.wheel-axis-point li:nth-child(6) {
+  transform: rotate(144deg);
+}
+.wheel-axis-point li:nth-child(7) {
+  transform: rotate(168deg);
+}
+.wheel-axis-point li:nth-child(8) {
+  transform: rotate(192deg);
+}
+.wheel-axis-point li:nth-child(9) {
+  transform: rotate(216deg);
+}
+.wheel-axis-point li:nth-child(10) {
+  transform: rotate(240deg);
+}
+.wheel-axis-point li:nth-child(11) {
+  transform: rotate(264deg);
+}
+.wheel-axis-point li:nth-child(12) {
+  transform: rotate(288deg);
+}
+.wheel-axis-point li:nth-child(13) {
+  transform: rotate(312deg);
+}
+.wheel-axis-point li:nth-child(14) {
+  transform: rotate(336deg);
+}
+.wheel-axis-point li:nth-child(15) {
+  transform: rotate(360deg);
+}
+
+.wheel-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #c30;
+  margin: -2rem;
+}
+
+/*# sourceMappingURL=screen.css.map */
