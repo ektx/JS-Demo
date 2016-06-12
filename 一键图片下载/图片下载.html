@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一键图片下载</title>
+</head>
+<body>
+	<button>Down</button>
+	<img src="grass.png" alt="">	
+	<img src="Paris.png" alt="">	
+</body>
+<script>
+	document.querySelector('button').addEventListener('click', ()=>{
+		var imgs = document.querySelectorAll('img');
+
+		for ( var i = 0; i < imgs.length; i++) {
+
+			console.log(imgs[i].src);
+
+			var saveLink = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+			saveLink.href = imgs[i].src;
+			saveLink.download = i+'.png';
+
+			var event = document.createEvent('MouseEvents');
+			event.initMouseEvent('click', true, false, window, 0, 0,0,0,0,false,false,false,false,0, null); 
+			saveLink.dispatchEvent(event);
+		}
+	})
+</script>
+</html>
