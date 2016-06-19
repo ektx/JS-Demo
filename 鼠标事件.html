@@ -5,7 +5,7 @@
 	<title>鼠标事件</title>
 </head>
 <body style="height: 1000px">
-	<div id="myD" style="width: 200px; height: 200px; background:#f90; position: relative">
+	<div id="myD" style="width: 200px; height: 200px; background:#f90; position: relative; border: 5px solid #eee">
 		<span id="myTxt"></span>
 		<div style="width: 100px; height:100px; border: 1px solid #fff; background:#ff0; margin: 150px">
 			<span id="inner"></span>
@@ -74,8 +74,19 @@ document.addEventListener('mousedown', function(event) {
 // mouseout 离开时,进入内容子元素时也视为离开
 // mouseover 在上面,进入或进入子级时被视为再进入
 document.getElementById('myD').addEventListener('mouseover', function(event){
-	console.log(event.type)
+	console.log(event.type);
 }, false)
+
+document.getElementById('myD').addEventListener('mousedown', function(event){
+	console.log(event.type);
+
+	// offset 与 layer 的区别在于, offset 不包含边框和其它内容,只是内容的位置
+	// layer 则是包含了边框=在内的总的修饰内容
+	console.log('OffsetX:', event.offsetX, 'OffsetY:', event.offsetY);
+	console.log('layerX:', event.layerX, 'layerY:', event.layerY);
+	
+}, false)
+
 
 // 鼠标滚轮事件 - chrome/ie/safari
 document.addEventListener('mousewheel', function(event) {
