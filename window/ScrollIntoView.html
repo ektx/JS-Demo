@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>页面定位 ScrollIntoView() example</title>
+	<style type="text/css">
+	.box {
+		height: 10em;
+		width: 30em;
+		overflow: scroll;
+		border: 1px solid blue;
+	}
+
+	</style>
+	<script type="text/javascript">
+	function showIt(opt) {
+		var el = document.getElementById('pToShow');
+		console.log(opt)
+		el.scrollIntoView(opt);
+	}
+	</script>
+</head>
+<body>
+	<h1>Element.scrollIntoView()</h1>
+
+	<h3>语法</h3>
+<pre>
+<code>element.scrollIntoView(); // 等同于element.scrollIntoView(true)</code> 
+<code>element.scrollIntoView(alignToTop); // Boolean型参数 </code>
+<code>element.scrollIntoView(scrollIntoViewOptions); // Object型参数</code>
+</pre>
+
+	<h3>参数</h3>
+	<p><b>alignToTop:</b></p>
+	<p>true: 元素的顶端将和其所在滚动区的可视区域的顶端对齐。</p>
+	<p>false: 元素的底端将和其所在滚动区的可视区域的底端对齐。</p>
+
+	<p><b>scrollIntoViewOptions:</b></p>
+<pre>
+{
+    behavior: "auto"  | "instant" | "smooth",
+    block:    "start" | "end",
+}
+</pre>
+	<p>element.scrollIntoView(true) = element.scrollIntoView({block: start})</p>
+	<p>element.scrollIntoView(false) = element.scrollIntoView({block: end})</p>
+
+	<div class="box">
+		<div style="height: 100px;"></div>
+		<p id="pToShow">The para to show Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi at quam aspernatur quis, maiores dolorum saepe excepturi dolorem, natus consectetur eius delectus eum. Doloribus eaque delectus expedita temporibus saepe natus!</p>
+		<div style="height: 100px;"></div>
+	</div>
+	<input type="button" value="default" onclick="showIt();">
+	<input type="button" value="false" onclick="showIt(false);">
+	<input type="button" value="true" onclick="showIt(true);">
+	<input type="button" value='block:"end"' onclick="showIt({block:'end'})">
+	<input type="button" value='block:"start"' onclick="showIt({block:'start'})">
+	<input type="button" value='block: "end", behavior:"smooth"' onclick="showIt({block: 'end', behavior:'smooth'})">
+</body>
+</html>
+<!-- 参考：
+页面定位 
+https://developer.mozilla.org/en-US/docs/Web/API/Element.scrollIntoView 
+
+到页面顶部
+document.body.scrollIntoView(true)
+
+
+到页面底部
+document.body.scrollIntoView(false)
+ -->
