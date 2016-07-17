@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Js Array</title>
+</head>
+<body>
+	<script>
+		for (let value of ['a', 'b']) {
+			console.log(value)
+		}
+
+		for (let index of ['a', 'b'].keys() ) {
+			console.log(index)
+		}
+
+		for (let value of ['a', 'b'].values() ) {
+			console.log(value)
+		}
+
+		for (let [index, value] of ['a', 'b'].entries() ) {
+			console.log(index, value)
+		}
+		// 0 'a'
+		// 1 'b'
+	</script>
+</body>
+</html>
