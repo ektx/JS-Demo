@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Taill recursion</title>
+</head>
+<body>
+
+<script>
+	// 构建一个带尾递归的函数
+	// 因为它会返回自身调用结果,所以它是尾递归
+	// JavaScript 当前没有对这种形式的递归做出优化
+	var factorial = function factorial(i, a) {
+		a = a || 1;
+
+		console.log(i, a)
+
+		if (i < 2) {
+			return a;
+		}
+		return factorial(i - 1, a * i);
+	}
+
+	document.writeln(factorial(4) );
+</script>
+</body>
+</html>
