@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>window.getDefaultComputedStyle</title>
+	<style>
+	.demo {
+		width: 200px;
+		height: 200px;
+		background: #f90;
+		margin: 0 auto;
+	}
+	.demo:before {
+		content: '';
+		display: block;
+		width: 100px;
+		height: 100px;
+		margin-left: -50px;
+	    background: #8A2BE2;
+	}
+	</style>
+</head>
+<body>
+	<h1>getDefaultComputedStyle</h1>
+	<p>返回指定元素浏览器默认值</p>
+	<div class="demo"></div>
+	<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getDefaultComputedStyle">Window.getDefaultComputedStyle()</a>
+	<script>
+	var e = document.querySelector('.demo');
+
+	// 获取背景色
+	console.log(e.style.background)
+	console.log(window.getDefaultComputedStyle(e, null).width)
+	console.log(window.getDefaultComputedStyle(e, 'before').content)
+	</script>
+</body>
+</html>
