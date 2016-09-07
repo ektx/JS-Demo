@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>http://stackoverflow.com/questions/7820712/how-can-i-center-align-text-in-jqgrid-header-group</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.2.0/plugin/ui.multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.2.0/css/ui.jqgrid3.css" />
+    <style type="text/css">
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.2.0/js/i18n/grid.locale-en.js"></script>
+    <script type="text/javascript">
+        $.jgrid.no_legacy_api = true;
+        $.jgrid.useJSON = true;
+    </script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.2.0/plugin/ui.multiselect.js"></script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.2.0/js/jquery.jqGrid.src.js"></script>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        /*global $ */
+        /*jslint browser: true, plusplus: true */
+        $.jgrid.formatter.integer.thousandsSeparator = ',';
+        $.jgrid.formatter.number.thousandsSeparator = ',';
+        $.jgrid.formatter.currency.thousandsSeparator = ',';
+        $(function () {
+            'use strict';
+              var mydata = [
+                      {id: "1",  invdate: "2007-10-01", name: "test",   note: "note",   amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00"},
+                      {id: "2",  invdate: "2007-10-02", name: "test2",  note: "note2",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00"},
+                      {id: "3",  invdate: "2007-09-01", name: "test3",  note: "note3",  amount: "400.00", tax: "30.00", closed: false, ship_via: "FE", total: "430.00"},
+                      {id: "4",  invdate: "2007-10-04", name: "test4",  note: "note4",  amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00"},
+                      {id: "5",  invdate: "2007-10-31", name: "test5",  note: "note5",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00"},
+                      {id: "6",  invdate: "2007-09-06", name: "test6",  note: "note6",  amount: "400.00", tax: "30.00", closed: false, ship_via: "FE", total: "430.00"},
+                      {id: "7",  invdate: "2007-10-04", name: "test7",  note: "note7",  amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00"},
+                      {id: "8",  invdate: "2007-10-03", name: "test8",  note: "note8",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00"},
+                      {id: "9",  invdate: "2007-09-01", name: "test9",  note: "note9",  amount: "400.00", tax: "30.00", closed: false, ship_via: "TN", total: "430.00"},
+                      {id: "10", invdate: "2007-09-08", name: "test10", note: "note10", amount: "500.00", tax: "30.00", closed: true,  ship_via: "TN", total: "530.00"},
+                      {id: "11", invdate: "2007-09-08", name: "test11", note: "note11", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"},
+                      {id: "12", invdate: "2007-09-10", name: "test12", note: "note12", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"}
+                  ],
+                  grid = $("#list");
+              grid.jqGrid({
+                  datatype: 'local',
+                  data: mydata,
+                  colNames: ['Inv No', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Closed', 'Shipped via', 'Notes'],
+                  colModel: [
+                      {name: 'id', index: 'id', width: 65, align: 'center', sorttype: 'int', hidden: true},
+                      {name: 'invdate', index: 'invdate', width: 80, align: 'center', sorttype: 'date',
+                          formatter: 'date', formatoptions: {newformat: 'd-M-Y'}, datefmt: 'd-M-Y'},
+                      {name: 'name', index: 'name', width: 70},
+                      {name: 'amount', index: 'amount', width: 75, formatter: 'number', sorttype: 'number', align: 'right'},
+                      {name: 'tax', index: 'tax', width: 55, formatter: 'number', sorttype: 'number', align: 'right', hidden: true},
+                      {name: 'total', index: 'total', width: 65, formatter: 'number', sorttype: 'number', align: 'right'},
+                      {name: 'closed', index: 'closed', width: 75, align: 'center', formatter: 'checkbox',
+                          edittype: 'checkbox', editoptions: {value: 'Yes:No', defaultValue: 'Yes'}},
+                      {name: 'ship_via', index: 'ship_via', width: 100, align: 'center', formatter: 'select',
+                          edittype: 'select', editoptions: {value: 'FE:FedEx;TN:TNT;IN:Intim', defaultValue: 'Intime'}},
+                      {name: 'note', index: 'note', width: 70, sortable: false}
+                  ],
+                  rowNum: 10,
+                  rowList: [5, 10, 20],
+                  pager: '#pager',
+                  gridview: true,
+                  rownumbers: true,
+                  shrinkToFit: true,
+                  headertitles: true,
+                  sortname: 'invdate',
+                  viewrecords: true,
+                  sortorder: 'desc',
+                  caption: 'Local grid with multiline column headers (groupping of columns)',
+                  height: '100%'
+              });
+              //grid.jqGrid('filterToolbar', {defaultSearch: 'cn', stringResult: true});
+              grid.jqGrid ('navGrid', '#pager',
+                           {edit: false, add: false, del: false, refresh: true, view: false},
+                           {}, {}, {}, {multipleSearch: true, overlay: false});
+              /*grid.jqGrid (
+                  'navButtonAdd',
+                  '#pager',
+                   {
+                       caption: "", buttonicon: "ui-icon-calculator", title: "choose columns",
+                       onClickButton: function() {
+                           grid.jqGrid('columnChooser', {
+                                   done: function(perm) {
+                                       if (perm) {
+                                           grid.jqGrid("remapColumns", perm, true);
+                                           //alert("The column chooser closed with 'OK' button");
+                                       }// else {
+                                       //    alert("The column chooser closed with 'Cancel' button");
+                                       //}
+                                   }
+                               }
+                           );
+                      }
+                   });*/
+              grid.jqGrid('setGroupHeaders', {
+                  useColSpanStyle: true,
+                  groupHeaders: [
+                      {startColumnName: 'amount', numberOfColumns: 3, titleText: '<em>Price</em>'},
+                      {startColumnName: 'closed', numberOfColumns: 2, titleText: 'Shiping'}
+                  ]});
+        });
+    //]]>
+    </script>
+</head>
+<body>
+    <table id="list"><tr><td/></tr></table>
+    <div id="pager"></div>
+</body>
+</html>
