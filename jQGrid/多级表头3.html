@@ -4,11 +4,12 @@
     <title>多级表头功能</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/redmond/jquery-ui.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/redmond/jquery-ui.css" /> -->
     <link rel="stylesheet" type="text/css" href="css/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" href="css/materialUI.css">
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/i18n/grid.locale-cn.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script> -->
+    <script type="text/javascript" src="src/i18n/grid.locale-cn-air.js"></script>
     <script type="text/javascript" src="src/jquery.jqGrids.js"></script>
     <script type="text/javascript">
 
@@ -86,9 +87,22 @@
                     setHeaderWidth.call(this);
                 }
             });
-            grid.jqGrid ("navGrid", "#pager",
-                         {edit: false, add: false, del: false, refresh: true, view: false},
-                         {}, {}, {}, {multipleSearch: true, overlay: false});
+            
+            // grid.jqGrid ("navGrid", "#pager",
+            //              {edit: false, add: false, del: false, refresh: true, view: false},
+            //              {}, {}, {}, {multipleSearch: true, overlay: false});
+            grid.navGrid('#pager', 
+            {
+                search: true
+            },
+            {},
+            {},
+            {},
+            {
+                searchico: 'xxoo'
+            }
+            )
+
             grid.jqGrid("setGroupHeaders", {
                 useColSpanStyle: true,
                 groupHeaders: [
@@ -122,6 +136,7 @@
                 }
                 ]
             });
+
 
             // $("th[title=DetailsPriceShiping]").removeAttr("title");
             // $("#h0").css({

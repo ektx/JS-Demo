@@ -70,7 +70,7 @@
 .ui-jqgrid .ui-state-disabled:hover {padding:0px;}
 .ui-jqgrid .ui-pg-input,.ui-jqgrid .ui-jqgrid-toppager .ui-pg-input { height:14px;width: auto;font-size:.9em; margin:0;line-height: inherit;border: none; padding: 3px 2px}
 .ui-jqgrid .ui-pg-selbox, .ui-jqgrid .ui-jqgrid-toppager .ui-pg-selbox {font-size:.9em; line-height:inherit; display:block; height:19px; margin: 0; padding: 3px 0px; border:none;}
-.ui-jqgrid .ui-separator {height: 18px; border-left: 2px solid #ccc ;}
+.ui-jqgrid .ui-separator {height: 18px}
 .ui-separator-li {height: 2px; border : none;border-top: 2px solid #ccc ; margin: 0; padding: 0; width:100%}
 .ui-jqgrid  .dropdownmenu {
 	padding: 3px 0 3px 0;
@@ -263,11 +263,6 @@ a.g-menu-item, a.soptclass, a.clearsearchclass { cursor: pointer; }
 .ui-search-table input 
 {
 	padding: 4px 3px;
-}
-
-.ui-jqgrid .ui-pg-table .ui-pg-button.ui-state-disabled:hover > .ui-separator {
-	margin-left: 3px;
-	margin-right: 3px;
 }
 
 .ui-jqgrid .ui-pg-table .ui-pg-button.ui-state-disabled:hover > .ui-pg-div > .ui-icon {

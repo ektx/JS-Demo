@@ -907,12 +907,13 @@ $.extend($.jgrid,{
 				cornertop: "ui-corner-top",
 				cornerbottom : "ui-corner-bottom",
 				hidden : "ui-helper-hidden",
-				icon_base : "ui-icon",
+				icon_base : "mui-icon",
 				overlay : "ui-widget-overlay",
 				active : "ui-state-active",
 				error : "ui-state-error",
 				button : "ui-state-default ui-corner-all",
-				content : "ui-widget-content"
+				content : "ui-widget-content",
+				pageline : "mui-page-line"
 			},
 			base : {
 				entrieBox : "ui-widget ui-widget-content ui-corner-all", // entrie div  incl everthing
@@ -1542,6 +1543,7 @@ $.fn.jqGrid = function( pin ) {
 		var getstyle = $.jgrid.getMethod("getStyleUI"),
 		stylemodule = ts.p.styleUI + ".common",
 		disabled = getstyle(stylemodule,'disabled', true),
+		pageline = getstyle(stylemodule,'pageline', true),
 		highlight = getstyle(stylemodule,'highlight', true),
 		hover = getstyle(stylemodule,'hover', true),
 		cornerall = getstyle(stylemodule,'cornerall', true),
@@ -1564,7 +1566,7 @@ $.fn.jqGrid = function( pin ) {
 		$(gv).attr("id","gview_"+this.id).appendTo(eg);
 		$("<div "+getstyle(ts.p.styleUI+'.common','overlay', false, 'jqgrid-overlay')+ " id='lui_"+this.id+"'></div>").insertBefore(gv);
 		$("<div "+getstyle(stylemodule,'loadingBox', false, 'loading')+" id='load_"+this.id+"'>"+$.jgrid.getRegional(ts, "defaults.loadtext", this.p.loadtext)+"</div>").insertBefore(gv);
-		
+
 		$(this).attr({role:"presentation","aria-multiselectable":!!this.p.multiselect,"aria-labelledby":"gbox_"+this.id});
 		
 		var sortkeys = ["shiftKey","altKey","ctrlKey"],
@@ -2651,7 +2653,7 @@ $.fn.jqGrid = function( pin ) {
 		},
 		setPager = function (pgid, tp){
 			// TBD - consider escaping pgid with pgid = $.jgrid.jqID(pgid);
-			var sep = "<td class='ui-pg-button "+disabled+"'><span class='ui-separator'></span></td>",
+			var sep = "<td class='"+pageline+"'><span class='ui-separator'></span></td>",
 			pginp = "",
 			pgl="<table class='ui-pg-table ui-common-table ui-paging-pager'><tbody><tr>",
 			str="", pgcnt, lft, cent, rgt, twd, tdw, i,
@@ -8007,7 +8009,9 @@ $.jgrid.extend({
 	        }
 		});
 	},
+
 	searchGrid : function (p) {
+		debugger
 		var regional =  $.jgrid.getRegional(this[0], 'search');
 		p = $.extend(true, {
 			recreateFilter: false,
@@ -10054,7 +10058,7 @@ $.jgrid.extend({
 			for(i = 0; i<clone; i++) {
 				var tbd,
 				navtbl = $("<table class='ui-pg-table navtable ui-common-table'><tbody><tr></tr></tbody></table>"),
-				sep = "<td class='ui-pg-button " +commonstyle.disabled + "' style='width:4px;'><span class='ui-separator'></span></td>",
+				sep = "<td class='ui-pg-button " +commonstyle.disabled + "'><span class='ui-separator'></span></td>",
 				pgid, elemids;
 				if(i===0) {
 					pgid = elem;
