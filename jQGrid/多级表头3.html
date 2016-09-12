@@ -29,30 +29,9 @@
                     {id: "11", invdate: "2007-09-08", name: "test11", note: "note11", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"},
                     {id: "12", invdate: "2007-09-10", name: "test12", note: "note12", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"}
                 ],
-                grid = $("#list"),
-                setHeaderWidth = function () {
-                    var $self = $(this),
-                        colModel = $self.jqGrid("getGridParam", "colModel"),
-                        cmByName = {},
-                        ths = this.grid.headers,
-                        cm,
-                        i,
-                        l = colModel.length;
+                grid = $("#list");
 
-                    for(i = 0; i < l; i++) {
-                        cm = colModel[i];
-                        cmByName[cm.name] = $(ths[i].el).outerWidth();
-                    }
-                    $("#h1").width(cmByName.amount + cmByName.tax + cmByName.total - 1);
-                    $("#h2").width(cmByName.closed + cmByName.ship_via - 1);
-                    //$("#h2").width($("#h0").width() - $("#h1").outerWidth());
-                };
-
-            grid.jqGrid({
-                datatype: "local",
-                data: mydata,
-                colNames: ["Inv No", "Date2", "ClientX", "Amount", "Tax", "Total", "Closed", "Shipped via", "Notes"],
-                colModel: [
+            var colModelArr = [
                     {name: "id", width: 65, align: "center", sorttype: "int", hidden: true},
                     {name: "invdate", width: 80, align: "center", sorttype: "date",
                         formatter: "date", formatoptions: {newformat: "d-M-Y"}, datefmt: "d-M-Y"},
@@ -65,7 +44,13 @@
                     {name: "ship_via", width: 100, align: "center", formatter: "select",
                         edittype: "select", editoptions: {value: "FE:FedEx;TN:TNT;IN:Intim", defaultValue: "IN"}},
                     {name: "note", width: 70, sortable: false}
-                ],
+                ];
+
+
+            grid.jqGrid({
+                datatype: "local",
+                data: mydata,
+                colModel: colModelArr,
                 rowNum: 7,
                 rowList: [5, 10, 20],
                 pager: "#pager",
@@ -84,7 +69,6 @@
                         shrinkToFit = $self.jqGrid("getGridParam", "shrinkToFit");
 
                     $self.jqGrid("setGridWidth", this.grid.newWidth, shrinkToFit);
-                    setHeaderWidth.call(this);
                 }
             });
             

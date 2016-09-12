@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>容量条</title>
+
+	<style>
+	body, html, ul, li, i, span {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		font-family: Lucida Grande, Lucida Sans, Arial, "microsoft yahei",'宋体',sans-serif;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	.kapasiti-bar {
+		width: 80%; /* 宽度请自行修改 */
+		height: 42px; /* 高度自行修改 */
+		background-color: #666;
+		margin: 200px auto 100px;
+		border-radius: 3px;
+		overflow: hidden
+	}
+	.kapasiti-bar li {
+		float: left;
+		-webkit-transition: width .3s ease;
+		-moz-transition: width .3s ease;
+		transition: width .3s ease;
+	}
+	
+	.kapasiti-btn {
+		text-align: center;
+	}
+	.kapasiti-btn li {
+		display: inline-block;
+		font-size: 16px;
+		line-height: 32px;
+		cursor: pointer;
+	}
+	.kapasiti-btn li i {
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		border-radius: 100%;
+		margin: 0 5px 1px 15px;
+	}
+
+
+	.no-selected i {
+		background-color: #ccc;
+	}
+	.pink-C, 
+	li:hover .pink-C { background-color: #fa4c7e }
+	.yellow-C, 
+	li:hover .yellow-C { background-color: #fdd243 }
+	.green-C, 
+	li:hover .green-C { background-color: #78da59 }
+	.blue-C, 
+	li:hover .blue-C { background-color: #166cd6 }
+	.orange-C, 
+	li:hover .orange-C { background-color: #33bdf5 }
+	</style>
+</head>
+<body>
+	<ul id="kapasiti-bar" class="kapasiti-bar" data-total="0"></ul>
+
+	<ul id="kapasiti-btn" class="kapasiti-btn">
+		<li class="no-selected"><i class="pink-C"></i><span>iPhone</span></li>
+		<li class="no-selected"><i class="yellow-C"></i><span>iMac</span></li>
+		<li class="no-selected"><i class="green-C"></i><span>MacBook</span></li>
+		<li class="no-selected"><i class="blue-C"></i><span>MacBook Air</span></li>
+		<li class="no-selected"><i class="orange-C"></i><span>MacBook Pro</span></li>
+	</ul>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.slim.min.js"></script>
+	<script>
+		var data = {
+				iPhone: 4,
+				iMac: 2,
+				MacBook: 1,
+				'MacBook Air': 1,
+				'MacBook Pro': 2
+			};
+
+		$('#kapasiti-btn').on('click', 'li', function() {
+
+			var _ = $(this);
+			var name = this.innerText;
+			var val = data[name];
+			var bar = $('#kapasiti-bar');
+			var _html = '';
+			var _c = $(this).find('i').attr('class');
+
+			if ( _.hasClass('no-selected') ) {
+				_.removeClass('no-selected');
+				bar.data().total += val;
+
+				_html = '<li class="'+_c+'" style="width:0%; height: 100%" data-val="'+val+'"></li>';
+				bar.append(_html)
+				
+			} else {
+				_.addClass('no-selected');
+				bar.data().total -= val;
+
+				bar.find('.'+_c).data().val = 0;
+			}
+
+			setTimeout(function() {
+				bar.find('li').each(function() {
+					var _this = $(this)
+					var _val = _this.data().val;
+					var _w = (_val / bar.data().total)*100;
+
+					_w = isNaN(_w) ? 0 : _w;
+
+					_this.css({
+						width: _w+'%'
+					})
+
+					if (_w === 0) {
+						setTimeout(function() {
+							_this.remove()
+						}, 300)	
+					}
+				})
+			}, 10)
+		})
+
+
+	</script>
+</body>
+</html>

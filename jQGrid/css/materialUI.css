@@ -6,6 +6,17 @@
 .ui-widget {
     font-family: Lucida Grande, Lucida Sans, Arial, "microsoft yahei",'宋体',sans-serif
 }
+.ui-jqgrid tr.jqgrow td {
+	height: 27px;
+}
+.ui-jqgrid .ui-jqgrid-resize {
+	height: 29px !important;
+	margin: 0px -3px -2px 0;
+}
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+	height: 21px;
+	margin-top: 8px;
+}
 .ui-jqgrid .ui-jqgrid-htable {
     border-collapse: collapse;
 }
@@ -13,9 +24,6 @@
 .ui-pager-control {
     background-color: #227447;
     color: #fff;
-}
-.ui-jqgrid-view  {
-
 }
 .ui-widget-content {
 	padding: 0;
@@ -175,7 +183,46 @@ span.s-ico {
 }
 
 /* close X */
+.ui-jqdialog .ui-jqdialog-titlebar-close,
 .ui-jqdialog-titlebar-close {
-
+	width: 26px;
+	height: 26px;
+	padding: 0;
+	margin: -13px -4px 0 0;
+	-moz-transition: background .3s ease;
+	-webkit-transition: background .3s ease;
+	-ms-transition: background .3s ease;
+	transition: background .3s ease;
 }
-.ui-icon-closethick 
+.ui-jqdialog .ui-jqdialog-titlebar-close:hover, 
+.ui-jqdialog .ui-jqdialog-titlebar-close:focus {
+	background-color: #165834
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close span {
+	margin: 0;
+	height: 100%;
+	position: relative;
+	-webkit-transform: rotateZ(45deg);
+	-moz-transform: rotateZ(45deg);
+	-ms-transform: rotateZ(45deg);
+	transform: rotateZ(45deg);
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close span:after,
+.ui-jqdialog .ui-jqdialog-titlebar-close span:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-color: #fff;
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close span:after {
+	height: 13px;
+	width: 1px;
+	margin: -6px 0;
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close span:before {
+	width: 13px;
+	height: 1px;
+	margin: 0 -6px;
+}

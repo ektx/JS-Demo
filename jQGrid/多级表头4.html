@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<head>
+    <title>多级表头功能</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="css/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" href="css/materialUI.css">
+ 
+</head>
+<body>
+    <table id="list"></table>
+    <div id="pager"></div>
+    
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="src/i18n/grid.locale-cn-air.js"></script>
+	<script type="text/javascript" src="src/jquery.jqGrids.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            "use strict";
+            var mydata = [
+                    {id: "1",  invdate: "2007-10-01", name: "test",   note: "note",   amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00"},
+                    {id: "2",  invdate: "2007-10-02", name: "test2",  note: "note2",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00"},
+                    {id: "3",  invdate: "2007-09-01", name: "test3",  note: "note3",  amount: "400.00", tax: "30.00", closed: false, ship_via: "FE", total: "430.00"},
+                    {id: "4",  invdate: "2007-10-04", name: "test4",  note: "note4",  amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00"},
+                    {id: "5",  invdate: "2007-10-31", name: "test5",  note: "note5",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00"},
+                    {id: "6",  invdate: "2007-09-06", name: "test6",  note: "note6",  amount: "400.00", tax: "30.00", closed: false, ship_via: "FE", total: "430.00"},
+                    {id: "7",  invdate: "2007-10-04", name: "test7",  note: "note7",  amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00"},
+                    {id: "8",  invdate: "2007-10-03", name: "test8",  note: "note8",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00"},
+                    {id: "9",  invdate: "2007-09-01", name: "test9",  note: "note9",  amount: "400.00", tax: "30.00", closed: false, ship_via: "TN", total: "430.00"},
+                    {id: "10", invdate: "2007-09-08", name: "test10", note: "note10", amount: "500.00", tax: "30.00", closed: true,  ship_via: "TN", total: "530.00"},
+                    {id: "11", invdate: "2007-09-08", name: "test11", note: "note11", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"},
+                    {id: "12", invdate: "2007-09-10", name: "test12", note: "note12", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"}
+                ],
+                grid = $("#list");
+
+            var colModelArr = [
+                    {name: "id", width: 65, align: "center", sorttype: "int", hidden: true},
+                    {name: "invdate", width: 80, align: "center", sorttype: "date",
+                        formatter: "date", formatoptions: {newformat: "d-M-Y"}, datefmt: "d-M-Y"},
+                    {label:'namex',name: "name", width: 70},
+                    {name: "amount", width: 75, formatter: "number", sorttype: "number", align: "right"},
+                    {name: "tax", width: 55, formatter: "number", sorttype: "number", align: "right"},
+                    {name: "total", width: 65, formatter: "number", sorttype: "number", align: "right"},
+                    {name: "closed", width: 75, align: "center", formatter: "checkbox",
+                        edittype: "checkbox", editoptions: {value: "Yes:No", defaultValue: "Yes"}},
+                    {name: "ship_via", width: 100, align: "center", formatter: "select",
+                        edittype: "select", editoptions: {value: "FE:FedEx;TN:TNT;IN:Intim", defaultValue: "IN"}},
+                    {name: "note", width: 70, sortable: false}
+                ];
+
+
+            // grid.jqGrid({
+            //     datatype: "local",
+            //     data: mydata,
+            //     colModel: colModelArr,
+            //     rowNum: 7,
+            //     rowList: [5, 10, 20],
+            //     pager: "#pager",
+            //     gridview: true,
+            //     rownumbers: true,
+            //     shrinkToFit: false,
+            //     headertitles: true,
+            //     sortname: "invdate",
+            //     sortorder: "desc",
+            //     viewrecords: true,
+            //     caption: "Local grid with multiline column headers",
+            //     height: "100%",
+            //     resizeStop: function () {
+            //         // see http://stackoverflow.com/a/9599685/315935
+            //         var $self = $(this),
+            //             shrinkToFit = $self.jqGrid("getGridParam", "shrinkToFit");
+
+            //         $self.jqGrid("setGridWidth", this.grid.newWidth, shrinkToFit);
+            //     }
+            // });
+            
+            // grid.navGrid('#pager', 
+            // {
+            //     search: true
+            // },
+            // {},
+            // {},
+            // {},
+            // {} // search options
+            // )
+
+            // grid.jqGrid("setGroupHeaders", {
+            //     useColSpanStyle: true,
+            //     groupHeaders: [
+            //     {
+            //         startColumnName: "invdate",
+            //         numberOfColumns: 2,
+            //         titleText: 'test'
+            //     },
+            //     {
+            //         startColumnName: "amount",
+            //         numberOfColumns: 6,
+            //         titleText: 'Hello world'
+            //     }
+            //     ]
+            // }).jqGrid("setGroupHeaders", {
+            //     useColSpanStyle: true,
+            //     groupHeaders: [
+            //     {
+            //         startColumnName: "tax",
+            //         numberOfColumns: 3,
+            //         titleText: 'test'
+            //     }
+            //     ]
+            // }).jqGrid("setGroupHeaders", {
+            //     useColSpanStyle: true,
+            //     groupHeaders: [
+            //     {
+            //         startColumnName: "tax",
+            //         numberOfColumns: 2,
+            //         titleText: 'test'
+            //     }
+            //     ]
+            // });
+
+            toJqGrid('#list', {
+            	main: {
+	                datatype: "local",
+	                data: mydata,
+	                colModel: colModelArr,
+	                rowNum: 7,
+	                rowList: [5, 10, 20],
+	                pager: "#pager",
+	                gridview: true,
+	                rownumbers: true,
+	                shrinkToFit: false,
+	                headertitles: true,
+	                sortname: "invdate",
+	                sortorder: "desc",
+	                viewrecords: true,
+	                caption: "Local grid with multiline column headers",
+	                height: "100%",
+	                resizeStop: function () {
+	                    // see http://stackoverflow.com/a/9599685/315935
+	                    var $self = $(this),
+	                        shrinkToFit = $self.jqGrid("getGridParam", "shrinkToFit");
+
+	                    $self.jqGrid("setGridWidth", this.grid.newWidth, shrinkToFit);
+	                }
+	            },
+	            navGrid: {
+	            	id: '#pager',
+	            	options: [
+		            	{
+			                search: true
+			            },
+			            {},
+			            {},
+			            {},
+			            {} // search options
+	            	]
+	            }
+            })
+
+
+        });
+
+	function toJqGrid(id, options) {
+		console.log(options)
+		$(id).jqGrid(options.main)
+	}
+
+    </script>
+</body>
+</html>
