@@ -226,3 +226,21 @@ span.s-ico {
 	height: 1px;
 	margin: 0 -6px;
 }
+
+
+.fm-button-icon-left,
+.fm-button-icon-right {
+	padding: 0
+}
+.fm-button {
+	padding: 5px 15px;
+	margin: 0;
+	color: #fff;
+	background-color: #227447;
+}
+.fm-button.ui-state-hover {
+	background-color: #2c8c57
+}
+.fm-button.ui-state-hover:active {
+	background-color: #185f38
+}
