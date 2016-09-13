@@ -36,89 +36,38 @@
                 grid = $("#list");
 
             var colModelArr = [
-                    {name: "id", width: 65, align: "center", sorttype: "int", hidden: true},
-                    {name: "invdate", width: 80, align: "center", sorttype: "date",
-                        formatter: "date", formatoptions: {newformat: "d-M-Y"}, datefmt: "d-M-Y"},
-                    {label:'namex',name: "name", width: 70},
-                    {name: "amount", width: 75, formatter: "number", sorttype: "number", align: "right"},
-                    {name: "tax", width: 55, formatter: "number", sorttype: "number", align: "right"},
-                    {name: "total", width: 65, formatter: "number", sorttype: "number", align: "right"},
-                    {name: "closed", width: 75, align: "center", formatter: "checkbox",
-                        edittype: "checkbox", editoptions: {value: "Yes:No", defaultValue: "Yes"}},
-                    {name: "ship_via", width: 100, align: "center", formatter: "select",
-                        edittype: "select", editoptions: {value: "FE:FedEx;TN:TNT;IN:Intim", defaultValue: "IN"}},
-                    {name: "note", width: 70, sortable: false}
-                ];
+                {name: "id", width: 65, align: "center", sorttype: "int", hidden: true},
+                {
+                    label: 'Test',
+                    children: [
+                        { name: "invdate", width: 80, align: "center", sorttype: "date", formatter: "date", formatoptions: {newformat: "d-M-Y"}, datefmt: "d-M-Y" },
+                        {label:'Name',name: "name", width: 70}
+                    ]
+                },
+                {
+                    label: 'Hello World',
+                    children: [
+                        {name: "amount", width: 75, formatter: "number", sorttype: "number", align: "right"},
+                        {
+                            label: '二级标题',
+                            children: [
+                                {
+                                    label: '三级标题',
+                                    children: [
+                                        {name: "tax", width: 55, formatter: "number", sorttype: "number", align: "right"},
+                                        {name: "total", width: 65, formatter: "number", sorttype: "number", align: "right"}
+                                    ]
+                                },
+                                {name: "closed", width: 75, align: "center", formatter: "checkbox", edittype: "checkbox", editoptions: {value: "Yes:No", defaultValue: "Yes"}}
+                            ]
+                        },
+                        {name: "ship_via", width: 100, align: "center", formatter: "select", edittype: "select", editoptions: {value: "FE:FedEx;TN:TNT;IN:Intim", defaultValue: "IN"}}
+                    ]
+                },
+                {name: "note", width: 70, sortable: false}
+            ];
 
 
-            // grid.jqGrid({
-            //     datatype: "local",
-            //     data: mydata,
-            //     colModel: colModelArr,
-            //     rowNum: 7,
-            //     rowList: [5, 10, 20],
-            //     pager: "#pager",
-            //     gridview: true,
-            //     rownumbers: true,
-            //     shrinkToFit: false,
-            //     headertitles: true,
-            //     sortname: "invdate",
-            //     sortorder: "desc",
-            //     viewrecords: true,
-            //     caption: "Local grid with multiline column headers",
-            //     height: "100%",
-            //     resizeStop: function () {
-            //         // see http://stackoverflow.com/a/9599685/315935
-            //         var $self = $(this),
-            //             shrinkToFit = $self.jqGrid("getGridParam", "shrinkToFit");
-
-            //         $self.jqGrid("setGridWidth", this.grid.newWidth, shrinkToFit);
-            //     }
-            // });
-            
-            // grid.navGrid('#pager', 
-            // {
-            //     search: true
-            // },
-            // {},
-            // {},
-            // {},
-            // {} // search options
-            // )
-
-            // grid.jqGrid("setGroupHeaders", {
-            //     useColSpanStyle: true,
-            //     groupHeaders: [
-            //     {
-            //         startColumnName: "invdate",
-            //         numberOfColumns: 2,
-            //         titleText: 'test'
-            //     },
-            //     {
-            //         startColumnName: "amount",
-            //         numberOfColumns: 6,
-            //         titleText: 'Hello world'
-            //     }
-            //     ]
-            // }).jqGrid("setGroupHeaders", {
-            //     useColSpanStyle: true,
-            //     groupHeaders: [
-            //     {
-            //         startColumnName: "tax",
-            //         numberOfColumns: 3,
-            //         titleText: 'test'
-            //     }
-            //     ]
-            // }).jqGrid("setGroupHeaders", {
-            //     useColSpanStyle: true,
-            //     groupHeaders: [
-            //     {
-            //         startColumnName: "tax",
-            //         numberOfColumns: 2,
-            //         titleText: 'test'
-            //     }
-            //     ]
-            // });
 
             toJqGrid('#list', {
             	main: {
@@ -164,7 +113,95 @@
 
 	function toJqGrid(id, options) {
 		console.log(options)
-		$(id).jqGrid(options.main)
+
+        var ele = $(id);
+        var setHeadArr = [];
+        var oldCol = options.main.colModel;
+        var newCol = [];
+
+        var getStartName = function(data) {
+            var result = '';
+
+            if ('children' in data) {
+                result = getStartName(data.children)
+            } else {
+                if ('children' in data[0]) {
+                    result = getStartName(data[0])
+                } else {
+                    result = data[0].name;
+                }
+            }
+
+            return result;
+        };
+
+        var getClumns = function(data) {
+            var size = 0;
+
+            if ('children' in data) {
+
+                var willAdd = data.children.length;
+                for (var n =0,m = data.children.length; n < m; n++) {
+                    // 过滤内部的合并
+                    if ('children' in data.children[n]) {
+                        willAdd--;
+                    }
+
+                    size += getClumns(data.children[n])
+                }
+
+                    size += willAdd;
+            }
+
+
+            return size;
+        }
+
+        var getCol = function(data, index) {
+
+            for (var i = 0, len = data.length; i < len; i++) {
+                if ('children' in data[i]) {
+
+                    index++;
+
+                    if (typeof setHeadArr[index] !== 'object') {
+                        setHeadArr[index] = []
+                    }
+                    setHeadArr[index].push({
+                        titleText: data[i].label,
+                        numberOfColumns: getClumns( data[i] ),
+                        startColumnName: getStartName( data[i] )
+                    })
+
+                    getCol(data[i].children, index);
+
+                    index--;
+
+                } else {
+
+                    newCol.push(data[i])
+                }
+                
+            }
+        };
+
+        getCol(oldCol, 0);
+
+        options.main.colModel = newCol;
+
+console.log(options.navGrid)
+        // 生成主表和功能
+		ele.jqGrid(options.main)
+        .navGrid(options.navGrid.id, options.navGrid.options[0])
+
+        // 设置表头
+        for (var i = 0, l = setHeadArr.length; i < l; i++) {
+            console.log(setHeadArr[i])
+            ele.jqGrid('setGroupHeaders', {
+                useColSpanStyle: true,
+                groupHeaders: setHeadArr[i]
+            })
+        }
 	}
 
     </script>

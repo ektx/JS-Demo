@@ -101,3 +101,4 @@ $("#id").jqGrid('destroyGroupHeader')
 
 [多级表格使用参考](http://stackoverflow.com/questions/18969659/adding-more-than-two-columng-group-headers-in-jqgrid)
 
+[ColModel API](http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options)
