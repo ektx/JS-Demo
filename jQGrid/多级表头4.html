@@ -11,6 +11,12 @@
 <body>
     <table id="list"></table>
     <div id="pager"></div>
+	
+	<br>
+	<br>
+
+    <table id="hug"></table>
+    <div id="hugPage"></div>
     
 	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="src/i18n/grid.locale-cn-air.js"></script>
@@ -32,9 +38,9 @@
                     {id: "10", invdate: "2007-09-08", name: "test10", note: "note10", amount: "500.00", tax: "30.00", closed: true,  ship_via: "TN", total: "530.00"},
                     {id: "11", invdate: "2007-09-08", name: "test11", note: "note11", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"},
                     {id: "12", invdate: "2007-09-10", name: "test12", note: "note12", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00"}
-                ],
-                grid = $("#list");
+                ];
 
+            // 四级表头功能
             var colModelArr = [
                 {name: "id", width: 65, align: "center", sorttype: "int", hidden: true},
                 {
@@ -69,140 +75,249 @@
 
 
 
-            toJqGrid('#list', {
-            	main: {
-	                datatype: "local",
-	                data: mydata,
-	                colModel: colModelArr,
-	                rowNum: 7,
-	                rowList: [5, 10, 20],
-	                pager: "#pager",
-	                gridview: true,
-	                rownumbers: true,
-	                shrinkToFit: false,
-	                headertitles: true,
-	                sortname: "invdate",
-	                sortorder: "desc",
-	                viewrecords: true,
-	                caption: "Local grid with multiline column headers",
-	                height: "100%",
-	                resizeStop: function () {
-	                    // see http://stackoverflow.com/a/9599685/315935
-	                    var $self = $(this),
-	                        shrinkToFit = $self.jqGrid("getGridParam", "shrinkToFit");
+			$('#list').toJqGrid({
+				main: {
+			        datatype: "local",
+			        // data: mydata,
+			        colModel: colModelArr,
+			        rowNum: 7,
+			        rowList: [5, 10, 20],
+			        pager: "#pager",
+			        gridview: true,
+			        rownumbers: true,
+			        shrinkToFit: false,
+			        headertitles: true,
+			        sortname: "invdate",
+			        sortorder: "desc",
+			        viewrecords: true,
+			        caption: "Local grid with multiline column headers",
+			        height: "100%",
+			        resizeStop: function () {
+			            // see http://stackoverflow.com/a/9599685/315935
+			            var $self = $(this),
+			                shrinkToFit = $self.jqGrid("getGridParam", "shrinkToFit");
 
-	                    $self.jqGrid("setGridWidth", this.grid.newWidth, shrinkToFit);
-	                }
-	            },
-	            navGrid: {
-	            	id: '#pager',
-	            	options: [
-		            	{
+			            $self.jqGrid("setGridWidth", this.grid.newWidth, shrinkToFit);
+			        }
+			    },
+			    navGrid: {
+			    	id: '#pager',
+			    	options: [
+			        	{
 			                search: true
 			            },
 			            {},
 			            {},
 			            {},
 			            {} // search options
-	            	]
-	            }
-            })
+			    	]
+			    }
+			});
+
+
+			var hugCol = [
+				{ 
+					label: '全省综治"三项建设"调度督办系统',
+					children: [
+						{
+							name: 'city',
+							width: 65,
+							align: 'center'
+						},
+						{
+							name: '',
+							children: [
+								{
+									name: '县︻市、区︼',
+									align: 'center',
+									width: 80
+								},
+								{
+									name: '乡镇︻街道︼',
+									align: 'center',
+									width: 80
+								},
+								{
+									name: '村︻社区︼',
+									align: 'center',
+									width: 80
+								}
+							]
+						},
+						{
+							label: '网格化管理建设',
+							children: [
+								{
+									name: '网格划分基数',
+									align: 'center'
+								},
+								{
+									label: '网格划分到位',
+									children: [
+										{
+											name: '数量',
+											align: 'center'
+										},
+										{
+											name: '到位率︵﹪︶',
+											align: 'center'
+										}
+									]
+								},
+								{
+									label: '网格地图显示',
+									children: [
+										{ name: '数量' },
+										{ name: '显示率(%)' }
+									]
+								},
+								{
+									label: '城镇网格',
+									children: [
+										{ name: '数量' },
+										{ name: '占比(%)'}
+									]
+								},
+								{
+									label: '网格员配置',
+									children: [
+										{ name: '配置到位数' },
+										{ name: '占比(%)'},
+										{ 
+											label: '城镇网格员',
+											children: [
+												{ name: '数量' },
+												{ name: '占比(%)' }
+											] 
+										},
+										{
+											label: '专职网格员',
+											children: [
+												{ name: '数量' },
+												{ name: '占比(%)'}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							label: '综治信息化建设',
+							children: [
+								{ label: '网络联通数' },
+								{ label: '配备PC终端数' },
+								{ 
+									label: '综治信息化横向网络联通与应用',
+									children: [
+										{
+											label: '综治委成员单位',
+											children: [
+												{
+													label: '单位数'
+												},
+												{
+													label: '网络联通',
+													children: [
+														{label:'到位数'},
+														{ label:'到位数(%)' }
+													]
+												},
+												{
+													label: '配备PC终端',
+													children: [
+														{ label:'到位数' },
+														{ label:'到位率(%)' }
+													]
+												}
+											]
+										},
+										{
+											label: '有行政调解职能的单位',
+											children: [
+												{
+													label: '单位数'
+												},
+												{
+													label: '网络联通',
+													children: [
+														{label:'到位数'},
+														{ label:'到位数(%)' }
+													]
+												},
+												{
+													label: '配备PC终端',
+													children: [
+														{ label:'到位数' },
+														{ label:'到位率(%)' }
+													]
+												}
+											]
+										}
+									] 
+								},
+								{
+									label: '综治信息化纵向网络联通与应用',
+									children: [
+										{
+											label: '综治委成员单位',
+											children: [
+												{
+													label: '单位数'
+												},
+												{
+													label: '网络联通',
+													children: [
+														{label:'到位数'},
+														{ label:'到位数(%)' }
+													]
+												},
+												{
+													label: '配备PC终端',
+													children: [
+														{ label:'到位数' },
+														{ label:'到位率(%)' }
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					] 
+				}
+			];
+
+			$('#hug').toJqGrid({
+				main: {
+			        datatype: "local",
+			        // data: mydata,
+			        colModel: hugCol,
+			        rowNum: 7,
+			        rowList: [5, 10, 20],
+			        pager: "#hugPage",
+			        viewrecords: true,
+			        caption: '全省综治"三项建设"调度督办系统',
+			        height: "100%",
+			        width: 2000
+			    },
+			    navGrid: {
+			    	id: '#hugPage',
+			    	options: [
+			        	{
+			                search: true
+			            },
+			            {},
+			            {},
+			            {},
+			            {} // search options
+			    	]
+			    }
+			});
 
 
         });
 
-	function toJqGrid(id, options) {
-		console.log(options)
-
-        var ele = $(id);
-        var setHeadArr = [];
-        var oldCol = options.main.colModel;
-        var newCol = [];
-
-        var getStartName = function(data) {
-            var result = '';
-
-            if ('children' in data) {
-                result = getStartName(data.children)
-            } else {
-                if ('children' in data[0]) {
-                    result = getStartName(data[0])
-                } else {
-                    result = data[0].name;
-                }
-            }
-
-            return result;
-        };
-
-        var getClumns = function(data) {
-            var size = 0;
-
-            if ('children' in data) {
-
-                var willAdd = data.children.length;
-                for (var n =0,m = data.children.length; n < m; n++) {
-                    // 过滤内部的合并
-                    if ('children' in data.children[n]) {
-                        willAdd--;
-                    }
-
-                    size += getClumns(data.children[n])
-                }
-
-                    size += willAdd;
-            }
-
-
-            return size;
-        }
-
-        var getCol = function(data, index) {
-
-            for (var i = 0, len = data.length; i < len; i++) {
-                if ('children' in data[i]) {
-
-                    index++;
-
-                    if (typeof setHeadArr[index] !== 'object') {
-                        setHeadArr[index] = []
-                    }
-                    setHeadArr[index].push({
-                        titleText: data[i].label,
-                        numberOfColumns: getClumns( data[i] ),
-                        startColumnName: getStartName( data[i] )
-                    })
-
-                    getCol(data[i].children, index);
-
-                    index--;
-
-                } else {
-
-                    newCol.push(data[i])
-                }
-                
-            }
-        };
-
-        getCol(oldCol, 0);
-
-        options.main.colModel = newCol;
-
-console.log(options.navGrid)
-        // 生成主表和功能
-		ele.jqGrid(options.main)
-        .navGrid(options.navGrid.id, options.navGrid.options[0])
-
-        // 设置表头
-        for (var i = 0, l = setHeadArr.length; i < l; i++) {
-            console.log(setHeadArr[i])
-            ele.jqGrid('setGroupHeaders', {
-                useColSpanStyle: true,
-                groupHeaders: setHeadArr[i]
-            })
-        }
-	}
 
     </script>
 </body>

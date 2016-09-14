@@ -1,4 +1,7 @@
 /**
+* jqGrids v0.0.1
+* -----------------------------------------------
+* 在原有的基础上添加了多级表头的使用
 *
 * @license Guriddo jqGrid JS - v5.1.1 - 2016-06-08
 * Copyright(c) 2008, Tony Tomov, tony@trirand.com
@@ -15632,3 +15635,105 @@ window.jqGridUtils = {
 };
 
 }));
+
+$.fn.extend({
+
+	toJqGrid: function (options) {
+		console.log(options, this)
+
+	    var setHeadArr = [];
+	    var oldCol = options.main.colModel;
+	    var newCol = [];
+
+	    // 获取合并单元格的起始位置
+	    var getStartName = function(data) {
+	        var result = '';
+
+	        if ('children' in data) {
+	            result = getStartName(data.children)
+	        } else {
+	            if ('children' in data[0]) {
+	                result = getStartName(data[0])
+	            } else {
+	                result = data[0].name;
+	            }
+	        }
+
+	        return result;
+	    };
+
+	    // 获取合并单元格长度
+	    var getClumns = function(data) {
+	        var size = 0;
+
+	        if ('children' in data) {
+
+	            var willAdd = data.children.length;
+	            for (var n =0,m = data.children.length; n < m; n++) {
+	                // 过滤内部的合并
+	                if ('children' in data.children[n]) {
+	                    willAdd--;
+	                }
+
+	                size += getClumns(data.children[n])
+	            }
+
+	                size += willAdd;
+	        }
+
+
+	        return size;
+	    }
+
+	    // 获取表头数组
+	    // @data  要找寻的数组内容 
+	    // @index 表头目前有级数
+	    var getCol = function(data, index) {
+
+	        for (var i = 0, len = data.length; i < len; i++) {
+	            if ('children' in data[i]) {
+
+	                index++;
+
+	                // 如果没有数组,则生成一个数组
+	                if (typeof setHeadArr[index] !== 'object') {
+	                    setHeadArr[index] = []
+	                }
+
+	                // 追加值
+	                setHeadArr[index].push({
+	                    titleText: data[i].label,
+	                    numberOfColumns: getClumns( data[i] ),
+	                    startColumnName: getStartName( data[i] )
+	                })
+
+	                getCol(data[i].children, index);
+
+	                index--;
+
+	            } else {
+
+	                newCol.push(data[i])
+	            }
+	            
+	        }
+	    };
+
+	    getCol(oldCol, 0);
+
+	    options.main.colModel = newCol;
+
+	    // 生成主表和功能
+		this.jqGrid(options.main)
+	    .navGrid(options.navGrid.id, options.navGrid.options[0])
+
+	    // 设置表头
+	    for (var i = 0, l = setHeadArr.length; i < l; i++) {
+	        console.log(setHeadArr[i])
+	        this.jqGrid('setGroupHeaders', {
+	            useColSpanStyle: true,
+	            groupHeaders: setHeadArr[i]
+	        })
+	    }
+	}
+})
