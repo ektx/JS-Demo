@@ -3,9 +3,178 @@
 <head>
 	<meta charset="UTF-8">
 	<title>window print()</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		table td {
+			border: 1px solid #333;
+		}
+	</style>
 </head>
 <body>
-	<h1>我是H1啊,打印h1就是只打我,感觉那不对~~~</h1>
+	<h1>
+	<style>
+		h1 {
+			font-size: 42px;
+			color: #09f;
+		}
+	</style>
+	<link rel="stylesheet" href="style.css">
+	内部样式
+	</h1>
+
+	<div class="lineStyle">
+		<h1 style="font-size:42px; color: red">行内样式</h1>
+	</div>
+
+<div id="print-content" class="assessment">
+   	<table class="tableTopBorder_3" id="tabContent">
+            <thead>
+                <tr>
+                    <th colspan="4"><h2>舟山市养老服务需求评估申请表</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="15%">姓名</td>
+                    <td class="emptyTd"><span></span></td>
+                    <td>身份证号码</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td></td>
+                    <td>出生年月</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>民族</td>
+                    <td></td>
+                    <td>文化程度</td>
+                    <td class="left">
+                    	<span><input type="checkbox"/>文盲</span>
+                        <span><input type="checkbox"/>略识字</span>
+                        <span><input type="checkbox"/>能读字，最高学历<input type="text"/></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>籍贯</td>
+                    <td></td>
+                    <td>婚姻状况</td>
+                    <td class="left">
+                    	<span><input type="checkbox"/>未婚</span>
+                        <span><input type="checkbox"/>已婚</span>
+                        <span><input type="checkbox"/>丧偶</span>
+                        <span><input type="checkbox"/>离婚</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>居住</td>
+                    <td colspan="3" class="left">
+                    	<span><input type="checkbox"/>与子女亲友共住</span>
+                        <span><input type="checkbox"/>空巢</span>
+                        <span><input type="checkbox"/>孤寡、独居</span>
+                     </td>
+                </tr>
+                 <tr>
+                    <td>经济条件</td>
+                    <td colspan="3">
+                    	<p><input type="checkbox"/>特困对象(城镇“三无”、农村五保对象、特困残疾人)</p>
+                        <p><input type="checkbox"/>低保对象</p>
+                        <p><input type="checkbox"/>困难对象(低保边缘对象、特困职工、享受国家定补的精减职工)</p>
+                        <p><input type="checkbox"/>低收入对象（收入为低标准的1.5-2倍）</p>
+                        <p><input type="checkbox"/>其他对象(收入高于低保标准的2倍)</p>
+                     </td>
+                </tr>
+                <tr>
+                    <td>特殊贡献</td>
+                    <td colspan="3" class="left">
+                    	<span><input type="checkbox"/>市级以上劳模</span>
+                        <span><input type="checkbox"/>重点优抚对象</span>
+                     </td>
+                </tr>
+                <tr>
+                    <td>年龄</td>
+                    <td colspan="3" class="left">
+                    	<span><input type="checkbox"/>60-69岁</span>
+                        <span><input type="checkbox"/>70-79岁</span>
+                        <span><input type="checkbox"/>80-89岁</span>
+                        <span><input type="checkbox"/>90-99岁</span>
+                        <span><input type="checkbox"/>100岁以上</span>
+                     </td>
+                </tr>
+                 <tr>
+                    <td>申请服务类型</td>
+                    <td colspan="3">
+                    	<p><input type="checkbox"/>居家养老</p>
+                        <p><input type="checkbox"/>机构养老 申请入住<input type="text"/>养老服务机构</p>
+                     </td>
+                </tr>
+                <tr>
+                    <td>申请服务类型</td>
+                    <td colspan="3">
+                    	<p><input type="checkbox"/>居家养老</p>
+                        <p><input type="checkbox"/>机构养老 申请入住<input type="text"/>养老服务机构</p>
+                     </td>
+                </tr>
+                <tr>
+                    <td>户籍所在地</td>
+                    <td colspan="3" class="left">
+                    	<span><input type="text"/>县（区）</span>
+                        <span><input type="text"/>乡镇（街道）</span>
+                        <span><input type="text"/>社区（村）</span>
+                     </td>
+                </tr>
+                <tr>
+                    <td>居住地址</td>
+                    <td colspan="3" class="left">
+                    	<span><input type="text"/>县（区）</span>
+                        <span><input type="text"/>乡镇（街道）</span>
+                        <span><input type="text"/>社区（村）</span>
+                     </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">邮编</td>
+                    <td rowspan="2"></td>
+                    <td>住宅电话</td>
+                    <td></td>
+                </tr>
+                <tr>
+                	<td>手机</td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td>代理人姓名</td>
+                    <td></td>
+                    <td>与申请人关系</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>代理人地址</td>
+                    <td colspan="3" class="left">
+                    	<span><input type="text"/>县（区）</span>
+                        <span><input type="text"/>乡镇（街道）</span>
+                        <span><input type="text"/>社区（村）</span>
+                    </td>
+               </tr>
+               <tr>
+                    <td>电话</td>
+                    <td></td>
+                    <td>手机</td>
+                    <td></td>
+               </tr>
+               <tr>
+                    <td colspan="4" class="left">
+                    	<span style="font-family:Simhei">申请人（代理人）签字：</span>
+                        <div class="tableDate">
+                        	<span>年</span><span>月</span><span>日</span>
+                        </div>
+                    </td>
+               </tr>
+           <tbody>
+         </table>    
+     </div>
 
 	<input id="toPrint" type="button" value="打印页面">
 	<input id="toPrinth1" type="button" value="打印h1">
@@ -25,7 +194,9 @@
 		document.body.appendChild(printFrame);
 
 		printFrame.contentDocument.open()
-		printFrame.contentDocument.write( document.querySelector('h1').innerHTML )
+		// printFrame.contentDocument.write( document.querySelector('h1').innerHTML )
+		printFrame.contentDocument.write( document.querySelector('.lineStyle').innerHTML )
+		// printFrame.contentDocument.write( document.querySelector('#print-content').innerHTML )
 		printFrame.contentDocument.close()
 		
 		printFrame.contentWindow.print()
