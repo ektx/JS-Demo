@@ -4,6 +4,11 @@ table {
 	color: #333;
 }
 
+.no-print {
+	margin: 30px;
+	text-align: center;
+}
+
 h1 {
 	text-decoration: underline;
 }
