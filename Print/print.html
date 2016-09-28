@@ -201,6 +201,16 @@
 		
 		printFrame.contentWindow.print()
 	})
+
+    // 窗口失去焦点时
+    window.onblur = function() {
+        document.body.style.background = '#000';
+    }
+
+    // 窗口获取焦点时
+    window.onfocus = function() {
+        document.body.style.background = '#Fff'
+    }
 	</script>
 </body>
 </html>
