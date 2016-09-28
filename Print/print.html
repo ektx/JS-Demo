@@ -10,26 +10,34 @@
 		table td {
 			border: 1px solid #333;
 		}
+		
+		/* 打印忽略内容 */
+		@media print {
+			.no-print {
+				display: none
+			}
+		}
 	</style>
 </head>
 <body>
-	<h1>
-	<style>
-		h1 {
-			font-size: 42px;
-			color: #09f;
-		}
-	</style>
-	<link rel="stylesheet" href="style.css">
-	内部样式
+	<h1 id="example01">
+		<!-- 以下内部样式可以在打印时显示 -->
+		<style>
+			h1 {
+				font-size: 42px;
+				color: #09f;
+			}
+		</style>
+		内部样式
+		<link rel="stylesheet" href="style.css">
 	</h1>
 
-	<div class="lineStyle">
+	<div id="lineStyle">
 		<h1 style="font-size:42px; color: red">行内样式</h1>
 	</div>
 
-<div id="print-content" class="assessment">
-   	<table class="tableTopBorder_3" id="tabContent">
+	<div id="print-content" class="assessment">
+		<table class="tableTopBorder_3" id="tabContent">
             <thead>
                 <tr>
                     <th colspan="4"><h2>舟山市养老服务需求评估申请表</h2></th>
@@ -172,20 +180,20 @@
                         </div>
                     </td>
                </tr>
-           <tbody>
-         </table>    
-     </div>
-
-	<input id="toPrint" type="button" value="打印页面">
-	<input id="toPrinth1" type="button" value="打印h1">
+			<tbody>
+		</table>    
+	</div>
+	
+	<div class="no-print">
+		<input id="toPrintWindow" type="button" value="打印页面">
+		<input id="toPrint01" onclick="getPrintArea('#example01')" type="button" value="打印内部样式">
+		<input id="toPrint02" onclick="getPrintArea('#lineStyle')" type="button" value="打印行内样式">
+		<input id="toPrint03" onclick="getPrintArea('#print-content')" type="button" value="打印表格">
+	</div>
 
 	<script>
-	var btn = document.getElementById('toPrint');
-	btn.addEventListener('click', function() {
-		window.print()
-	})
-
-	document.getElementById('toPrinth1').addEventListener('click', function(){
+	// 打印指定区域
+	function getPrintArea(ele) {
 		var printFrame = document.createElement('iframe');
 		printFrame.style.width = 0;
 		printFrame.style.height = 0;
@@ -194,13 +202,14 @@
 		document.body.appendChild(printFrame);
 
 		printFrame.contentDocument.open()
-		// printFrame.contentDocument.write( document.querySelector('h1').innerHTML )
-		printFrame.contentDocument.write( document.querySelector('.lineStyle').innerHTML )
-		// printFrame.contentDocument.write( document.querySelector('#print-content').innerHTML )
+		printFrame.contentDocument.write( document.querySelector(ele).outerHTML )
 		printFrame.contentDocument.close()
 		
-		printFrame.contentWindow.print()
-	})
+        // 延迟防止打印内容没有组装成功
+        setTimeout(function() {
+            printFrame.contentWindow.print()
+        }, 100)
+    }
 
     // 窗口失去焦点时
     window.onblur = function() {
