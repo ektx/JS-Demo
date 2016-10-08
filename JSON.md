@@ -11,7 +11,7 @@ JSON的特点:
 	"name": "zwl",
 	"age": 26
 }
-```  
+```
 1.不用声明就是  
 2.没有末尾分号  
 3.使用双引号  
@@ -81,7 +81,7 @@ JSON.stringify(obj, null, '**1234567890')
 
 ## `toJSON()` 返回自身的JSON数据格式
 例如:返回`obj`中的`book` 
-```javascript 
+​```javascript 
 obj = {
 	"name": "zwl",
 	"age": 26,
@@ -122,7 +122,7 @@ var reI = JSON.parse(iStr, function(key, val) {
 	else return val
 })
 // reI => object  
-```  
+```
 
 ## 总结  
 `JSON.stringify()` 序列化顺序:  

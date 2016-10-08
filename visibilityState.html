@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>visibilityState document</title>
+</head>
+<body>
+	<div id="status"></div>
+	<script>
+	// document.write( document.visibilityState )
+	
+	document.addEventListener('visibilitychange', function() {
+		document.getElementById('status').innerHTML = document.visibilityState;
+		document.title = document.visibilityState
+	}, false)
+	</script>
+</body>
+</html>

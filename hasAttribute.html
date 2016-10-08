@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hasAttribute</title>
+	<style>
+		.box {
+			width: 100px;
+			height: 100px;
+			background: #03f;
+			color: #FFF;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+
+	<script>
+		// Ie 9+ 
+		var box = document.querySelector('.box');
+
+		if (box.hasAttribute('class')) {
+			box.innerText = 'Has'
+		}
+	</script>
+</body>
+</html>
