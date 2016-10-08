@@ -192,6 +192,9 @@
 	</div>
 
 	<script>
+
+    var isPrint = false;
+
 	// 打印指定区域
 	function getPrintArea(ele) {
 		var printFrame = document.createElement('iframe');
@@ -205,11 +208,33 @@
 		printFrame.contentDocument.write( document.querySelector(ele).outerHTML )
 		printFrame.contentDocument.close()
 		
-		// 延迟防止打印内容没有组装成功
-		setTimeout(function() {
-			printFrame.contentWindow.print()
-		}, 100)
-	}
+            console.log('xx')
+            document.body.style.background = '#000';
+            isPrint = true;
+        // 延迟防止打印内容没有组装成功
+        setTimeout(function() {
+            printFrame.contentWindow.print()
+        }, 100)
+    }
+
+    // 窗口失去焦点时
+    window.onblur = function() {
+        document.body.style.background = '#0f0';
+    }
+
+    // 窗口获取焦点时
+    window.onfocus = function() {
+        document.body.style.background = '#ff0'
+    }
+
+    document.documentElement.addEventListener('mouseover', function() {
+        console.log('over', isPrint)
+        if (isPrint) {
+            isPrint = false;
+            document.body.style.background = '#fff'
+        }
+    })
+
 	</script>
 </body>
 </html>

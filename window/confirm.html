@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Confirm Window</title>
+</head>
+<body>
+	<button id="showConfirm">show confirm</button>
+	<div id="result"></div>
+	
+	<h3>参考</h3>
+	<hr>
+	<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm">Window.confirm()</a>
+	<script>
+	document.getElementById('showConfirm').addEventListener('click', function(e) {
+		var result = window.confirm('Do you like black color ?');
+		var resultBox = document.getElementById('result');
+
+		if (result) {
+			resultBox.innerText = 'OK'
+		} else {
+			resultBox.innerText = 'Cancel'
+		}
+	}, false)
+
+
+	</script>
+</body>
+</html>
