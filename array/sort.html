@@ -3,10 +3,13 @@
 	<meta charset="utf-8">
 	<title>Array sort()</title>
 </head>
+<body>
+	<h1>Array sort()</h1>
+	<h2>对数组排序[以Unicode编码排序]</h2>
+
+</body>
 </html>
 <script>
-	document.write('<h1>Array sort()</h1>');
-	document.write('<h2>对数组排序[以Unicode编码排序]</h2>');
 
 	var names = new Array("Paul", "Sarah", "Jeremy", "Admin", "Bob");
 	var elementIndex;
@@ -18,4 +21,15 @@
 		document.write(names[elementIndex] + '</br>');
 
 	}
+
+	arr = [1,2,21,34,12,676,1212];
+	document.write(arr.sort() + '<br>');
+
+	arr.sort(function(x, y) {
+		console.log(x, y);
+		return x - y;
+	})
+
+	document.write(arr);
+
 </script>
