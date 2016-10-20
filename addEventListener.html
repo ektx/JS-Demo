@@ -3,18 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<title>AddEventListener</title>
+	<style>
+	div {
+		width: 200px;
+		height: 100px;
+	}
+	#one {
+		background: #f90;
+	}
+	#two {
+		background: blue;
+	}	
+	</style>
 </head>
 <body>
-	
+	<div id="one"></div>
+	<div id="two"></div>
 </body>
 <script>
+var i = 0;
 document.addEventListener('click', function(e) {
-	console.log(e.target.tagName)
+	console.log(i, e.target.tagName, e.target.id)
 
-	if (e.target.tagName == 'BUTTON')
-	alert('Hello World!')
+	i++;
 
-	document.body.innerHTML = '<button>Click</button>'
-})
+	// if (e.target.tagName == 'BUTTON')
+	// alert('Hello World!')
+
+	// document.body.innerHTML = '<button>Click</button>'
+}, false)
+
+document.getElementById('one').addEventListener('click', function() {
+	console.log(i, 'one');
+	i++;
+}, false)
+
+document.getElementById('two').addEventListener('click', function() {
+	console.log(i, 'two');
+	i++;
+}, true)
+
+
 </script>
 </html>
