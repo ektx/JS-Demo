@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>反转字符串</title>
+</head>
+<body>
+	
+	<input id="int" type="text" placeholder="请输入文字">
+	<h4 id="display"></h4>
+
+	<script>
+	var int = document.getElementById('int');
+	var dis = document.getElementById('display');
+
+	int.addEventListener('keyup', function(e) {
+			dis.innerHTML = this.value.split('').reverse().join('');
+	}, false)
+	</script>
+</body>
+</html>

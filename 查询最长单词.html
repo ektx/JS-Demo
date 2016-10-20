@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>最长单词长度</title>
+</head>
+<body>
+	
+	<textarea name="" id="int" cols="30" rows="10"></textarea>
+	<h4 id="display"></h4>
+
+	<script>
+	var int = document.getElementById('int');
+	var dis = document.getElementById('display');
+
+	int.addEventListener('keyup', function(e) {
+
+		dis.innerHTML = this.value.split(' ')
+						.sort(function(x, y) {
+							return x.length - y.length
+						})
+						.pop().length
+
+	}, false)
+	</script>
+</body>
+</html>
