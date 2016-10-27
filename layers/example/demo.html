@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹层</title>
+	<link rel="stylesheet" href="css/reset-1.3.0.css">
+
+	<link rel="stylesheet" href="../layers.css">
+</head>
+<body>
+
+	<button id="txt">添加文字</button>
+	<button id="web">添加外部网页</button>
+	<button id="html">添加网页</button>
+
+
+
+	<script src="js/jquery.js"></script>
+	
+	<script src="../layers.js"></script>
+
+	<script>
+		$(function() {
+			$('#txt').click(function() {
+				// 调用文字
+				Layers.open({
+					width: 400,
+					height: 200,
+					title: '你好!',
+					content: {
+						type: 'str',
+						inner: '这只是测试呀!'
+					}
+				})
+
+			});
+
+			$('#web').click(function() {
+
+				Layers.open({
+					width: 900,
+					height: 600,
+					title: '你好!',
+					content: {
+						type: 'http',
+						inner: 'https://baidu.com'
+					}
+				});
+			})
+
+			$('#html').click(function() {
+
+				Layers.open({
+					width: 600,
+					height: 400,
+					title: '你好!',
+					resize: 'both',
+					content: {
+						type: 'ajax',
+						inner: 'title.html'
+					}
+				});
+
+			})
+		})
+	</script>
+</body>
+</html>

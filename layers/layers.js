@@ -24,7 +24,7 @@
 	</section>
 
 */
-layers = {
+Layers = {
 	id: '',
 	options: {
 		width: 300,
@@ -35,11 +35,6 @@ layers = {
 		resize: false
 	},
 	isResize: false,
-
-	ajax: {
-		status: false,
-		url: ''
-	},
 
 	layerPosition: {
 		isHold: false,
@@ -125,7 +120,7 @@ layers = {
 		return  '<header>' + 
 			    	'<h3>'+title+'</h3>'+
 			    	'<div class="layers-close-btn">' + 
-			    		'<button></button>'+
+			    		'<button>×</button>'+
 			    	'</div>' +
 			    '</header>';
 	},
@@ -148,10 +143,6 @@ layers = {
 			case 'ajax':
 				html += '<div class="layers-loading"><b></b><p>Loading...</p></div>';
 
-				this.ajax = {
-					status: true,
-					url: content.inner
-				};
 				break;
 		}
 
@@ -242,6 +233,11 @@ layers = {
 
 	close: function(id) {
 		var layerMod = $('.layers-mod');
+
+		if (typeof id === 'object') {
+			id = $(id).parents('.show')[0].id
+		}
+
 		if (id) {
 			var _id = $('#'+id);
 			_id.removeClass('show').addClass('hide');
@@ -270,8 +266,8 @@ layers = {
 
 		$('body').append(html);
 
-		if (_.ajax.status) {
-			$('#'+_.id).find('.layers-inner').load(_.ajax.url, function(response, status){
+		if ( options.content.type == 'ajax' ) {
+			$('#'+_.id).find('.layers-inner').load( options.content.inner, function(response, status){
 				console.log(response, status)
 			});
 		}

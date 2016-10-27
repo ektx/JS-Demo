@@ -100,29 +100,12 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -8px;
+	margin: -10px -8px;
 	outline: none;
+	color: #fff;
 	background-color: transparent;
-	transform: rotateZ(45deg);
 	cursor: pointer;
-}
-.layers-close-btn button:after,
-.layers-close-btn button:before {
-	display: block;
-	content: '';
-	position: absolute;
-}
-.layers-close-btn button:after {
-	top: 50%;
-	left: 0;
-	width: 100%;
-	border-top: 1px solid #fff;
-}
-.layers-close-btn button:before {
-	left: 50%;
-	top: 0;
-	height: 100%;
-	border-left: 1px solid #fff;
+	font: 22px/12px "Hiragino Sans GB","Microsoft Yahei","Helvetica Neue",sans-serif,"SimHei",Arial;
 }
 
 .layers-main {
