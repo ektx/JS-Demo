@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery text() function</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			console.log( $('li').text() );
+
+			$('li').text(function(i, xhr){
+				console.log( i, xhr)
+			});
+		})
+	</script>
+</body>
+</html>
