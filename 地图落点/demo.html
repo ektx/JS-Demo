@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>地图落点</title>
+	<link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+	<div class="map-box">
+		<ul class="map-points"></ul>
+	</div>
+
+	<p>
+		<button id="refresh">刷新</button>
+	</p>
+
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="mapPositions.js"></script>
+	<script type="text/javascript">
+	$(function() {
+
+	// 地图可用区域
+	var map = {
+		"huzhou": {
+			"x": 157,
+			"y": 30,
+			"w": 77,
+			"h": 46
+		},
+		"jiaxin": {
+			"x": 255,
+			"y": 47,
+			"w": 50,
+			"h": 43
+		},
+		"hangzhou": {
+			"x": 86,
+			"y": 115,
+			"w": 113,
+			"h": 72
+		},
+		"shaoxin": {
+			"x": 246,
+			"y": 129,
+			"w": 66,
+			"h": 79
+		},
+		"ningbo": {
+			"x": 351,
+			"y": 128,
+			"w": 57,
+			"h": 105
+		},
+		"zhoushang": {
+			"x": 420,
+			"y": 93,
+			"w": 56,
+			"h": 41
+		},
+		"quzhou": {
+			"x": 25,
+			"y": 261,
+			"w": 105,
+			"h": 46
+		},
+		"jinghua": {
+			"x": 145,
+			"y": 230,
+			"w": 137,
+			"h": 47
+		},
+		"tiazhou": {
+			"x": 303,
+			"y": 246,
+			"w": 87,
+			"h": 68
+		},
+		"lishun": {
+			"x": 95,
+			"y": 340,
+			"w": 160,
+			"h": 60
+		},
+		"wenzhou": {
+			"x": 216,
+			"y": 408,
+			"w": 98,
+			"h": 45
+		}
+	};
+
+
+		var getServerUl = [];
+
+		document.getElementById('refresh').addEventListener('click', function () {
+
+			// 模拟会出现的城市
+			var city = [
+				"huzhou", 
+				"jiaxin", 
+				"hangzhou", 
+				"shaoxin", 
+				"ningbo", 
+				"zhoushang", 
+				"quzhou", 
+				"jinghua", 
+				"tiazhou", 
+				"lishun",
+				"wenzhou"
+			];
+
+			// 生成出现的点
+			for (var i = 0; i < 10; i++) {
+				var random = Math.random();
+
+				getServerUl[i] = {
+					'addr': city[parseInt( random * city.length)],
+					'level': parseInt(random * 2)
+				}
+			}
+
+			// 落点
+			mapPosition.init({
+				id: '.map-points',
+				// 可用显示区域
+				mapArea: map,
+				// 指定显示内容
+				data: getServerUl,
+				// 对单个点处理事件
+				fun: function(data, ele) {
+					if (data.level) {
+						ele.css({
+							'color': 'red'
+						})
+					}
+				}
+			});
+		})
+	})
+
+	</script>
+</body>
+</html>
