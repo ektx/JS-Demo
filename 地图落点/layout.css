@@ -59,6 +59,7 @@ only screen and (min-resolution: 1.5dppx),
     transform: rotateZ(90deg) rotateY(72deg);
     top: 1em;
     left: 1em;
+    z-index: 0;
 }
 .map-points li:hover::before {
 	left: 1.2em;
