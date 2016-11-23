@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var startTime = new Date().getTime(), 
+		timeElapsed = 0,
+		iters = 0;
+	for (; timeElapsed < 1000; iters++) {
+
+		document.body.style.background = '#f00';
+
+
+		timeElapsed = new Date().getTime() - startTime;
+	}
+	console.log(iters)
+</script>
+</body>
+</html>
