@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>prototype</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var Pet = function(name, legs) {
+		// 保存 name 和 legs
+		this.name = name;
+		this.legs = legs;
+	}
+
+	// 显示 name 和 legs
+	Pet.prototype.getDetails = function() {
+		return this.name + ' has ' + this.legs + ' legs.';
+	}
+
+	// 定义一个 Cat ,它继承 Pet 
+	var Cat = function(name) {
+		Pet.call(this, name, 4)
+	}
+
+	// 继承 Pet 的方法
+	Cat.prototype = new Pet();
+	// 添加一个自己的方法
+	Cat.prototype.action = function() {
+		return 'Catch a bird.';
+	}
+
+	// 创建一个 cat 的实例
+	var petCat = new Cat('Tom');
+
+	var details = petCat.getDetails();  // Tom has 4 legs.
+	var action  = petCat.action();		// Catch a bird.
+	petCat.name = 'Jok';				// Tom -> Jok
+	petCat.legs = 7;					// 4   -> 7
+	details = petCat.getDetails();		// Jok has 7 legs.
+</script>
+</body>
+</html>

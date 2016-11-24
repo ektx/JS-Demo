@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数继承</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var pet = function (name, legs) {
+		var that = {
+			name: name,
+			getDetails: function() {
+				return that.name + ' has ' + legs + ' legs.'
+			}
+		};
+
+		return that;
+	}
+
+	// Define a cat object, inheriting form pet.
+	var cat = function (name) {
+		//  inherit form pet.
+		var that = pet(name, 4);
+		// augment cat with an action method.
+		that.action = function() {
+			return 'Catch a bird.'
+		}
+		return that;
+	}
+
+	// create an instance of cat in petCat2
+	var petCat2 = cat('Tom');
+
+	detatil = petCat2.getDetails();
+	action = petCat2.action();
+	petCat2.name = 'Jok';
+	petCat2.legs = 8;
+	detatil = petCat2.getDetails();
+</script>
+</body>
+</html>
