@@ -5,11 +5,11 @@
 
 	使用方法:
 	- 全局使用
-	IEplaceholder.init()
+	IEplaceholder()
 
 	- 指定元素使用
-	IEplaceholder.init('#id')
-	IEplaceholder.init('#id, #id2')
+	IEplaceholder('#id')
+	IEplaceholder('#id, #id2')
 
 */
 function IEplaceholder (elements) {
