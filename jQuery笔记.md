@@ -16,3 +16,19 @@ $('input[type=checkbox]').attr('checked', true);
 $('input[type=checkbox]').prop('checked', true)
 ```
 
+### 快速查找父级元素
+
+```html
+<div id="parent">
+  <h1>
+    Hello world!
+  </h1>
+</div>
+```
+
+
+
+```js
+$('h1').closest('div'); // => [<div id="parent">...</div>]
+```
+
