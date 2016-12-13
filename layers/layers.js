@@ -11,7 +11,7 @@
 			<header>
 				<h3>标题</h3>
 				<div class="layers-close-btn">
-					<button></button>
+					<button>×</button>
 				</div>
 			</header>
 			<div class="layers-main">
