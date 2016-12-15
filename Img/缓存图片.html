@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<img 
+		src="http://images.apple.com/cn/mac/home/images/macbookpro_medium_2x.png"
+		onmousemove="this.src='http://images.apple.com/v/mac/home/u/images/home/macbook_medium_2x.png'" 
+		onmouseout="this.src='http://images.apple.com/cn/mac/home/images/macbookpro_medium_2x.png'" 
+	 alt="">
+
+	 <script>
+		 // 使用 Image() 构造函数创建一个预期加载图片,实现提前加载的缓存效果
+	 	(new Image()).src = 'http://images.apple.com/v/mac/home/u/images/home/macbook_medium_2x.png';
+	 </script>
+</body>
+</html>
