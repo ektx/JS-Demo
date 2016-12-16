@@ -7,3 +7,31 @@
 | [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具       |
 | [Animate.less](https://github.com/machito/animate.less) | 样式动画          |
 
+#### Turbo.js
+
+[github](https://github.com/turbo/js)
+
+turbo.js - perform massive parallel computations in your browser with GPGPU. [https://turbo.github.io](https://turbo.github.io/)
+
+使用GPU为你的js运算提供高性能.
+
+
+
+#### conversational-form
+
+Turning web forms into conversations [https://space10-community.github.io/c…](https://space10-community.github.io/conversational-form/)
+
+让你的表单以对话聊天方式进行:)
+
+
+
+#### Tesseract.js
+
+**Tesseract.js** is a pure Javascript port of the popular [Tesseract OCR engine](https://github.com/tesseract-ocr/tesseract).
+
+可以从图片中读取文字.
+
+
+
+
+
