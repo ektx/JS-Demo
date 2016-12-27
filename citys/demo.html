@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+	<section class="demo">
+		
+		<div id="demo01"></div>
+
+		<div id="demo02"></div>
+
+		<div id="demo03"></div>
+
+	</section>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/selectAddress.js"></script>
+	<script>
+		
+	$(function() {
+		
+		createAddressMod.init({
+			width: 200,			// 指定弹层宽度
+			id: '#demo01',		// 生成元素
+			cache: true, 		// 使用缓存(未实现)
+			localData: true, 	// 使用本地数据
+			url: 'data/1.json',	// 首次加载数据
+			title: '中国',		// 首次的标题
+			search: 'Search...'	// 使用搜索和默认提示内容
+		})
+
+		createAddressMod.init({
+			width: 200,			// 指定弹层宽度
+			id: '#demo02',		// 生成元素
+			cache: true, 		// 使用缓存(未实现)
+			localData: true, 	// 使用本地数据
+			url: 'data/1.json',	// 首次加载数据
+			title: '中国'		// 首次的标题
+		})
+
+		createAddressMod.init({
+			width: 200,			// 指定弹层宽度
+			id: '#demo03',		// 生成元素
+			cache: true, 		// 使用缓存(未实现)
+			localData: true, 	// 使用本地数据
+			url: 'data/1.json',	// 首次加载数据
+			title: '中国3'		// 首次的标题
+		})
+	});
+
+	</script>
+</body>
+</html>
