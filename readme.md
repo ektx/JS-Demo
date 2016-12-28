@@ -33,5 +33,9 @@ Turning web forms into conversations [https://space10-community.github.io/c…]
 
 
 
+#### StackBlur.js
 
+Canvas图片模糊效果.
+
+[官网](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)
 
