@@ -1,19 +1,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Array forEach()</title>
+	<title>Array 删除</title>
 </head>
 <body>
-	<h1>Array forEach()</h1>
-	<h2>操作元素</h2>
-	<p>使用数组元素并保存在map中可以调用</p>
-	<p>array1.map(callbackfn[, thisArg])</p>
-	<p>array1
-必选。 一个数组对象。
-callbackfn
-必选。 最多可以接受三个参数的函数。 对于数组中的每个元素，map 方法都会调用 callbackfn 函数一次。
-thisArg
-可选。 callbackfn 函数中的 this 关键字可引用的对象。 如果省略 thisArg，则 undefined 将用作 this 值。</p>
 </body>
 </html>
 <script>
@@ -21,14 +11,22 @@ thisArg
 var numbers = new Array(1, 2, 3, 4, 5);
 document.write(numbers + '<br/>');
 
-// function delArr(arr, index) {
-// 	delete arr[index];
-// 	arr.sort();
-// 	arr.pop();
-// 	return arr;
-// }
+/*
+	使用 delete 方法删除
+*/
+function delArr(arr, index) {
+	// 删除指定索引内容
+	delete arr[index];
+	// 排序,让 undefined 放在最后
+	arr.sort();
+	// 删除 undefined
+	arr.pop();
 
-// delArr(numbers, 1);
+	return arr;
+}
+
+// 删除数组中第二个数据
+delArr(numbers, 1);
 
 
 /*
@@ -49,15 +47,11 @@ document.write(numbers + '<br/>');
 */
 Array.prototype.del = function(val) {
 	var _value = [];
-	console.log(this);
 	var delArr = this.map(function(value, index, array) {
 		if (val != value) {
-			console.log('索引: ' + index);
-			console.log('值: ' + value);
 			_value.push(value);
 		}
 	});
-	// this = _value;
 	return _value;
 }
 
