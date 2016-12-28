@@ -41,7 +41,7 @@ var createAddressMod = {
 			</form>
 		*/
 		return 	'<form class="search-input-mod" action="">' +
-					'<input placeholder="查询..." type="text">' +
+					'<input placeholder="'+placeholder+'" type="text">' +
 					'<button type="reset">✕</button>' +
 				'</form>'
 	},
