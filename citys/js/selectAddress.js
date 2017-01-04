@@ -5,8 +5,8 @@ var createAddressMod = {
 	addressCache: {},
 
 	// 生成头部
-	genInnerHeader: function(_, title, url) {
-		var html = '<li data-url="'+url+'" class="current show"><span>'+ title +'</span></li>';
+	genInnerHeader: function(_, title, url, code) {
+		var html = '<li data-url="'+url+'" data-code="'+code+'" class="current show"><span>'+ title +'</span></li>';
 		var box = _.find('.breadCrumbs-mod');
 		var _parent  = box.parents('.sel-get-inner');
 		var _parentW = parseInt(_parent.attr('data-w')) || _parent.width();
@@ -27,7 +27,9 @@ var createAddressMod = {
 		var html = '';
 
 		for (var i = 0, l = data.length; i < l; i++) {
-			html += '<a href="'+ url+'?id='+data[i].id+'">'+data[i].orgName+'</a>'
+			var _h = data[i].id ? url + '?id='+data[i].id : '';
+			_h = _h ? ' href="'+_h+'"' : '';
+			html += '<a'+ _h + '>'+data[i].orgName+'</a>'
 		}
 
 		_.find('.alternative-address-box').html(html)
@@ -85,6 +87,10 @@ var createAddressMod = {
 							'<ul class="breadCrumbs-mod"></ul>' +
 							'<div class="alternative-address-box"></div>' +
 						'</div>' +
+						'<div class="sel-btns">' +
+							'<button>确认</button>'+
+							'<button>取消</button>'+
+						'</div>'+
 					'</div>' +
 				'</div>';
 
@@ -92,7 +98,7 @@ var createAddressMod = {
 	},
 
 	// 读取数据
-	getJson: function(_, url, title) {
+	getJson: function(_, url, title, code) {
 
 		var self = this;
 
@@ -105,7 +111,7 @@ var createAddressMod = {
 			self.genALink(_, data, url);
 
 			if (title) {
-				self.genInnerHeader(_, title, url)
+				self.genInnerHeader(_, title, url, code)
 			}
 
 		})
@@ -130,12 +136,19 @@ var createAddressMod = {
 
 			let url = this.href;
 
+			if (!url) {
+				$(this).addClass('current').siblings().removeClass();
+
+				return;
+			}
+
+			let file = this.search.match(/id=(\d+)$/)[1];
+
 			if (options.localData) {
-				let file = this.search.match(/id=(\d+)$/)[1];
 				url = this.pathname.replace(/\d+\.json$/, file+'.json')
 			}
 
-			_self.getJson($(this).parents('.sel-get-inner'), url, this.innerText)
+			_self.getJson($(this).parents('.sel-get-inner'), url, this.innerText, file)
 
 		})
 
@@ -148,7 +161,7 @@ var createAddressMod = {
 			// 先恢复到原来默认大小
 			_.parent().width( parseInt(box.attr('data-w')) );
 
-			_.addClass('current').nextAll().hide();
+			_.addClass('current').nextAll().remove();
 
 			// 取得最新状态下的滚动宽度
 			let	scrW = _.parent()[0].scrollWidth;
@@ -180,8 +193,26 @@ var createAddressMod = {
 				}
 			}
 		})
-		.on('click', 'button', function() {
+		.on('click', 'button[type="reset"]', function() {
 			this.classList.remove('show')
+		})
+		.on('click', '.sel-btns button', function(e) {
+
+			var that = _.find('.current');
+			var head = _.find('.sel-show-header');
+			var data = {
+				index: $(this).index(),
+				code: that.attr('data-code'),
+				name: that.text()
+			}
+
+			if (options.callback) options.callback(data)
+			
+			if (!data.index) {
+				head.find('span:first').text(data.name);
+			}
+
+			head.click();
 		})
 	},
 
@@ -196,7 +227,7 @@ var createAddressMod = {
 
 		_.addClass('select-address-mod').html( html );
 
-		_self.getJson(_, options.url, options.title);
+		_self.getJson(_, options.url, options.title, 0);
 
 		_self.event(options);
 

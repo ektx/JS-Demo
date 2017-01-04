@@ -29,7 +29,10 @@
 			localData: true, 	// 使用本地数据
 			url: 'data/1.json',	// 首次加载数据
 			title: '中国',		// 首次的标题
-			search: 'Search...'	// 使用搜索和默认提示内容
+			search: 'Search...',	// 使用搜索和默认提示内容
+			callback: function (data) {
+				console.log(data)
+			}
 		})
 
 		createAddressMod.init({

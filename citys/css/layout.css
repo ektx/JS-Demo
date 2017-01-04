@@ -201,12 +201,23 @@ ul {
 	padding-right: 10px;
 	text-decoration: none;
 }
+.alternative-address-box a.current, 
 .alternative-address-box a:hover {
 	color: #333;
 	cursor: pointer;
 }
 
 
+.sel-btns {
+	text-align: right;
+}
+.sel-btns button {
+	margin: 5px 10px 5px 0;
+	padding: 3px 8px;
+	border-radius: 3px;
+	background-color: transparent;
+	border: 1px solid #eee;
+}
 
 
 
