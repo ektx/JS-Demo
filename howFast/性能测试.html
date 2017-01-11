@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<section class="test-mod">
+	<header>
+		<h1>How Fast ?</h1>
+		<p>以下测试内容只能是对您的代码运行效率的参考,不是最终效果值!</p>
+	</header>
+	<main class="test-body">
+		<div class="code-box">
+			<textarea name="" id="test-code" cols="30" rows="10"></textarea>
+			<button id="run">运行</button>
+		</div>
+		<div class="result-mod">
+			<ul id="result-box"></ul>
+		</div>
+	</main>
+
+</section>
+<script type="text/javascript">
+function testCode() {
+	var codeBox = document.getElementById('test-code');
+	var	code = codeBox.value.trim();
+	var placeholder = '请输入你要运行的代码';
+	
+	if (!code || code === placeholder) {
+		codeBox.value = placeholder
+		return;
+	}
+
+	var startTime = new Date().getTime(), 
+		timeElapsed = 0;
+
+	for (iters = 0; timeElapsed < 1000; iters++) {
+
+		eval(code)
+
+
+		timeElapsed = new Date().getTime() - startTime;
+	}
+
+	var li = document.createElement('li');
+	li.textContent = iters;
+
+	document.getElementById('result-box').appendChild(li)
+	
+}
+
+document.getElementById('run').addEventListener('click', testCode)
+
+</script>
+</body>
+</html>

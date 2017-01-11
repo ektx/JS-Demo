@@ -1,9 +1,9 @@
 /*
-	云标签功能 v0.0.1
+	云标签功能 v0.0.2
 	---------------------------------------------
 	根据数组生成
 	---------------------------------------------
-	kings <530675800@qq.com>     		2016/8/11
+	kings <530675800@qq.com>     	   2016/11/22
 */
 
 ;function cloudTags(id, arr) {
@@ -14,25 +14,24 @@
 		for(var i=0;i<tagEle.length;i++){
 
 			// 平均分布
-			// var k = -1+(2*(i+1)-1)/tagEle.length;
-			// var a = Math.acos(k);
-			// var b = a*Math.sqrt(tagEle.length*Math.PI);
-			// var x = RADIUS * Math.sin(a) * Math.cos(b);
-			// var y = RADIUS * Math.sin(a) * Math.sin(b); 
-			// var z = RADIUS * Math.cos(a);
+			var k = -1+(2*(i+1)-1)/tagEle.length;
+			var a = Math.acos(k);
+			var b = a*Math.sqrt(tagEle.length*Math.PI);
+			var x = RADIUS * Math.sin(a) * Math.cos(b);
+			var y = RADIUS * Math.sin(a) * Math.sin(b); 
+			var z = RADIUS * Math.cos(a);
 
 			// 自由分布
-			phi = Math.acos(Math.random() * 2 - 1);
-			theta = Math.random()*2*Math.PI;
-			var x = Math.sin(phi) * Math.cos(theta) * RADIUS;
-			var y = Math.sin(phi) * Math.sin(theta) * RADIUS;
-			var z = RADIUS * Math.cos(phi);
+			// phi = Math.acos(Math.random() * 2 - 1);
+			// theta = Math.random()*2*Math.PI;
+			// var x = Math.sin(phi) * Math.cos(theta) * RADIUS;
+			// var y = Math.sin(phi) * Math.sin(theta) * RADIUS;
+			// var z = RADIUS * Math.cos(phi);
+			
+			// 共用部分
 			var t = new tag(tagEle[i] , x , y , z);
-			// tag(tagEle[i] , x , y , z);
 			tags.push(t);
-			// tags.push(tag);
 			t.move();
-			// tag.move();
 		}
 	}
 

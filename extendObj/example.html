@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="extendObj.js"></script>
+
+<script type="text/javascript">
+	var a = {
+		a: 1,
+		b: [1,2,3]
+	};
+
+	var b = {
+		a: 3,
+		b: {},
+		c: {
+			name: 'zwl',
+			aga: 18
+		}
+	};
+
+	var result = extendObj(a, b);
+	console.log(result)
+
+	b = {
+		a: 3,
+		b: [],
+		c: {
+			name: 'zwl',
+			aga: 18
+		}
+	};
+	var result = extendObj(a, b);
+	console.log(result)
+
+	b = {
+		a: 3,
+		b: '',
+		c: {
+			name: 'zwl',
+			aga: 18
+		}
+	};
+	var result = extendObj(a, b);
+	console.log(result)
+</script>
+</body>
+</html>

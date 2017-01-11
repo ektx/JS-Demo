@@ -11,7 +11,7 @@
 			<header>
 				<h3>标题</h3>
 				<div class="layers-close-btn">
-					<button></button>
+					<button>×</button>
 				</div>
 			</header>
 			<div class="layers-main">
@@ -153,20 +153,30 @@ Layers = {
 
 	// 组装
 	assembly: function(options) {
-		var html = '<section class="layers-mod show">';
+
+		var html = '<section class="layers-mod show">',
+			top = 0,
+			left = 0,
+			width = options.width,
+			height = options.height,
+			resize = resizeHTML = '';
+
+		this.id = 'layers-' + new Date().getTime();
 		this.options.winW = window.innerWidth;
 		this.options.winH = window.innerHeight;
-		var top = (this.options.winH - options.height) / 2;
-		var left = (this.options.winW - options.width) / 2;
-		this.id = 'layers-' + new Date().getTime();
-		var resize = resizeHTML = '';
+		
+		// 窗口不能大于浏览器的
+		width = width < this.options.winW ? width : this.options.winW;
+		height = height < this.options.winH ? height : this.options.height;
+		top = (this.options.winH - height) / 2;
+		left = (this.options.winW - width) / 2;
 
 		if (this.options.resize) {
 			resize = 'overflow:auto; resize:'+this.options.resize;
 			resizeHTML = '<button class="layer-resize"></button>';
 		}
 
-		html +=	'<div id="'+this.id+'" class="layers-box show" style="width:'+options.width+'px; height:'+options.height+'px; top:'+top+'px; left:'+left+'px; z-index:'+this.id.substr(7)+';' +resize+'">';
+		html +=	'<div id="'+this.id+'" class="layers-box show" style="width:'+width+'px; height:'+height+'px; top:'+top+'px; left:'+left+'px; z-index:'+this.id.substr(7)+';' +resize+'">';
 
 		html += this.createTitle(options.title);
 		html += this.createInner(options.content);
