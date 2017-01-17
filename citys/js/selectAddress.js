@@ -1,5 +1,3 @@
-
-
 var createAddressMod = {
 
 	addressCache: {},
@@ -24,11 +22,16 @@ var createAddressMod = {
 
 	// 生成选择的链接
 	genALink: function(_, data, url) {
-		var html = '';
+		var html = '',
+			_h = '';
 
 		for (var i = 0, l = data.length; i < l; i++) {
-			var _h = data[i].id ? url + '?id='+data[i].id : '';
-			_h = _h ? ' href="'+_h+'"' : '';
+			if (data[i].isSubordinate) {
+				_h = data[i].id ? url + '?id='+data[i].id : '';
+				_h = _h ? ' href="'+_h+'"' : '';	
+			} else {
+				_h = ' data-code="'+data[i].id+'"'
+			}
 			html += '<a'+ _h + '>'+data[i].orgName+'</a>'
 		}
 
@@ -100,18 +103,26 @@ var createAddressMod = {
 	// 读取数据
 	getJson: function(_, url, title, code) {
 
-		var self = this;
-
+		var self = this,
+			oldURL = url;
+		
+		if (!/.json$/.test(url)) {
+			url +='?id='+code;
+		}
+		
 		$.ajax({
 			url: url,
 			type: 'get',
 			dataType: 'json'
 		})
 		.done(function(data) {
-			self.genALink(_, data, url);
+			
+			if (!data.length) return;
+			
+			self.genALink(_, data, oldURL);
 
 			if (title) {
-				self.genInnerHeader(_, title, url, code)
+				self.genInnerHeader(_, title, oldURL, code)
 			}
 
 		})
@@ -134,7 +145,7 @@ var createAddressMod = {
 		.on('click', '.alternative-address-box a', function(e) {
 			e.preventDefault();
 
-			let url = this.href;
+			var url = this.href;
 
 			if (!url) {
 				$(this).addClass('current').siblings().removeClass();
@@ -142,10 +153,12 @@ var createAddressMod = {
 				return;
 			}
 
-			let file = this.search.match(/id=(\d+)$/)[1];
+			var file = this.search.match(/id=(\d+)$/)[1];
 
 			if (options.localData) {
 				url = this.pathname.replace(/\d+\.json$/, file+'.json')
+			} else {
+				url = this.pathname.replace(/\d+\.json$/, '')
 			}
 
 			_self.getJson($(this).parents('.sel-get-inner'), url, this.innerText, file)
@@ -164,7 +177,7 @@ var createAddressMod = {
 			_.addClass('current').nextAll().remove();
 
 			// 取得最新状态下的滚动宽度
-			let	scrW = _.parent()[0].scrollWidth;
+			var	scrW = _.parent()[0].scrollWidth;
 
 			// 如果滚动的距离比宽度小,那么就在原来默认之内了
 			// 这时让整个大小收缩回来反之不变
@@ -177,7 +190,7 @@ var createAddressMod = {
 			// 移除测试数据
 			_.parent().removeAttr('style')
 
-			_self.getJson(box, _.data().url, '')
+			_self.getJson(box, _.data().url, '', _.data().code)
 		})
 
 		// 搜索功能
@@ -198,7 +211,7 @@ var createAddressMod = {
 		})
 		.on('click', '.sel-btns button', function(e) {
 
-			var that = _.find('.current');
+			var that = _.find('.current:last');
 			var head = _.find('.sel-show-header');
 			var data = {
 				index: $(this).index(),
@@ -227,7 +240,7 @@ var createAddressMod = {
 
 		_.addClass('select-address-mod').html( html );
 
-		_self.getJson(_, options.url, options.title, 0);
+		_self.getJson(_, options.url, options.title, 2);
 
 		_self.event(options);
 

@@ -1,1 +1,50 @@
-[{"id":5,"orgName":"南门街道","orgCode":"1.1.1.1.1."},{"id":17,"orgName":"江厦街道","orgCode":"1.1.1.1.2."},{"id":22,"orgName":"西门街道","orgCode":"1.1.1.1.3."},{"id":36,"orgName":"月湖街道","orgCode":"1.1.1.1.4."},{"id":44,"orgName":"鼓楼街道","orgCode":"1.1.1.1.5."},{"id":50,"orgName":"白云街道","orgCode":"1.1.1.1.6."},{"id":61,"orgName":"段塘街道","orgCode":"1.1.1.1.7."},{"id":71,"orgName":"望春街道","orgCode":"1.1.1.1.8."}]
+[
+	{
+		"id": 36,
+		"orgName": "月湖街道",
+		"orgCode": "1.1.1.1.4.",
+		"isSubordinate": false
+	},
+	{
+		"id": 22,
+		"orgName": "西门街道",
+		"orgCode": "1.1.1.1.3.",
+		"isSubordinate": false
+	},
+	{
+		"id": 17,
+		"orgName": "江厦街道",
+		"orgCode": "1.1.1.1.2.",
+		"isSubordinate": false
+	},
+	{
+		"id": 5,
+		"orgName": "南门街道",
+		"orgCode": "1.1.1.1.1.",
+		"isSubordinate": false
+	},
+	{
+		"id": 44,
+		"orgName": "鼓楼街道",
+		"orgCode": "1.1.1.1.5.",
+		"isSubordinate": false
+	},
+	{
+		"id": 50,
+		"orgName": "白云街道",
+		"orgCode": "1.1.1.1.6.",
+		"isSubordinate": false
+	},
+	{
+		"id": 71,
+		"orgName": "望春街道",
+		"orgCode": "1.1.1.1.8.",
+		"isSubordinate": false
+	},
+	{
+		"id": 61,
+		"orgName": "段塘街道",
+		"orgCode": "1.1.1.1.7.",
+		"isSubordinate": false
+	}
+]

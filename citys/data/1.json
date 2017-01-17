@@ -1,1 +1,68 @@
-[{"id":2,"orgName":"浙江省","orgCode":"1.1."},{"id":145015,"orgName":"浙江省A测试","orgCode":"1.3."},{"id":20000000,"orgName":"浙江省B测试","orgCode":"1.6."},{"id":20186299,"orgName":"浙江省C测试","orgCode":"1.28."},{"id":20189938,"orgName":"D1","orgCode":"1.29."},{"id":20223597,"orgName":"舟山市教育局","orgCode":"1.1.8.4.1.51."},{"id":20223738,"orgName":"舟山市教育局","orgCode":"1.1.8.107."},{"id":20236546,"orgName":"44","orgCode":"1.30."},{"id":20248937,"orgName":"测试自动化省","orgCode":"1.32."},{"id":20249738,"orgName":"测试省","orgCode":"1.34."},{"id":20251340,"orgName":"test2","orgCode":"1.36."},{"id":20251737,"orgName":"test 03","orgCode":"1.37."}]
+[
+	{
+		"id": 139854,
+		"orgName": "杭州市",
+		"orgCode": "1.1.10.",
+		"isSubordinate": true
+	},
+	{
+		"id": 3,
+		"orgName": "宁波市",
+		"orgCode": "1.1.1.",
+		"isSubordinate": true
+	},
+	{
+		"id": 20000540,
+		"orgName": "温州市",
+		"orgCode": "1.1.14.",
+		"isSubordinate": true
+	},
+	{
+		"id": 18288,
+		"orgName": "湖州市",
+		"orgCode": "1.1.2.",
+		"isSubordinate": true
+	},
+	{
+		"id": 19156,
+		"orgName": "嘉兴市",
+		"orgCode": "1.1.3.",
+		"isSubordinate": true
+	},
+	{
+		"id": 42569,
+		"orgName": "绍兴市",
+		"orgCode": "1.1.9.",
+		"isSubordinate": true
+	},
+	{
+		"id": 23548,
+		"orgName": "衢州市",
+		"orgCode": "1.1.5.",
+		"isSubordinate": true
+	},
+	{
+		"id": 33501,
+		"orgName": "金华市",
+		"orgCode": "1.1.7.",
+		"isSubordinate": true
+	},
+	{
+		"id": 41142,
+		"orgName": "舟山市",
+		"orgCode": "1.1.8.",
+		"isSubordinate": true
+	},
+	{
+		"id": 25493,
+		"orgName": "台州市",
+		"orgCode": "1.1.6.",
+		"isSubordinate": true
+	},
+	{
+		"id": 20691,
+		"orgName": "丽水市",
+		"orgCode": "1.1.4.",
+		"isSubordinate": true
+	}
+]
