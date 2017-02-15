@@ -1,39 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
-	<title>BIG WHEEL</title>
-	<link rel="stylesheet" href="content/css/screen.css">
-</head>
-<body>
-<section class="big-wheel-mod">
-	<ul class="big-wheel-box"></ul>
-	
-	<div class="wheel-axis-box">
-		<ul class="wheel-axis-point">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-		<div class="wheel-inner">开始抽奖</div>
-	</div>
-</section>
-</body>
-<script src="content/js/zepto.min.js"></script>
-<script>
+
+console.log('you can use "winner=Mac" to set get mac')
+
 // 后台传来指定的奖品
 var winner = 'iPhone';
 
@@ -81,7 +48,9 @@ $(function() {
 		}
 
 		// 转盘数据
+		// gifts 用来采集所有的奖品类型,同时也把产品的位置收集起来
 		var gifts = {};
+
 		for (var i = 0; i < arr.length; i++) {
 			var val = arr[i];
 
@@ -111,5 +80,3 @@ $(function() {
 	})
 	
 });
-</script>
-</html>
