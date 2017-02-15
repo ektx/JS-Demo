@@ -10,7 +10,10 @@
 <script>
 
 function matchesSelector(ele, selector) {
-	if (ele.matchesSelector) {
+	if (ele.matches) {
+		return ele.matches( selector )
+	}
+	else if (ele.matchesSelector) {
 		return ele.matchesSelector(selector)
 	} else if (ele.msMatchesSelector) {
 		return els.msMatchesSelector(selector)
@@ -18,8 +21,17 @@ function matchesSelector(ele, selector) {
 		return ele.webkitMatchesSelector(selector)
 	} else if (ele.mozMatchesSelector) {
 		return els.mozMatchesSelector(selector)
-	} else {
-		throw new Error('Not surpported.')
+	} 
+	// IE 8
+	else if (ele.querySelectorAll) {
+		var matches = (ele.document || ele.ownerDocument).querySelectorAll(selector),
+			i = 0;
+
+		while (matches[i] && matches[i] !== ele) i++;
+		return matches[i] ? true : false;
+	}
+	else {
+		throw new Error('Your browser version is too old, please upgrde your browser!')
 	}
 }
 
