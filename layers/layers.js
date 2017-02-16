@@ -286,6 +286,11 @@ Layers = {
 			_.layerEvent();
 			_.layerEvent = 0;
 		}
+
+		if (options.callback) {
+			options.callback();
+			delete options.callback;
+		}
 	}
 }
 
