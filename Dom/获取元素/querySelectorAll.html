@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>querySelectorAll()</title>
+</head>
+<body>
+	<h1>querySelectorAll()</h1>
+	<p>查询指定DOM结构!</p>
+	<div id="test">
+		<p class="txt">txt!</p>
+		<p class="txt">txt!</p>
+		<p class="txt2">txt2!</p>
+		<p class="txt3">txt3!</p>
+		<p class="txt txt2">txt txt2</p>
+	</div>
+
+	<div id="test2">
+		<p class="txt">txt!</p>
+		<p class="txt">txt!</p>
+		<p class="txt2">txt2!</p>
+		<p class="txt3">txt3!</p>
+		<p class="txt txt2">txt txt2</p>
+	</div>
+
+</body>
+<script>
+
+console.log( document.querySelectorAll('#test') )
+console.log( document.querySelectorAll('#test .txt') )
+// 对比于 querySelector()
+console.log( document.querySelector('#test .txt') )
+
+
+</script>
+</html>

@@ -61,7 +61,6 @@ var divs = document.getElementsByTagName('div');
 var len = divs.length;
 var ul = document.getElementsByTagName('ul')[0];
 
-console.time('two')
 var html = '';
 for (var i = 0; i < len; i++) {
 	(function(i) {
@@ -73,25 +72,21 @@ ul.innerHTML = html;
 
 ul.addEventListener('click', function(evt) {
 	var tag = evt.target;
-	var tagname = tag.tagName.toLowerCase();
 
-	if (tagname == 'li') {
-		console.log('li');
+	if (tag.matches('li')) {
 		var id = tag.id;
 		document.getElementById('test'+id.replace(/[^\d]/g, '')).scrollIntoViewIfNeeded(true)
 	}
 }, false)
 
-var goVal = document.getElementById('number-int').value;
-var goBtn = document.getElementById('go-btn');
 
-goBtn.addEventListener('click', function() {
-	document.body.scrollByLines(goVal)
+document.getElementById('go-btn').addEventListener('click', function() {
+	
+	var goVal = document.getElementById('number-int').value || 1;
+
+	document.getElementById('test'+goVal).scrollIntoViewIfNeeded(true)
+	// document.body.scrollByLines(goVal)
 }, false)
-
-console.timeEnd('two')
-
-
 
 
 // 参考

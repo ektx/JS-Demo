@@ -94,12 +94,8 @@ ul.innerHTML = html;
 // }
 
 ul.addEventListener('click', function(evt) {
-	var tag = evt.target;
-	var tagname = tag.tagName.toLowerCase();
-
-	if (tagname == 'li') {
-		console.log('li');
-		var id = tag.id;
+	if (evt.target.matches('li')) {
+		var id = evt.target.id;
 		document.getElementById('test'+id.replace(/[^\d]/g, '')).scrollIntoView()
 	}
 }, false)
