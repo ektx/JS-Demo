@@ -40,6 +40,6 @@ function resizeIframe() {
 
 		};
 
-	}, 300);	
+	}, 3000);	
 }
 resizeIframe();

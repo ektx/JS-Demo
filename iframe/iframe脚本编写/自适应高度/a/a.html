@@ -9,18 +9,15 @@
 </head>
 <body style="height: 300px">
 	<iframe name="myIFrame" src="" frameborder="0"></iframe>
-	<button id="resize-300">300</button>
-	<button id="resize-600">600</button>
+	<button id="300">300</button>
+	<button id="600">600</button>
 </body>
 <script>
-document.getElementById('resize-600').onClick = resizeIframe(600);
-
-function resizeIframe(Num) {
-	document.body.height = Num;
-
-	window.onScroll = function() {
-		console.log(Num);
+document.documentElement.addEventListener('click', e => {
+	if (e.target.matches('button')) {
+		document.body.style.height = e.target.id+'px'
 	}
-}
+}, false);
+
 </script>
 </html>
