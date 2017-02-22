@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe内容访问示例</title>
+
+</head>
+<body>
+</body>
+<script>
+	// 方法一
+	// window.top.document.bgColor = '#f90';
+
+	// 方法二
+	window.parent.document.bgColor = '#f90';
+
+	window.parent.msg('hello! i come from child!')
+</script>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iframe内容访问示例</title>
+
+</head>
+<body>
+	<iframe name="myIFrame" src="child.html" frameborder="0"></iframe>
+</body>
+<script>
+document.myIFrame.onload = function() {
+	window.myIFrame.document.bgColor = 'red';
+}
+
+function msg(txt) {
+	console.log(txt)
+}
+</script>
+</html>
