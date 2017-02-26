@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<h1>rest运算符</h1>
+	<p>建议在函数体内使用rest运算符来替换之前的 <code>argumnets</code>,因为运算符结构和内容提供的是一个完整的数组</p>
+	
+	<script>
+	function a (...args) {
+		console.log(arguments);
+		console.log(args)
+	}
+
+	a(1,2,3)
+		
+	</script>
+</body>
+</html>
