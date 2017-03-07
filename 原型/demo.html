@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+	<script>
+		function inherit(p) {
+			if (p == null) throw TypeError();
+			if (Object.create)
+				return Object.create(p);
+			var t = typeof p;
+			if (t !== "object" && t !== "function")
+				throw TypeError();
+			function f() { };
+			f.prototype = p;
+			return new f();
+		}
+
+		// 一个用来继承的对象
+		var b = { r: 1};
+		// c 继承 b的属性
+		var c = inherit(b);
+		// 为 c 添加2个新属性
+		c.x = 1;
+		c.y = 2;
+		// 为 c 覆盖继承的属性
+		c.r = 3;
+
+		// 输出
+		// 只对继承的属性进行了赋值,并没有改变原属性
+		console.log(c.r, b.r)
+	</script>
+</body>
+</html>
