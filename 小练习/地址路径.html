@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+		let pathArr = [
+			'abc/ab/123',
+			'abc/ab',
+			'abc/ab/123/a',
+			'abc/ab/123/b',
+			'abc/b',
+			'abc/b/c',
+			'abc/b/c/f',
+			'abc'
+		];
+		console.time('S.')
+		
+		// 输出最长的不重叠的地址
+		let result = pathArr.join(',').split(',');
+
+		for (let val of pathArr ) {
+			for (let _v of pathArr ) {
+				// 如果是本身,就直接跳过
+				if (val == _v) continue;
+
+				// 找到自己在操作数组中的位置
+				let inResultIndex = result.indexOf(_v);
+
+				// 如果对比数量包含在自己的字符串中, 同时在操作数组中还存在时
+				if ( val.includes(_v) && inResultIndex > -1 ) {
+					// 从操作数组中除去
+					result.splice( inResultIndex, 1)
+				} 
+				// 如果自己被反包了,那立刻停止下面的查询
+				else if (_v.includes(val)) {
+					break;
+				}
+			}
+		}
+		console.timeEnd('S.')
+		
+		console.log( result );
+	</script>
+</body>
+</html>
