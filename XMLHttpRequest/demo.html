@@ -7,15 +7,22 @@
 <body>
 	<h1></h1>
 	<script>
-	let xhr = new XMLHttpRequest(),
+
+	let xhr,
 		method = 'GET',
 		url = 'data/data.json';
 
+	if (window.XMLHttpRequest) {
+		xhr = new XMLHttpRequest()
+	} else {
+		xhr = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+
 	xhr.open(method, url, true);
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			console.log(xhr.responseText);
-			document.querySelector('h1').innerHTML = JSON.parse(xhr.responseText)[0].title;
+		if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			document.querySelector('h1').innerHTML = JSON.parse(this.responseText)[0].title;
 		}
 	}
 	xhr.send()
