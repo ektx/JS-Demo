@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body, section {
+			margin: 0;
+			padding: 0;
+		}
+		section {
+			height: 300px;
+			width: 200px;
+			overflow: hidden;
+			background-color: #f5f5f5;
+			border: 2px solid #333;
+			border-top: 22px solid #333;
+
+			position: fixed;
+			top: 100px;
+			left: 100px;
+		}
+
+		section main {
+			height: 100%;
+			overflow: auto;
+		}
+
+		div {
+			padding: 20px 10px;
+			color: #fff;
+		}
+
+		#pages {
+			position: fixed;
+			right: 10px;
+			top: 10px;
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+	<section id="my-box">
+		<main id="box-inner">
+			<div id="d001" style="background-color: #9C27B0">1.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d002" style="background-color: #673AB7">2.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d003" style="background-color: #3F51B5;">3.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d004" style="background-color: #2196F3;">4.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d005" style="background-color: #03A9F4;">5.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d006" style="background-color: #00BCD4;">6.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d007" style="background-color: #009688;">7.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+		</main>
+	</section>
+
+	<div id="pages"></div>
+
+	<script>
+		let box = document.getElementById('my-box');
+		let boxInner = document.getElementById('box-inner');
+		let pages = document.getElementById('pages');
+
+
+		box.addEventListener('scroll', function (e) {
+			// console.log(this.scrollTop)
+		})
+
+		// 简单的拖拽效果
+		let boxStart = {};
+		box.addEventListener('mousedown', (e)=> {
+			boxStart.left = e.clientX - e.layerX;
+			boxStart.top = e.clientY  - e.layerY;
+			boxStart.x   = e.clientX;
+			boxStart.y   = e.clientY;
+		})
+		box.addEventListener('mousemove', (e)=> {
+			if (e.buttons && e.target.matches('#my-box')) {
+				e.target.style.left = e.clientX - boxStart.x + boxStart.left +'px'
+				e.target.style.top = boxStart.top + (e.clientY - boxStart.y) +'px'
+			}
+		})
+
+		// 生成分页
+		let pagesIndex = '';
+		for (let i = 0; i < box.children[0].childElementCount; i++) {
+			pagesIndex += '<li>'+(i+1)+'</li>'
+		}
+		pages.innerHTML = pagesIndex;
+
+
+		// 定位操作
+		pages.addEventListener('click', function(e) {
+			if (e.target.matches('li')) {
+				// 获取父级相对浏览器的顶部位置
+				// let boxPositionTop = box.getBoundingClientRect().top;
+				let boxPositionTop = box.offsetTop;
+				// 获取定位模块
+				let positionDiv = document.getElementById('d00'+ e.target.innerText);
+
+				// 定位
+				// 新的滚动条位置 = 滚动条当前位置 + 当前模块的头部位置 - 父级相对浏览器的位置
+				boxInner.scrollTop = boxInner.scrollTop + positionDiv.getBoundingClientRect().top - boxPositionTop;
+
+			}
+		})
+		</script>
+</body>
+</html>
