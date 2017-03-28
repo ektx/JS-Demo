@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<h1>浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.</h1>
+	<ul id="status"></ul>
+	
+	<h3>参考</h3>
+	<a href="https://developer.mozilla.org/zh-CN/docs/Web/Events/visibilitychange">visibilitychange</a>
+
+	<h2>相关</h2>
+	<ul>
+		<li>window.onfocus</li>
+		<li><a href="#https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">Page Visibility API</a></li>
+	</ul>
+	<script>
+		document.addEventListener('visibilitychange', ()=>{
+			let li = document.createElement('li');
+			li.append( document.visibilityState );
+
+			document.getElementById('status').append(li)
+		})
+	</script>
+</body>
+</html>
