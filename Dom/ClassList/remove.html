@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div class="demo1 demo2 demo3">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum saepe natus quibusdam, nisi laudantium accusantium illum temporibus in iusto beatae aut, expedita perspiciatis accusamus magni ducimus repudiandae iure rerum dicta.
+	</div>
+
+	<script>
+		let result = document.querySelector('div').classList;
+		console.log(result);
+
+		result.remove('demo1')
+		console.log(result)
+
+
+		result.remove('demo2', 'demo3');
+		console.log(result)
+
+	</script>
+</body>
+</html>

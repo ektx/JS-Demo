@@ -48,17 +48,40 @@
 			<div id="d004" style="background-color: #2196F3;">4.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
 			<div id="d005" style="background-color: #03A9F4;">5.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
 			<div id="d006" style="background-color: #00BCD4;">6.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
-			<div id="d007" style="background-color: #009688;">7.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</div>
+			<div id="d007" style="background-color: #009688;">
+				<p>7.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatum perferendis aperiam tenetur nisi! Iusto ut sit vero voluptate optio quidem expedita id est, placeat, in necessitatibus nisi cupiditate tempora!</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus nostrum ratione architecto, rem perferendis illum qui quisquam sapiente voluptates iure excepturi dicta placeat saepe est consequatur, cumque deserunt officia sint?</p>
+			</div>
 		</main>
 	</section>
 
 	<div id="pages"></div>
+
+	<h3>offsetTop offsetLeft</h3>
+	<small>只读</small>
+	<p>此2个是指当前元素与父元素相对位置!不随着滚动条的变化而变化!是默认渲染时的位置!</p>
+	<p>因为是相对位置,我们可以使用定位来修改它!</p>
+
+	<h3>offsetParent</h3>
+	<p>当前元素的父元素,此父级元素要有<code>position</code>属性,否则忽略</p>
+
+	<h3>clientTop clientLeft</h3>
+	<p>此属性是指当前元素的内容与边框最外边的距离</p>
+
 
 	<script>
 		let box = document.getElementById('my-box');
 		let boxInner = document.getElementById('box-inner');
 		let pages = document.getElementById('pages');
 
+
+		// offsetParent
+		console.log('main 的父级:', boxInner.offsetParent)
+		// 忽略了 main
+		console.log('d002 的父级:', document.getElementById('d002').offsetParent)
+
+		console.log('box 的 clientTop:', box.clientTop) // 22
+		console.log('box 的 clientLeft:', box.clientLeft) // 2
 
 		box.addEventListener('scroll', function (e) {
 			// console.log(this.scrollTop)
