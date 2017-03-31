@@ -114,8 +114,8 @@
 		pages.addEventListener('click', function(e) {
 			if (e.target.matches('li')) {
 				// 获取父级相对浏览器的顶部位置
-				// let boxPositionTop = box.getBoundingClientRect().top;
-				let boxPositionTop = box.offsetTop;
+				let boxPositionTop = box.getBoundingClientRect().top;
+				// let boxPositionTop = box.offsetTop;
 				// 获取定位模块
 				let positionDiv = document.getElementById('d00'+ e.target.innerText);
 
