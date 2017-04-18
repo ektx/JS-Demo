@@ -6,6 +6,7 @@
 | [MOment.js](http://momentjs.cn/docs/)    | 时间格式化工具       |
 | [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具       |
 | [Animate.less](https://github.com/machito/animate.less) | 样式动画          |
+| [mCustomScrollbar](http://manos.malihu.gr/jquery-custom-content-scroller/) | 滚动条效果         |
 
 #### Turbo.js
 
