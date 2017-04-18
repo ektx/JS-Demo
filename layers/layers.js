@@ -30,7 +30,9 @@ Layers = {
 		width: 300,
 		height: 200,
 		winW: 0,
+		minW: 100,
 		winH: 0,
+		minH: 80,
 		title: 'Title',
 		resize: false
 	},
@@ -74,9 +76,12 @@ Layers = {
 
 				if (_.isResize) {
 
+					var _nowW = _.options.width + e.pageX - _.layerPosition.start.x;
+					var _nowH = _.options.height + e.pageY - _.layerPosition.start.y;
+
 					$(this).find('.layers-box').css({
-						width: _.options.width + e.pageX - _.layerPosition.start.x ,
-						height: _.options.height + e.pageY - _.layerPosition.start.y
+						width: _nowW > _.options.minW ? _nowW : _.options.minW,
+						height: _nowH > _.options.minH ? _nowH : _.options.minH
 					})
 				} 
 				// Move
@@ -188,7 +193,6 @@ Layers = {
 	},
 
 	resize: function() {
-		console.log(this.options.winW, this.options.winH);
 		var _ = this;
 		var t ;
 
@@ -219,6 +223,7 @@ Layers = {
 					if (_.options.width > now_winW) {
 						maxWidth= now_winW
 					}
+
 
 					if (_.options.height > now_winH) {
 						maxHeight = now_winH
