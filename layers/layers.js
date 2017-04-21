@@ -2,8 +2,8 @@
 	layers 弹层
 	----------------------------------------
 	@ektx
-	@2016-10-18
-	@v0.0.1
+	@2017-4-19
+	@v0.0.3
 
 
 	<section class="layers-mod" style="display: none">
@@ -34,7 +34,8 @@ Layers = {
 		winH: 0,
 		minH: 80,
 		title: 'Title',
-		resize: false
+		resize: false,
+		zIndex: false
 	},
 	isResize: false,
 
@@ -181,7 +182,7 @@ Layers = {
 			resizeHTML = '<button class="layer-resize"></button>';
 		}
 
-		html +=	'<div id="'+this.id+'" class="layers-box show" style="width:'+width+'px; height:'+height+'px; top:'+top+'px; left:'+left+'px; z-index:'+this.id.substr(7)+';' +resize+'">';
+		html +=	'<div id="'+this.id+'" class="layers-box show" style="width:'+width+'px; height:'+height+'px; top:'+top+'px; left:'+left+'px; z-index:'+ (this.options.zIndex || this.id.substr(7)) +';' +resize+'">';
 
 		html += this.createTitle(options.title);
 		html += this.createInner(options.content);
