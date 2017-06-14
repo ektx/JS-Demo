@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+		// es 6 之前
+		function a(x, y) {
+			x = x || 'hello';
+			y = y || 'world';
+
+			console.log(x, y)
+		}
+
+		a();
+		a('', '123')
+		a('abc', false) // y 为false不显示
+
+		// es 6
+		function es6(x = 'hello', y = 'world') {
+			console.log(x, y)
+		}
+
+		es6();
+		es6('', '123');
+		es6('abc', false);
+
+		let x = 10;
+		// p 在没有传入值时计算出来,有传入时就是传入的值
+		function add(p = x + 1) {
+			console.log(p, x)
+		}
+
+		add();
+
+		x = 90;
+		add()
+
+		add(80);
+
+
+		function log({x, y = 1}) {
+			console.log(x, y)
+		}
+
+		log({}); // undefined 1, x 没有默认值,y默认为 1
+		log({x: 5}); // 5 1
+		log({x: 5, y: 3}) // 5 3
+		// log() // log 必须传入对象
+
+		// 双重默认值
+		function fetch({method = 'GET'} = {}) {
+			console.log(method);
+		}
+
+		fetch({})
+		fetch() // {method = 'GET'} 默认 {}, 相当于 fetch({}) 
+	</script>
+</body>
+</html>
