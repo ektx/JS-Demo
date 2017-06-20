@@ -7,6 +7,7 @@
 | [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具       |
 | [Animate.less](https://github.com/machito/animate.less) | 样式动画          |
 | [mCustomScrollbar](http://manos.malihu.gr/jquery-custom-content-scroller/) | 滚动条效果         |
+| [FileSaver.js](https://github.com/eligrey/FileSaver.js) | 用于解决跨浏览器支持 `saveAs()` 库 |
 
 #### Turbo.js
 
