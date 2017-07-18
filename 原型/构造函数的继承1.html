@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数的继承 1</title>
+</head>
+<body>
+	<script>
+		function Animal() {
+			this.species = '动物'
+		}
+
+		
+
+		// 方法一
+		// function Cat(name, color) {
+		// 	// 使用 call Or apply
+		// 	Animal.apply(this, arguments);
+
+		// 	this.name = name;
+		// 	this.color = color
+		// }
+
+
+		// 方法二
+		function Cat(name, color) {
+			this.name = name;
+			this.color = color;
+		}
+
+		// 将Cat的prototype对象指向一个Animal的实例
+		// 它相当于完全删除了prototype 对象原先的值，然后赋予一个新值
+		Cat.prototype = new Animal();
+		// 如果不修正,那么我们运行 cat1.constructor 时,我们发现他说我们
+		// 继承的是 Animal
+		Cat.prototype.constructor = Cat;
+
+
+		var cat1 = new Cat('tom', 'yellow');
+		console.log( cat1 )
+	</script>
+</body>
+</html>

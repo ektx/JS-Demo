@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数的继承 1</title>
+</head>
+<body>
+	<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html">构造函数的继承</a>
+	<script>
+		function Animal() {
+		}
+		Animal.prototype.species = '动物'
+
+
+		function Cat(name, color) {
+			this.name = name;
+			this.color = color;
+		}
+
+		// 将Cat的prototype对象指向一个Animal的实例
+		// 它相当于完全删除了prototype 对象原先的值，然后赋予一个新值
+		Cat.prototype = Animal.prototype;
+		// 如果不修正,那么我们运行 cat1.constructor 时,我们发现他说我们
+		// 继承的是 Animal
+		Cat.prototype.constructor = Cat;
+
+		// 缺点是 Cat.prototype和Animal.prototype现在指向了同一个对象，那么任何对Cat.prototype的修改，都会反映到Animal.prototype。
+
+
+		var cat1 = new Cat('tom', 'yellow');
+		console.log( cat1 )
+	</script>
+</body>
+</html>
