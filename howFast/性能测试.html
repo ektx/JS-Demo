@@ -1,55 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>How Fast</title>
+	<link rel="stylesheet" href="contents/css/layout.css">
 </head>
 <body>
 <section class="test-mod">
 	<header>
 		<h1>How Fast ?</h1>
 		<p>以下测试内容只能是对您的代码运行效率的参考,不是最终效果值!</p>
+		<button id="run" class="run-btn">Run</button>
 	</header>
 	<main class="test-body">
 		<div class="code-box">
-			<textarea name="" id="test-code" cols="30" rows="10"></textarea>
-			<button id="run">运行</button>
+			<textarea id="test-code" data-run="0" placeholder="请输入你要运行的代码"></textarea>
 		</div>
 		<div class="result-mod">
-			<ul id="result-box"></ul>
+			<div id="result-box" class="result-box"></div>
 		</div>
 	</main>
 
 </section>
 <script type="text/javascript">
-function testCode() {
-	var codeBox = document.getElementById('test-code');
-	var	code = codeBox.value.trim();
-	var placeholder = '请输入你要运行的代码';
+let codeBox = document.getElementById('test-code');
+let resultBox = document.getElementById('result-box');
+let runBtn = document.getElementById('run');
+let isRuning = false;
+
+
+
+runBtn.addEventListener('click', function() {
+	let	code = codeBox.value.trim();
+
+	let createResultBox = (id)=> {
+		let div = document.createElement('div');
+		div.classList.add('result-ul');
+		div.id = id;
+
+		resultBox.appendChild(div);
+
+		return div;
+	}
+
+	let getAppendToBox = function() {
+		let id = this.dataset.runTest || this.dataset.newTest;
+		let ele = document.getElementById( id );
+
+		if (!ele) {
+			ele = createResultBox( id );
+		}
+
+		return ele;
+	}
 	
-	if (!code || code === placeholder) {
-		codeBox.value = placeholder
+	if (!code) {
+		codeBox.focus()
 		return;
 	}
 
-	var startTime = new Date().getTime(), 
+	try {
+		eval(code)
+		
+	} catch (err) {
+		console.error(err);
+
+		runBtn.style.background = 'red';
+		this.dataset.newTest = '';
+
+		return;
+	}
+
+	
+	let startTime = new Date().getTime(), 
 		timeElapsed = 0;
 
 	for (iters = 0; timeElapsed < 1000; iters++) {
 
 		eval(code)
 
-
 		timeElapsed = new Date().getTime() - startTime;
 	}
 
-	var li = document.createElement('li');
+	let ele = getAppendToBox.call(this);
+	var li = document.createElement('p');
 	li.textContent = iters;
 
-	document.getElementById('result-box').appendChild(li)
-	
-}
+	ele.appendChild(li);
 
-document.getElementById('run').addEventListener('click', testCode)
+	if (this.dataset.runTest == 0) {
+		this.dataset.runTest = this.dataset.newTest;
+		this.dataset.newTest = '';
+		this.dataset.runTime = Number(this.dataset.runTime) + 1;
+	}
+
+}, false);
+
+codeBox.addEventListener('input', function(e) {
+	
+	if (!runBtn.dataset.newTest) {
+		runBtn.dataset.newTest = +new Date();
+		runBtn.dataset.runTest = '';
+		runBtn.dataset.runTime = '';
+		runBtn.removeAttribute('style');
+	}
+
+}, false)
 
 </script>
 </body>
