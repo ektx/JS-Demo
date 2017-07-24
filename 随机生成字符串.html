@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var str = Math.random().toString(36).substring(2, 8);
+
+		document.write(str)
+
+		function genRandom(fixed, max, min = max) {
+
+			let str = Math.random().toString(36).substr(2);
+
+			if (fixed) {
+				max = min + ~~((max - min) * Math.random())
+			}
+
+			let needSize = max - str.length;
+
+			if (str.length < max) {
+
+				for (; str.length < max; str += Math.random().toString(36).substr(2)) {}
+			}
+
+			str = str.substr(0, max)
+console.log(str)
+			return str;
+		}
+	</script>
+</body>
+</html>
