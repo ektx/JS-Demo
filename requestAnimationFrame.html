@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>mozRequestAnimationFrame</title>
+	<title>RequestAnimationFrame</title>
 </head>
 <body>
 <div style="width: 200px; border: 1px solid #ccc">
@@ -14,10 +14,10 @@
 		var div = document.getElementById('status');
 		div.style.width = (parseInt(div.style.width, 10) + 1) + '%';
 
-		// console.log('动画运行时间: '+timestamp)
+		console.log('动画运行时间: '+timestamp)
 
 		var diff = timestamp - startTime;
-		// console.log('重绘时间间隔: ' + diff + 'ms')
+		console.log('重绘时间间隔: ' + diff + 'ms')
 		startTime = timestamp;
 
 		if (div.style.width != '100%') {
@@ -32,6 +32,8 @@
 
 	var startTime = window.mozAnimationStartTime || Date.now();
 	requestAnimationFrame(updateProgress)
+
+	
 
 </script>
 </html>
