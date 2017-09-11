@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DocumentFragment</title>
+</head>
+<body>
+	<div id="scripts-box"></div>
+
+	<script>
+		let scripts = document.getElementById('scripts-box');
+
+		// 方法1, 多次插入方法
+		// ['a.js', 'b.js', 'c.js'].forEach((val, i) => {
+		// 	let script = document.createElement('script');
+		// 	script.src = val;
+
+		// 	scripts.appendChild( script );
+		// });
+
+		// 方法二
+		// let fragment = document.createDocumentFragment();
+		// ['a.js', 'b.js', 'c.js'].forEach((val, i) => {
+		// 	let script = document.createElement('script');
+		// 	script.src = val;
+
+		// 	fragment.appendChild( script );
+		// });
+		// scripts.appendChild( fragment );
+
+		// 方法三
+		// 使用字符串(效率最佳) 添加js不会引起数据加载,这里只是demo
+		let newArr = ['a.js', 'b.js', 'c.js'].map((val, i) => {
+			return `<script src="${val}"><\/script>`
+		})
+		scripts.innerHTML = newArr.join('')
+
+	</script>
+</body>
+</html>
