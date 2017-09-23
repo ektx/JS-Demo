@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOMParser</title>
+</head>
+<body>
+	<main></main>
+
+	<script>
+		let domStr = '<header><h1>Hello Man!</h1></header>';
+		let el = new DOMParser().parseFromString(domStr, 'text/xml');
+
+		document.querySelector('main').appendChild( el.firstChild )
+	</script>
+</body>
+</html>
