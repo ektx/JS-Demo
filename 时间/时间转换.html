@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时间处理</title>
+</head>
+<body>
+	<h1>快速处理 2017年9月25日 转换成 2017-09-25</h1>
+	<pre>'2017年9月25日'.slice(0,-1).replace(/\D/g,'-')</pre>
+	<script>
+		let time = '2017年9月25日'
+		// 删除最后一位 '日',防止配置
+		.slice(0,-1)
+		// 将其它所有的非数字转换成 -
+		.replace(/\D/g,'-')
+
+		console.log(time)
+	</script>
+</body>
+</html>
