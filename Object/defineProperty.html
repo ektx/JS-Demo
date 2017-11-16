@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object.defineProperty()</title>
+</head>
+<body>
+	<h1>Object.defineProperty()</h1>
+	<p>方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+	<script type="text/javascript">
+		let obj = {}
+
+		Object.defineProperty(obj, 'data', {
+			configurable: true,
+			enumerable: true,
+			get: function() {
+				console.log('your are get!')
+				return this._data
+			},
+
+			set: function(newVal) {
+				console.log('now set: ' + newVal)
+				this._data = newVal
+			}
+		})
+	</script>
+</body>
+</html>

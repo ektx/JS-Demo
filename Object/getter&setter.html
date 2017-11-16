@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>getter setter</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let obj = {
+
+			_data: 0,
+
+			get data () {
+				console.log('your are get!')
+				return this._data
+			},
+
+			set data (val) {
+				console.log('now set: ' + val)
+				this._data = val
+			}
+		}
+	</script>
+</body>
+</html>

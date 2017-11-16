@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>选择与反选</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const row = {
+			'accounts.id': 1,
+			'client.name': 'John Doe',
+			'bank.code': 'MDAKW213'
+		};
+
+		const table = [
+			row,
+			{'accounts.id': 3, 'client.name': 'Steve Doe', 'bank.code': 'STV12JB'}
+		];
+
+		function pick(obj, keys) {
+			// 返回新的数组
+			let result = keys.map(k => k in obj ? {[k]: obj[k]} : {})
+			console.log(result)
+			return result.reduce((res, o) => Object.assign(res, o), {});
+		}
+
+		pick(row, ['client.name', 'accounts.id']); // 取到了 client name
+
+	</script>
+</body>
+</html>
