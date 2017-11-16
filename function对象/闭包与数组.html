@@ -1,0 +1,27 @@
+<script>
+var scope ="global scope";
+function checkscope() {
+	var scope = "local scope";
+	var scope2 = "local scope2";
+	function f() {return scope;};
+	function g() {return scope2;};
+	c = [f,g]
+	return c;
+}
+
+checkscope();
+// => [function f() {return scope;}, function g() {return scope2;}]
+
+checkscope()[1];
+// => function g() {return scope2;}
+
+checkscope()[0];
+// => function f() {return scope;}
+
+checkscope()[0]();
+// => "local scope"
+
+checkscope()[1]();
+// => "local scope2"
+
+</script>
