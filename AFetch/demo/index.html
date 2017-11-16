@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+	<script type="module">
+		import AFetch from '../dev.js'
+// console.log(AFetch)
+		AFetch.sendBefore = function() {
+			console.log('send before')
+		}
+
+		AFetch('api/demo.json')
+		.then(res => {
+			console.log(res)
+		})
+		.catch(err => {
+			console.error(1, err)
+		})
+	</script>
+	<script type="module">
+		console.log(AFetch)
+	</script>
+</body>
+</html>
