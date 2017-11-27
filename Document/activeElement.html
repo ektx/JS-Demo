@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>document.activeElement</title>
+</head>
+<body onload="init()">
+	<div id="main">
+		<p>返回当前页面中获得焦点的元素,也就是说,如果此时用户按下了键盘上某个键,会在该元素上触发键盘事件.该属性是只读的.</p>
+
+		<p>很多情况下,该属性会返回一个<code>&lt;input&gt;</code>或者<code>&lt;textarea&gt;</code>元素,于此同时,如果用户在文本输入框中选中了一些文本,还可以使用该元素的selectionStart和selectionEnd属性获得准确的选中文本内容.</p>
+
+		<p>该属性的值还可能是一个<code>&lt;select&gt;</code>元素(下拉菜单)或者type属性为button,checkbox或radio的<code>&lt;input&gt;</code>元素.</p>
+
+		<p>注: 在Mac上,无法输入文字的元素无法获得焦点.</p>
+		<p>通常,用户可以通过Tab键来在页面中可以获得焦点的那些元素中切换,然后按下空格键激活这个元素(按下按钮,选择单选选项,打开下拉菜单选项等).</p>
+
+		<p>如果没有某个元素获得焦点,则该属性的值为当前页面中的<body>元素. </p>
+
+		<p>注: 该属性被包含在了HTML5规范中.</p>
+	</div>
+
+	<textarea id="txt" rows="8" cols="80">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</textarea>
+
+	<p>Active Element ID: <span id="output-ele"></span></p>
+	<p>Active Element ID: <span id="output-txt"></span></p>
+
+	<script type="text/javascript">
+		function init() {
+			function onMouseUp (e) {
+				console.log(e)
+				let outputEle = document.getElementById('output-ele')
+				let outputTxt = document.getElementById('output-txt')
+				let selectedTextArea = document.activeElement
+				let selection = selectedTextArea.value.substring(
+					selectedTextArea.selectionStart, selectedTextArea.selectionEnd
+					)
+
+				outputEle.innerHTML = selectedTextArea.id
+				outputTxt.innerHTML = selection
+
+			}
+
+			// 文本域才有效果
+			document.getElementById('txt').addEventListener('mouseup', onMouseUp, false)
+		}
+	</script>
+</body>
+</html>
