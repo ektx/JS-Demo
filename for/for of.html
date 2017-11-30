@@ -33,24 +33,37 @@ for (var value of arr) {
 }
 console.groupEnd()
 
-// console.group('For Of:')
-// for (var [key, value] of obj) {
-// 	console.log(key,value)
-// }
-// console.groupEnd()
+console.group('For Of:')
+/*
+	Object.entries() ES7语法
+	该方法返回一个给定对象自身可枚举的键值对数组,其排列与 for .. in 循环遍历该对象的
+	顺序一致,区别在于 for in 循环也枚举原型链中的属性
+	https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+*/
+for (let [key,val] of Object.entries(obj)) {
+	console.log(key, val)
+}
+console.groupEnd()
 
 console.group('For in:')
-console.group('Array:')
-for (var index in arr) {
-	console.log(index)
-}
-console.groupEnd()
+	console.group('Array:')
+	for (var index in arr) {
+		console.log(index)
+	}
+	console.groupEnd()
 
-console.group('String:')
-for (var index in 'abcdefg') {
-	console.log('abcdefg'[index])
-}
-console.groupEnd()
+	console.group('String:')
+	for (var index in 'abcdefg') {
+		console.log('abcdefg'[index])
+	}
+	console.groupEnd()
+
+
+	console.group('Object')
+	for (let key in obj) {
+		console.log(key, obj[key])
+	}
+	console.groupEnd()
 console.groupEnd()
 
 for (let i = 0; i < 100; i++) {
