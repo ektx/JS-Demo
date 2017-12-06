@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for in</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let	obj = {
+			name: 'ektx',
+			age: 27
+		}
+
+		function Person() {
+			this.city = 'hangzhou'
+		}
+		Person.prototype = obj
+
+		const objPerson = new Person()
+
+		for (let key in objPerson) {
+			// propertyIsEnumberable 返回一个布尔值
+			// 表明指定的属性名是否是当前对象可枚举的自身属性
+			if (objPerson.hasOwnProperty(key)) {
+				// 原型链上的属性不会显示
+				console.log(key, objPerson[key])
+		  	}
+		}
+		// => objPerson.city: hangzhou
+
+		for (let val in objPerson) {
+			console.log(val, objPerson[val])
+		}
+		// objPerson.city: hangzhou
+		// objPerson.name: ektz
+		// objPerson.age: 27
+	</script>
+</body>
+</html>

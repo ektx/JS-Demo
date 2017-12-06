@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object.getOwnPropertyNames</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let obj = Object.create({}, {
+			getFoo: {
+				value: function () { return this.foo },
+				enumerable: false
+			}
+		})
+
+		obj.foo = 1;
+
+		// Object.getOwnPropertyNames() 返回一个数组
+		// 该数组元素是 obj 自身拥有的枚举或不可枚举属性的名称字符串
+		console.log(Object.getOwnPropertyNames(obj))
+		// => ['getFoo', 'foo']
+		console.log(Object.keys(obj))
+		// => ['foo']
+
+		// for … in 循环只遍历可枚举属性
+		for (let i in obj) {
+			console.log(i, obj[i])
+		}
+		// => foo 1
+	</script>
+</body>
+</html>

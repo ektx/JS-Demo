@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for in</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let iterable = new Map([["a", 1], ["b", 2], ["c", 3]])
+		console.log(iterable)
+		// Map(3) {"a" => 1, "b" => 2, "c" => 3}
+
+		for (let entry of iterable) {
+			console.log(entry)
+		}
+		// ["a", 1]
+		// ["b", 2]
+		// ["c", 3]
+	</script>
+</body>
+</html>

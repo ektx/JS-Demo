@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object.entries()</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let obj = {
+			name: 'ektx',
+			age: 27
+		}
+
+		for (let [key, val] of Object.entries(obj)) {
+			document.write(`${key}: ${val}<br>`)
+		}
+
+		// name: ektx
+		// age: 27
+	</script>
+</body>
+</html>
