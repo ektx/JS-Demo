@@ -8,7 +8,7 @@
 	
 </body>
 <script>
-	var arr = [0,-1,8,3,'我','你','Q','今天','阿', '淇', 'q'];
+	let arr = [0,-1,8,3,'我','你','Q','今天','阿', '淇', 'q', 'a', 'A'];
 
 	// sort() 方法
 	console.log(arr.sort()) //=> [-1, 0, 3, 8, "Q", "今天", "你", "我", "阿"]
@@ -17,7 +17,9 @@
 		if (typeof a == 'number') a += ''
 		if (typeof b == 'number') b += ''
 
-		return a.localeCompare(b)
+		return a.localeCompare(b, navigator.language)
 	}))
+
+	console.log(arr.sort( (a,b) => new Intl.Collator(navigator.language).compare(a, b)))
 </script>
 </html>
