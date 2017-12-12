@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>array to tree</title>
+</head>
+<body>
+	<script>
+		let arr = ['/a/b/c', '/a/d/f', '/a', '/a/d/e', '/a/c', '/a/b/c/d/f/g']
+
+		function array2tree (arr) {
+			let obj = {}
+
+			arr.forEach( (val,i) => {
+				let innerArr = val.split('/')
+				let checkObj = obj
+
+				innerArr.forEach((iVal, x, iarr) => {
+					if (iVal !== '') {
+						if (!(iVal in checkObj)) {
+							checkObj[iVal] = {}
+							checkObj[iVal].path = iarr.slice(0, x+1).join('/')
+						}
+						checkObj = checkObj[iVal]
+					} 
+				})
+			})
+
+			return obj
+		}
+
+		function tree2array (obj) {
+			let arr = []
+			let loopObj = function(_o) {
+				for (let [key, val] of Object.entries(_o)) {
+
+					if (val.path)
+						arr.push(val.path)
+
+					if (typeof val === 'object') {
+						loopObj(val)
+					}
+				}
+			}
+			
+			loopObj(obj)
+
+			return arr
+		}
+
+		function delay (val) {
+			return new Promise(async (resolve, reject) => {
+				console.warn('生成文件夹:', val)
+				setTimeout(() => {
+					resolve()
+				}, 500)
+			})
+		}
+
+		async function loop (arr) {
+			for (let val of arr) {
+				await delay(val)
+			}
+		}
+
+
+		async function test() {
+
+			let obj = array2tree(arr)
+			// console.log(JSON.stringify(obj, '', '\t'))
+			
+			let newArr = tree2array(obj)
+			// console.log(newArr)
+
+			await loop(newArr)
+			
+			console.log('E')
+		}
+
+		test()
+
+	</script>
+</body>
+</html>
