@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>array max</title>
+</head>
+<body>
+	<h1>求数组最大值</h1>
+	<script type="text/javascript">
+		let arr = [1,2,3,4,5,6,7];
+
+		// 1. apply 方法
+		console.log('apply:', Math.max.apply({}, arr) )
+
+		// 2. call 严格来说，call并不是对数组求最大值，是对字符串
+		console.log('call:', Math.max.call({}, 1,2,3,4,5,6,7) )
+
+
+		// ES6
+		console.log('ES6:', Math.max(...arr) )
+	</script>
+</body>
+</html>
