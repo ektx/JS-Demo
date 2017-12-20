@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>replaceChild()</title>
+</head>
+<body>
+	<p id="ele-p">3s后，这里将被替换！</p>
+
+</body>
+<script>
+	let p = document.getElementById('ele-p');
+	let h1 = document.createElement('h1');
+
+	h1.innerText = 'hello world!';
+
+	setTimeout(() => {
+		p.parentNode.replaceChild(h1, p);
+	}, 3000)
+</script>
+</html>
