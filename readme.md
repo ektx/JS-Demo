@@ -1,12 +1,12 @@
 # 常用库
 
-| 代码(库)                                    | 说明            |
-| ---------------------------------------- | ------------- |
-| [Howler.js](https://github.com/goldfire/howler.js) | JavaScript音频库 |
-| [MOment.js](http://momentjs.cn/docs/)    | 时间格式化工具       |
-| [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具       |
-| [Animate.less](https://github.com/machito/animate.less) | 样式动画          |
-| [mCustomScrollbar](http://manos.malihu.gr/jquery-custom-content-scroller/) | 滚动条效果         |
+| 代码(库)                                    | 说明                      |
+| ---------------------------------------- | ----------------------- |
+| [Howler.js](https://github.com/goldfire/howler.js) | JavaScript音频库           |
+| [MOment.js](http://momentjs.cn/docs/)    | 时间格式化工具                 |
+| [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具                 |
+| [Animate.less](https://github.com/machito/animate.less) | 样式动画                    |
+| [mCustomScrollbar](http://manos.malihu.gr/jquery-custom-content-scroller/) | 滚动条效果                   |
 | [FileSaver.js](https://github.com/eligrey/FileSaver.js) | 用于解决跨浏览器支持 `saveAs()` 库 |
 
 #### Turbo.js
@@ -24,6 +24,14 @@ turbo.js - perform massive parallel computations in your browser with GPGPU. [h
 Turning web forms into conversations [https://space10-community.github.io/c…](https://space10-community.github.io/conversational-form/)
 
 让你的表单以对话聊天方式进行:)
+
+
+
+#### [jquery-qrcode](https://github.com/jeromeetienne/jquery-qrcode)
+
+qrcode generation standalone (doesn't depend on external services)
+
+独立生成**二维码**（不需外界服务支持）
 
 
 
