@@ -27,6 +27,14 @@ Turning web forms into conversations [https://space10-community.github.io/c…]
 
 
 
+#### [instascan](https://github.com/schmich/instascan)
+
+HTML5 QR code scanner using your webcam
+
+HTML 5 使用你的摄像头到解码二维码
+
+
+
 #### [jquery-qrcode](https://github.com/jeromeetienne/jquery-qrcode)
 
 qrcode generation standalone (doesn't depend on external services)
