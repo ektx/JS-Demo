@@ -22,6 +22,7 @@ $(function() {
 	var lists = $('.big-wheel-box li');
 	var listSize = lists.size();
 	var rotateZ = 360 / listSize;
+	// 指定对象X轴的（水平方向）扭曲
 	var skewX = 90 - rotateZ;
 	lists.each(function(i) {
 		$(this).css({
