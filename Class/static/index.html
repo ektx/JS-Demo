@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	类相当于实例的原型，所有在类中定义的方法，都会被实例继承。
+	如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
+	<script>
+		class Foo {
+			static classMethod() {
+				return 'hello static';
+			}
+
+			classMethod2() {
+				return 'hello'
+			}
+		}
+
+		let foo = new Foo()
+
+		Foo.classMethod()	// 可以输出，直接调用：hello static
+		Foo.classMethod2()	// 错误，不能直接调用：Uncaught TypeError: 
+
+		foo.classMethod()	// 不可以继承，Uncaught TypeError:
+		foo.classMethod2()	// 可以继承 hello
+	</script>
+</body>
+</html>
