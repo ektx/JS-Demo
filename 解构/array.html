@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解构在 Array 中使用</title>
+</head>
+<body>
+    <script>
+        let [x, y] = [1, 2 ] // 效果类似 let x = 1, y = 2
+        [x, y] = [x + 1, y + 1] // => x = x + 1, y = y + 1
+        [x, y] = [y, x] // => 交换2个变量值
+        console.log([x, y]) // => [3, 2]    
+    </script>
+</body>
+</html>
