@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>var</title>
+</head>
+<body>
+	<h1>let</h1>
+	<p>let定义一个变量，此变量只在<b>当前作用域中可访问与修改</b></p>
+
+	<ul>
+		<li>用let重定义变量会抛出一个语法错误</li>
+		<li>let声明的全局变量不是全局对象的属性</li>
+		<li></li>
+		<li></li>
+	</ul>
+
+	<h1>参考</h1>
+	<ul>
+		<li><a href="http://www.infoq.com/cn/articles/es6-in-depth-let-and-const/">let和const</a></li>
+	</ul>
+</body>
+<script>
+	
+	/**
+	 * let声明的全局变量不是全局对象的属性
+	 * 
+	 * 这就意味着，你不可 以通过window.变量名的方式访问这些变量。
+	 * 它们只存在于一个不可见的块的作用域中，这个块理论上是Web页面中运行的所有JS代码的外层块。
+	 */
+	var a = 'hello'
+	let b = 'hi'
+	console.log(window.a, window.b)
+
+</script>
+</html>
