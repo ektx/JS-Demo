@@ -49,7 +49,7 @@ qrcode generation standalone (doesn't depend on external services)
 
 
 
-#### [Numi-extensions](https://github.com/nikolaeu/numi-extensions) New
+#### [Numi-extensions](https://github.com/nikolaeu/numi-extensions)
 
 Extensions API for Numi [http://numi.io](http://numi.io/)
 
@@ -69,6 +69,20 @@ You can use JavaScript extensions to add global variables, custom units or funct
 
 
 
+
+
+#### [Prettier](https://github.com/prettier/prettier) 
+
+**推荐**
+
+Prettier is an opinionated code formatter. [https://prettier.io](https://prettier.io/)
+
+Prettier是一个用于格式化代码的工具。
+
+
+
+
+
 #### Tesseract.js
 
 **Tesseract.js** is a pure Javascript port of the popular [Tesseract OCR engine](https://github.com/tesseract-ocr/tesseract).
@@ -84,4 +98,12 @@ You can use JavaScript extensions to add global variables, custom units or funct
 Canvas图片模糊效果.
 
 
+
+
+
+#### [Standard](https://github.com/standard/standard)
+
+**推荐**
+
+JavaScript 代码规范。
 
