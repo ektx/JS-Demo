@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Js PinYin</title>
+</head>
+<body>
+    <div>
+        <input id="val" type="text" placeholder="请输入中文">
+        <button id="go">输出</button>
+    </div>
+    <p>全拼: <span id="result-full-box"></span></p>
+    <p>首字母: <span id="result-min-box"></span></p>
+    <script type="module">
+        import Pinyin from './pinyin.js'
+
+        let fullBox = document.getElementById('result-full-box')
+        let minBox = document.getElementById('result-min-box')
+
+        document.getElementById('go').addEventListener('click', () => {
+            let val = document.getElementById('val').value
+            let pinyin = new Pinyin()
+            
+            fullBox.innerHTML = pinyin.getFullChars(val)
+            minBox.innerHTML = pinyin.getCamelChars(val)
+        })
+    </script>
+</body>
+</html>
