@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let obj = {
+        a: 1,
+        b: true,
+        c: 'hello world',
+        d: 100,
+        f: [1,2],
+        g: {
+            a: 1
+        }
+    }    
+
+    // 除去 a b d
+    let { a, b, d, ...result } = obj 
+    console.log(result)
+    </script>
+</body>
+</html>
