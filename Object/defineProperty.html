@@ -22,6 +22,34 @@
 				this._data = newVal
 			}
 		})
+
+		Object.defineProperty(obj, 'a', {
+			configurable: false,  // 不可以删除
+			enumerable: true, // 对象中可见
+			get: function() {
+				return `your are get: ${this._a}`
+			},
+			set: function(newVal) {
+				console.log('you set a is', newVal)
+				this._a = newVal
+			}
+		})
+
+		console.log('我可以删除 a 吗？', delete obj.a )
+
+		Object.defineProperty(obj, 'b', {
+			configurable: true,
+			enumerable: false, // 对象中不可见（enumerable默认为false,这里为了方便对比）
+			get: function() {
+				return `your are get: ${this._b}`
+			},
+			set: function(newVal) {
+				console.log('you set a is', newVal)
+				this._b = newVal
+			}
+		})
+
+		console.log(Object.keys(obj), 'obj.b不可见')
 	</script>
 </body>
 </html>
