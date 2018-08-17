@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for in 迭代器</title>
+</head>
+<body>
+    <script>
+        // 创建一个迭代器对象
+        function range (min, max) {
+            return {
+                get min() {return min},
+                get max() {return max},
+                includes: function (x) {
+                    return min <= x && x <= max
+                },
+                toString: function () {
+                    return `[${min}, ${max}]`
+                },
+                __iterator__: function () {
+                    let val = Math.ceil(min)
+                    return {
+                        next: function () {
+                            if (val > max) throw StopIteration
+                            return val++
+                        }
+                    }
+                }
+            }
+        }
+
+        // 使用 for/in 来处理（chrome 68 目前不支持）
+        for (let i in range(1, 10)) console.log(i) // 输出 1~10
+    </script>
+</body>
+</html>
