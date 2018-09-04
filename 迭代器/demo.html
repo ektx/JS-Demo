@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>迭代器</title>
+</head>
+<body>
+    <h1>迭代器</h1>
+
+    <p>StopIteration 目前在浏览器中，并不是标准，不是所有浏览器支持</p>
+
+    <h2>参考</h2>
+    <ol>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Archive/Web/StopIteration">StopIteration</a>
+        </li>
+    </ol>
+    <script>
+        // 无限迭代器
+        function counter (start) {
+            // 表示迭代器的一个私有状态
+            let nextValue = Math.round(start)
+            // 返回迭代器对象
+            return {
+                next: function () {
+                    return nextValue++
+                }
+            }
+        }
+        
+        let serialNumberGenerator = counter(1000)
+        let sn1 = serialNumberGenerator.next() // 1000
+        let sn2 = serialNumberGenerator.next() // 1001
+
+        console.log(sn1, sn2)
+        console.warn('你可以尝试输入：serialNumberGenerator.next()')
+
+        // 可结束的迭代器
+        function rangeIter(start, end) {
+            let nextValue = Math.ceil(start)
+            return {
+                next: function () {
+                    if (nextValue > end) throw StopIteration
+                    return nextValue++
+                }
+            }
+        }
+
+        // 获得迭代器对象
+        let r = rangeIter(1, 5)
+
+        while (true) {
+            try {
+                // 调用 next() 方法
+                console.log(r.next())
+            } catch (e) {
+                if (e == StopIteration) break; // 抛出 StopIteration 时退出
+                else throw e
+            }
+        }
+    </script>
+</body>
+</html>
