@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在线情况</title>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        let h1 = document.querySelector('h1')
+
+        window.addEventListener('online', function () {
+            h1.innerText = '在线'
+        }, true)
+        
+        window.addEventListener('offline', function () {
+            h1.innerText = '离线'
+        }, true)
+
+        if (navigator.onLine) {
+            h1.innerText = '在线'
+        }
+    </script>
+</body>
+</html>
