@@ -1,12 +1,12 @@
 # 常用库
 [TOC]
 
-| 代码(库)                                    | 说明                      |
-| ---------------------------------------- | ----------------------- |
-| [Howler.js](https://github.com/goldfire/howler.js) | JavaScript音频库           |
-| [MOment.js](http://momentjs.cn/docs/)    | 时间格式化工具                 |
-| [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具                 |
-| [Animate.less](https://github.com/machito/animate.less) | 样式动画                    |
+| 代码(库)                                    | 说明            |
+| ---------------------------------------- | ------------- |
+| [Howler.js](https://github.com/goldfire/howler.js) | JavaScript音频库 |
+| [MOment.js](http://momentjs.cn/docs/)    | 时间格式化工具       |
+| [Accounting.js](http://openexchangerates.github.io/accounting.js/) | 货币格式化工具       |
+| [Animate.less](https://github.com/machito/animate.less) | 样式动画          |
 
 #### [mCustomScrollbar](http://manos.malihu.gr/jquery-custom-content-scroller/)
 滚动条效果
@@ -79,4 +79,16 @@ Canvas图片模糊效果.
 #### [Standard](https://github.com/standard/standard)
 **推荐**
 JavaScript 代码规范。
+
+<br/>
+
+
+
+#### [deepmerge](https://www.npmjs.com/package/deepmerge)
+
+Merges the enumerable attributes of two or more objects deeply.
+
+深度合并2个以上多个对象的内容.
+
+
 
