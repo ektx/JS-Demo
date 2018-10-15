@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>open insert</title>
+</head>
+<body>
+	<textarea name="" id="inner" cols="30" rows="10">
+		<h1>hello</h1>
+	</textarea>
+	<button id="open">Open</button>
+
+	<script>
+		let openBtn = document.getElementById('open')
+		let inner = document.getElementById('inner')
+
+		openBtn.addEventListener('click', function() {
+			let win = window.open('', 'test', 'height=300,width=300')
+			win.document.body.innerHTML = inner.value		})
+		
+	</script>
+</body>
+</html>
