@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Set</title>
+</head>
+<body>
+    <script>
+        let a = new Set()
+        
+        let arr = [1,2,3,2,4,5,6]
+
+        arr.map(x => a.add(x))
+
+        console.log(a)
+        
+        console.log('Js中 NaN === NaN', NaN === NaN)
+        a.add(NaN)
+        a.add(NaN)
+        console.log('在Set 中，NaN是相等的，因为我们只加进去一个NaN', a)
+
+        a.add({})
+        a.add({})
+        a.add({})
+
+        console.log('在Set中可以加入多个空对象，两个对象在Set中始终不相等', a)
+        
+        // has(value) 判断是否有某个元素
+        console.log(a.has(1))
+        console.log(a.has(11))
+
+        // delete 删除一个元素
+        console.log('删除 1', a.delete(1))
+        console.log('删除11', a.delete(11))
+        console.log(a)
+        
+        // Set因没有键名只有健值，因此遍历结果都相同（也可以说是相同）
+        for(let i of a.keys()) {
+            console.log(i)
+        }
+        for(let i of a.values()) {
+            console.log(i)
+        }
+        for(let i of a.entries()) {
+            console.log(i)
+        }
+        
+        // Set结构的实例默认可遍历，它的默认遍历器生成函数就是它的                 方法。
+        console.log(Set.prototype[Symbol.iterator] === Set.prototype.values)
+        for(let i of a) {
+            console.log(i)
+        }
+
+        // 清空
+        a.clear()
+        console.log(a)
+    </script>
+</body>
+</html>
