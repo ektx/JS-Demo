@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Animation API</title>
+    <style>
+    .ball {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        background: yellowgreen;
+    }
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+
+    <script>
+    let el = document.querySelector('.ball')
+    let keyframes = [
+        {
+            transform: 'translateY(200px) scaleY(2.5) scaleX(.2)',
+            transformOrigin: '50% 0',
+            filter: 'blur(40px)',
+            opacity: 0
+        },
+        {
+            transform: 'translateY(0) scaleY(1) scale(1)',
+            transformOrigin: '50% 50%',
+            filter: 'blur(0)',
+            opacity: 1
+        }
+    ]
+    let options = {
+        // animation-iteration-count
+        iterations: Infinity,
+        iterationStart: 0,
+        delay: 0,
+        endDelay: 0,
+        direction: 'alternate',
+        duration: 700,
+        fill: 'forwards',
+        // animation-timing-function
+        easing: 'ease-out'
+    }
+
+    el.animate(keyframes, options)
+    </script>
+</body>
+</html>
