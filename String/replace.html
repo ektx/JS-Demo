@@ -4,15 +4,30 @@
 	<title>replace</title>
 </head>
 <body>
-	<h1>string.replace(searchvalue, newvalue)</h1>
-
+	<h1>String.prototype.replace()</h1>
+	<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace">String.prototype.replace()
+	</a>
 </body>
 </html>
 <script>
 
-var str = "Hello man!";
+let str = "Hello man!";
 
-var res = str.replace('man', 'world')
+let res = str.replace('man', 'world')
+// 参数分别为
+
+// 匹配到的字符串（此例为{{abc}},推荐修改上面代码的正则来查看匹配到的字符帮助理解)
+// 如果正则使用了分组匹配就为多个否则无此参数。
+// 匹配字符串的对应索引位置（此例为0）
+// 原始字符串(此例为{{abc}})
+
+let str2 = '{{abc}}'
+str2.replace(/\{\{(.*?)\}\}/g, function () {
+	console.log(arguments)
+})
+str2.replace(/\{\{(.*?)\}\}/g, function (matched, palceholder) {
+	console.log(matched, palceholder)
+})
 
 document.write(res)
 </script>
