@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>string to camel</title>
+</head>
+<body>
+    <script>
+    let strArr = ['hello', 'hello-world', 'hello-2world', 'hello world', '--hello--', '--hello-world--', '_heLLO_world']
+
+    strArr.forEach(val => {
+            let data = ''
+            val.split(/_+|-+|\s+/).forEach(item => {
+                data += camel(item)
+            })
+            console.log(val, '>', data)
+    })
+    
+    function camel (str) {
+        return str.replace(/(\w)(.*)/i, function ($0, $1, $2) {
+            return $1.toUpperCase()+$2.toLowerCase()
+        })
+    }
+    </script>
+</body>
+</html>
