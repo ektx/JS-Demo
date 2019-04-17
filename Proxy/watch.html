@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>proxy watch demo</title>
+</head>
+<body>
+    <h1>监听对象值的变化</h1>
+    <p>1</p>
+    <button class="del-btn">-1</button>
+    <button class="add-btn">+1</button>
+    <button class="set-val">设置为0</button>
+</body>
+<script>
+let obj = {
+    value: 1
+}
+
+function watch (obj, cb) {
+    return new Proxy(obj, {
+        get (obj, prop) {
+            return obj[prop]
+        },
+        set (obj, prop, val) {
+            obj[prop] = val
+            if (cb) cb()
+        }
+    })
+}
+
+let proxy = watch(obj, () => {
+    document.querySelector('p').innerHTML = obj.value
+})
+
+document.querySelector('.del-btn').addEventListener('click', () => {
+    proxy.value -= 1
+})
+document.querySelector('.add-btn').addEventListener('click', () => {
+    proxy.value += 1
+})
+document.querySelector('.set-val').addEventListener('click', () => {
+    proxy.value = 0
+})
+
+</script>
+</html>
