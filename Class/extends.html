@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+    // 1.使用构造函数继承
+    // 缺点：无法继承到prototype上的方法
+    function Parent1 () {
+        this.name = 'parent1'
+    }
+    Parent1.prototype.hi = function () {
+        console.log(this.name)
+    }
+    function Child1 () {
+        Parent1.call(this)
+        this.type = 'child1'
+    }
+
+    var test1 = new Child1
+    console.log(test1)
+    // console.log(test1.hi())
+
+    // 2.原型链继承
+    // 缺点：多个子实例会被同时引用
+    function Parent2 () {
+        this.name = 'parent2'
+        this.arr = [1]
+    }
+    Parent2.prototype.hi = function () {
+        console.log(this.name)
+    }
+    function Child2 () {
+        this.type = 'child2'
+    }
+    Child2.prototype = new Parent2
+
+    var test2 = new Child2
+    var test3 = new Child2
+
+    test3.arr.push(3)
+
+    console.log(test2.arr)
+    console.log(test3.arr)
+
+    // 3.组合
+    // 缺点：child3中对父级进行了2次的实例化
+    function Parent3 () {
+        this.name = 'parent3'
+        this.arr = [1]
+    }
+    Parent3.prototype.hi = function () {
+        console.log(this.name)
+    }
+    function Child3 () {
+        Parent3.call(this)
+        this.type = 'child2'
+    }
+    Child3.prototype = new Parent3
+
+    var test4 = new Child3
+    var test5 = new Child3
+
+    test5.arr.push(2)
+    console.log(test4.arr, test5.arr)
+
+    // 4.组合优化
+    // 缺点：无法确认实例继承的是谁
+    function Parent4 () {
+        this.name = 'parent3'
+        this.arr = [1]
+    }
+    Parent4.prototype.hi = function () {
+        console.log(this.name)
+    }
+    function Child4 () {
+        Parent4.call(this)
+        this.type = 'child2'
+    }
+    Child4.prototype = Parent4.prototype
+
+    var test6 = new Child4
+    var test7 = new Child4
+
+    test7.arr.push(7)
+    console.log(test6.arr, test7.arr)
+    // test6 继承 parent4 ?
+    console.log(test6 instanceof Parent4)
+    // test6 继承 Child4 ?
+    console.log(test6 instanceof Child4)
+    console.log(test6.constructor)
+
+    // 5.Object.create()
+    function Parent5 () {
+        this.name = 'parent5'
+    }
+    Parent5.prototype.hi = function () {
+        console.log(this.name)
+    }
+    function Child5 () {
+        Parent5.call(this)
+        this.type = 'child4'
+    }
+    Child5.prototype = Object.create(Parent5.prototype)
+    Child5.prototype.constructor = Child5
+
+    var test8 = new Child5
+
+    console.log(test8 instanceof Child5)
+    console.log(test8 instanceof Parent5)
+    console.log(test8.constructor)
+    </script>
+</body>
+</html>
