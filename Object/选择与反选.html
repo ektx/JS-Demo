@@ -23,8 +23,8 @@
 			return result.reduce((res, o) => Object.assign(res, o), {});
 		}
 
-		pick(row, ['client.name', 'accounts.id']); // 取到了 client name
-
+		let result = pick(row, ['client.name', 'accounts.id']); // 取到了 client name
+		console.log(result)
 	</script>
 </body>
 </html>
