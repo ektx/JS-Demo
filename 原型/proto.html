@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型链</title>
+</head>
+<body>
+    <script>
+    // 创建对象 - 字面量
+    var o1 = {name: 'o1'}
+    // 使用 Object
+    var o2 = new Object({name: 'o2'})
+
+    // 使用构造函数
+    var M = function (name) { this.name = name }
+    var o3 = new M('o3')
+
+    // 使用Object.create()
+    var p = {name: 'o4'}
+    var o4 = Object.create(p)
+
+    function asNew (fn) {
+        var p = Object.create(fn.prototype)
+        var f = fn.call(p)
+
+        if (typeof f === 'object') {
+            return f
+        } else {
+            return p
+        }
+    }
+
+    var o5 = asNew(M)
+    </script>
+</body>
+</html>
