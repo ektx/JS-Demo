@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch api demo</title>
+</head>
+<body>
+    <p>1</p>
+    <button>+1</button>
+</body>
+<script>
+    let obj = {
+        value: 1
+    }
+
+    document.querySelector('button').addEventListener('click', function () {
+        obj.value += 1
+    })
+
+    function Watch (obj, key, cb) {
+        // 缓存旧的内容
+        let value = obj[key]
+
+        Object.defineProperty(obj, key, {
+            get () {
+                return value
+            },
+            set (val) {
+                // 更新旧地址，不能是 obj[key] 这样会无限调用新地址
+                value = val
+                if (cb) cb()
+            }
+        })
+    }
+
+    Watch(obj, 'value', () => {
+        document.querySelector('p').innerHTML = obj.value
+    })
+</script>
+</html>
