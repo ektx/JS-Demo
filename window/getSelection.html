@@ -19,6 +19,8 @@
 		btn.addEventListener('click', function () {
 			let selObj = window.getSelection();
 			console.log(selObj)
+			let selRange = selObj.getRangeAt(0);
+			console.log(selRange)
 			alert(selObj.toString())
 		})
 	</script>
