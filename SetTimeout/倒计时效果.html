@@ -5,28 +5,35 @@
 	<title>倒计时效果</title>
 </head>
 <body>
-	<p id="time"></p>
-	<button>开始</button>
+	<output id="output"></output>
+	<button onclick="run()">开始</button>
 	<script>
-		function waitTimeToDo(time, timeDoing, callback) {
-			timeDoing(time);
+		function waitTimeToDo({time = 0, step, cb}) {
+			if (step) step(time)
 
 			setTimeout(function() {
-				time--;
-				if (time === 0) {
-					callback()
+				time--
+
+				if (time <= 0) {
+					if (cb) cb()
 				} else {
-					waitTimeToDo(time, timeDoing, callback);
+					if (step) step(time)
+					waitTimeToDo({time, step, cb});
 				}
 			}, 1000)
 		};
 
-		var ele = document.getElementById('time');
-		waitTimeToDo(3, function(time) {
-			ele.innerHTML = time +'s !'
-		}, function(e) {
-			ele.innerHTML = 'OK! time over!'
-		})
+		function run () {
+			waitTimeToDo({
+				time: 3, 
+				step (time) {
+					output.value = time +'s !'
+				}, 
+				cb () {
+					output.value = 'OK! time over!'
+				}
+			})
+		}
 	</script>
 </body>
 </html>
