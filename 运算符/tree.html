@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>for</title>
+  <style>
+  i {
+    color: transparent;
+  }
+  </style>
+</head>
+<body>
+  <script>
+    // 杨辉三角
+  function tree (line) {
+    for (let i = 1; i < line; i++) {
+      // 树的点位符
+      for (let n = line - i; n > 0; n--) {
+        document.write('<i>*</i>')
+      }
+      // 树的主干
+      for (let m = 2 * i - 1; m > 0; m--) {
+        document.write('*')
+      }
+      // 换行
+      document.write('<br/>')
+    }
+  }  
+
+  tree(20)
+  </script>
+</body>
+</html>
