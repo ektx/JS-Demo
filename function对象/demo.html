@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>new Function</title>
+</head>
+<body>
+<script type="text/javascript">
+let str = `{
+	a: 1,
+	b: [1, this.a],
+	c: this.b
+}
+`
+
+
+let _temObj = Function(`return ${str}`)()
+console.log(_temObj)
+
+let _str = str.replace('this', '__this__')
+console.log(_str)
+
+let obj = Function ('__this__', `return ${_str}`)
+let result = obj(_temObj)
+console.log(result)
+</script>
+</body>
+</html>

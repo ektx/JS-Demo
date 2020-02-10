@@ -1,11 +1,12 @@
 
 let random = () => {
-	return parseInt(Math.random() * 2)
+	return Math.random() > 0.5
 }
 
 let findDBVersion = new Promise( (resolve, reject)=> {
-	console.log(0)
-	if (random()) {
+	let data = random()
+	
+	if (data) {
 		resolve()
 	} else {
 		reject('error 1')
@@ -14,12 +15,13 @@ let findDBVersion = new Promise( (resolve, reject)=> {
 
 // 1. 创建一个过渡表
 let createToggleTable = () => {
-	console.log(1)
+	console.log(`创建一个过渡表`)
 	return new Promise( (resolve, reject) => {
 		if (random()) {
 			resolve()
 		} else {
-			reject('error 1')
+			// 通过 new Error() 报错
+			return new Error(`创建一个过渡表`)
 		}
 	})
 };
