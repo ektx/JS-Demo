@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+function reactive(target) {
+  return new Proxy(target, {
+    get (target, property, receiver) {
+      if (!Reflect.has(receiver,property)) {
+        console.warn(property, '不存在')
+      }
+
+      if (Reflect.has(target, property)) {
+        return target[property]
+      }
+    },
+    set (target, property, value, receiver) {
+      let oldVal = target[property]
+      let result = Reflect.set(target, property, value, receiver)
+   
+      // 如果与旧值不同
+      if (oldVal != value) {
+        console.log(property, '触发值更新')
+      }
+ 
+      return result
+    }
+  })
+}
+
+let obj = {
+  name: '小布丁',
+  age: 1
+}
+
+let state = reactive(obj)
+// 年龄加1
+state.age = 4
+console.log('gender:', state.gender)
+console.log(state.name)
+console.log(state.age)
+</script>
