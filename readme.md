@@ -93,5 +93,11 @@ Merges the enumerable attributes of two or more objects deeply.
 
 深度合并2个以上多个对象的内容.
 
+## jQuery 插件
+
+### jQuery.Marquee
+https://github.com/aamirafridi/jQuery.Marquee  
+jQuery plugin to scroll the text like the old traditional marquee.
+
 
 
