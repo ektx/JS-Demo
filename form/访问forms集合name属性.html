@@ -4,14 +4,9 @@
 <meta charset="utf-8">
 <title>Forms集合</title>
 <script type="text/javascript">
-function window_onload()
-{
-	var numberForms = document.forms.length;
-	var formIndex;
-	
-	for (formIndex = 0; formIndex < numberForms; formIndex++)
-	{
-		alert(document.forms[formIndex].name);
+function window_onload() {
+	for (let i = 0, l = document.forms.length; i < l; i++) {
+		alert(document.forms[i].name);
 	}
 }
 </script>
