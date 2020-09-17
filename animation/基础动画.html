@@ -29,20 +29,17 @@
 	<a href="http://javascript.info/tutorial/animation">Js Animation Tutorial</a>
 	<script>
 	function move(ele) {
-
-		var width = 0;
+		let width = 0;
 
 		function frame() {
 			width++
 
 			ele.style.width = width + '%'
 
-			if (width == 100) clearInterval(id);
-
+			if (width < 100) requestAnimationFrame(frame)
 		}
 		
-		// 更新时间为 10ms
-		var id = setInterval(frame, 10)
+		requestAnimationFrame(frame)
 	}
 	</script>
 </body>
