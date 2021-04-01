@@ -2,9 +2,9 @@ var p = new Promise((resolve, reject) => {
     console.log(1)
     if (true) {
         setTimeout(() => {
-            resolve(2)
+            resolve(6)
         }, 0)
-        console.log(3)
+        console.log(2)
     } else {
         reject()
     }
@@ -16,10 +16,15 @@ var p = new Promise((resolve, reject) => {
     pp.then(mes => {
         console.log(mes)
     })
-    console.log(6)
+    console.log(3)
 })
 
 p.then(data => {
     console.log(data)
 })
+
+setTimeout(function() {
+    console.log(7)
+})
+
 console.log(4)
